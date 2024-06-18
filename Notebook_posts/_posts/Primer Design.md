@@ -1,14 +1,4 @@
-# Markdown Cheat Sheet
 
-Thanks for visiting [The Markdown Guide](https://www.markdownguide.org)!
-
-This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax) and [extended syntax](https://www.markdownguide.org/extended-syntax).
-
-## Basic Syntax
-
-These are the elements outlined in John Gruber’s original design document. All Markdown applications support these elements.
-
-### Heading
 
 # Primer Design
 
@@ -31,9 +21,9 @@ Once obtaining Gene Sequence:
 - Set the GC content parameter to be between 40-60%.
 - Define the desired replicon length (amplicon length) to be between 75-150 base pairs (bp).
 
-![alt text](Notebook_posts/images/Screenshot 2024-06-18 163606.png)
+![alt text](Notebook_posts/images/idt1.png)
 
-![alt text](Notebook_posts/images/Screenshot 2024-06-18 163709.png)
+![alt text](Notebook_posts/images/idt2.png)
 
 4. Evaluate Primer Hairpin Stability
 
@@ -41,7 +31,9 @@ Once obtaining Gene Sequence:
 - Examine the delta G (ΔG) values of the hairpin structures. Select primers with the lowest delta G values (close to -1 or more negative), indicating minimal secondary structure formation.
 - Optionally, you can mix and match forward and reverse primers from different pairs if they maintain a replicon length between 75-150 bp and have low delta G values.
 
-![alt text](Notebook_posts/images/Screenshot 2024-06-18 163815.png)
+![alt text]("C:/Users/USER/OneDrive/Documents/GitHub/OfekRainish_notebook/Notebook_posts/images/idt3.png")
+
+![alt text](C:\Users\USER\OneDrive\Documents\GitHub\OfekRainish_notebook\Notebook_posts\images)
 
 ![alt text](Notebook_posts/images/Screenshot 2024-06-18 163900.png)
 
@@ -65,37 +57,6 @@ If any parameter is out of range (note that the Tm parameter warns you if it hig
 - The first match in Primer-BLAST has 100% alignment to your primers.
 
 
-### Bold
-
-**bold text**
-
-### Italic
-
-*italicized text*
-
-### Blockquote
-
-> blockquote
-
-### Ordered List
-
-1. First item
-2. Second item
-3. Third item
-
-### Unordered List
-
-- First item
-- Second item
-- Third item
-
-### Code
-
-`code`
-
-### Horizontal Rule
-
----
 
 ### Link
 
@@ -105,66 +66,3 @@ If any parameter is out of range (note that the Tm parameter warns you if it hig
 
 ![alt text](https://www.markdownguide.org/assets/images/tux.png)
 
-## Extended Syntax
-
-These elements extend the basic syntax by adding additional features. Not all Markdown applications support these elements.
-
-### Table
-
-| Syntax | Description |
-| ----------- | ----------- |
-| Header | Title |
-| Paragraph | Text |
-
-### Fenced Code Block
-
-```
-{
-  "firstName": "John",
-  "lastName": "Smith",
-  "age": 25
-}
-```
-
-### Footnote
-
-Here's a sentence with a footnote. [^1]
-
-[^1]: This is the footnote.
-
-### Heading ID
-
-### My Great Heading {#custom-id}
-
-### Definition List
-
-term
-: definition
-
-### Strikethrough
-
-~~The world is flat.~~
-
-### Task List
-
-- [x] Write the press release
-- [ ] Update the website
-- [ ] Contact the media
-
-### Emoji
-
-That is so funny! :joy:
-
-(See also [Copying and Pasting Emoji](https://www.markdownguide.org/extended-syntax/#copying-and-pasting-emoji))
-
-### Highlight
-
-I need to highlight these ==very important words==.
-
-### Subscript
-
-H~2~O
-
-### Superscript
-
-X^2^
