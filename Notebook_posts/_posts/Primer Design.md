@@ -26,16 +26,24 @@ Once obtaining Gene Sequence:
 
 1. Go to the IDT PrimerQuest Tool. [IDT PrimerQuest link](https://eu.idtdna.com/pages/tools/primerquest?returnurl=%2FPrimerQuest%2FHome%2FIndex).
 2. Input the gene sequence into the tool.
-3. settings: 
-- select "qPCR Primers Only (no probes)"
+3. select "Custom Design Parameters": 
+- select "qPCR Primers Only (no probes)".
 - Set the GC content parameter to be between 40-60%.
 - Define the desired replicon length (amplicon length) to be between 75-150 base pairs (bp).
+
+![alt text](Notebook_posts/images/Screenshot 2024-06-18 163606.png)
+
+![alt text](Notebook_posts/images/Screenshot 2024-06-18 163709.png)
 
 4. Evaluate Primer Hairpin Stability
 
 - For each pair of primers generated, click on the "Hairpin" option in the IDT tool.
 - Examine the delta G (ΔG) values of the hairpin structures. Select primers with the lowest delta G values (close to -1 or more negative), indicating minimal secondary structure formation.
 - Optionally, you can mix and match forward and reverse primers from different pairs if they maintain a replicon length between 75-150 bp and have low delta G values.
+
+![alt text](Notebook_posts/images/Screenshot 2024-06-18 163815.png)
+
+![alt text](Notebook_posts/images/Screenshot 2024-06-18 163900.png)
 
 ### Validate Primer Characteristics Using "PCR Primer Stats" Tool
 
