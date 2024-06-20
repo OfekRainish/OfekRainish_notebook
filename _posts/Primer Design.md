@@ -21,7 +21,7 @@ Once obtaining Gene Sequence:
 - Set the GC content parameter to be between 40-60%.
 - Define the desired replicon length (amplicon length) to be between 75-150 base pairs (bp).
 
-![alt text](idt1.png)
+![alt text](images/idt1.png)
 
 ![alt text](idt2.png)
 
