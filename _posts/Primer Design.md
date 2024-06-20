@@ -23,7 +23,7 @@ Once obtaining Gene Sequence:
 
 ![alt text](images/idt1.png)
 
-![alt text](idt2.png)
+![alt text](images/idt2.png)
 
 
 
@@ -31,11 +31,11 @@ Once obtaining Gene Sequence:
 
 - For each pair of primers generated, click on the "Hairpin" option in the IDT tool.
 
-![alt text](idt3.png)
+![alt text](images/idt3.png)
 
 - Examine the delta G (ΔG) values of the hairpin structures. Select primers with the lowest delta G values (close to -1 or more negative), indicating minimal secondary structure formation.
 
-![alt text](idt4.png)
+![alt text](images/idt4.png)
 
 - Optionally, you can mix and match forward and reverse primers from different pairs if they maintain a replicon length between 75-150 bp and have low delta G values.
 
@@ -49,13 +49,13 @@ Once obtaining Gene Sequence:
 
 1. Input the selected primer sequences into the PCR Primer Stats Tool. [PCR Primer Stats link](https://www.bioinformatics.org/sms2/pcr_primer_stats.html).
 
-![alt text](start1.png)
+![alt text](images/start1.png)
 
 2. Ensure that all parameters such as GC content and primer length are within acceptable ranges ("pass").
 If any parameter is out of range, adjust the primer sequences. You can shorten or extend the primers while ensuring they meet the replicon length criteria.
  - Note that the Tm parameter warns you if it higher than 58c, it's OK, tm can be up to 65c.
 
-![alt text](start2.png)
+![alt text](images/start2.png)
 
 3. If necceray, re-run the adjusted primers in the "PCR Primer Stats Tool" until they all pass the required checks.
 
@@ -65,13 +65,13 @@ If any parameter is out of range, adjust the primer sequences. You can shorten o
  1. Go to the Primer-BLAST tool. [Primer Blast link](https://www.ncbi.nlm.nih.gov/tools/primer-blast/index.cgi?LINK_LOC=reset).
 2. Enter the final selected primer sequences into the tool under "Primer Parameters".
 
-![alt text](blast1.png)
+![alt text](images/blast1.png)
 
 3. Choose the following settings:
  - "Database": Select "Custom" and upload the FASTA file of the whole genome for the target organism.
  - "Organism": choose your organizm.
 
-![alt text](blast2.png)
+![alt text](images/blast2.png)
 
 4. Run Primer-BLAST and review the results to ensure:
 - The expected length of the amplicon (replicon) matches the expected lenght.
