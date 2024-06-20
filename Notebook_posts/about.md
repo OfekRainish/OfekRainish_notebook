@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-I am futur Ms student in marine biology science in Haifa university. My project will be based on metabolomics and microbiology
+I am currently a Ms student of marine biology science in Haifa university. My project will be based on metabolomics and microbiology
  
 
 ### More Information
@@ -23,35 +23,33 @@ https://github.com/OfekRainish
 
 ### EDUCATION
 2020-2023 | **Tel aviv University** | **life sience**   
-	- bachlor degree  
+-bachlor degree:
+ - SAT: 743
+ - GPA: 93.22  
+ 
+ 
+    
 		  
 		
 	
 		  
 2024- | **University Haifa** | **marine biology**   
-	- Master degree    
-		- microbiology and metabolomics under Dr Tal Luzzato knaan 
+	-  Master degree    
+		-  microbiology and metabolomics under Dr Tal Luzzato knaan 
 		 
 		  
 			
-
-### Professional Experience
-
-
-
-### THESES, REPORTS AND PUBLICATIONS IN PREPARATION
  
 	   
 ### SCHOLARSHIPS AND AWARDS
- - Dean's List in bachlor dagree
+ - Dean's List in bachlor dagree 2022
  - Haifa University Master's Degree Merit Scholarship
 ### TEACHING AND EDUCATION
-   -TA in microbiology lab
-
-### CONFERENCE
+   - TA in a microbiology lab
 
 
 ### SKILLS 
+- Basic python programming language
 
 
 
