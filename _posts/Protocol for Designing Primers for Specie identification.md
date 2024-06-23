@@ -2,6 +2,8 @@
 
 This protocol provides a step-by-step guide to designing primers for identifying a specific species using conserved gene sequences. The process includes selecting a gene, retrieving and aligning sequences from related species, designing primers, and verifying their specificity.
 
+In this case I worked on trying to identify a species of Gracilaria gracilis.
+
 ## Materials and Tools
 - **Internet Access**
 - **Text Editor** (e.g., Notepad, Word)
@@ -19,9 +21,11 @@ This protocol provides a step-by-step guide to designing primers for identifying
    - **16S rRNA** for bacteria.
    - **rbcL** for plants.
 
+   I chose the rbcL gene, and searched for *"red algae rbcL"* in NCBI.
+
 ### Step 2: Retrieval of Gene Sequences from NCBI
 
-1. **Access the NCBI website**: [NCBI](../images/ncb1%20(1).png).
+1. **Access the NCBI website**: [NCBI]([../images/ncb1%20(1).png](https://www.ncbi.nlm.nih.gov/)).
 2. **Search for the target gene** in related species:
    - Type the species name and the gene name into the search bar (e.g., *Escherichia coli 16S rRNA* Or alternatively *bacteria 16S* if you don't know related species.).
    ![alt text](../images/ncb1%20(1).png)
@@ -61,6 +65,15 @@ This protocol provides a step-by-step guide to designing primers for identifying
    - Click "Pick Primers" to generate possible primer pairs.
    ![alt text](../images/primer3.png)
    - Primer3 will list several pairs, with the top pair usually being the most suitable.
+
+In this case:
+   
+
+| Primer Type      | Sequence                |
+|------------------|-------------------------------------|
+| **Forward Primer** | ATGCGTATGTCTGGCTAGA                |
+| **Reverse Primer** | GAAGCCCAGTCTTGTTCAAAGA             |
+
 
 ### Step 6: Verification of Primer Specificity with Primer-BLAST
 
