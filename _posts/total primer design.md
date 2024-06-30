@@ -75,7 +75,7 @@ Prepare a list of primers for each gene, formatted as follows:
 | 8             | gyrA                        | Physiological - DNA replication | CTATGACGGGGAAGAGACGG | CGCCTGAATGCCATCAATGA |
 | 9             | gyrB                        | Physiological - DNA replication | TTGAAGTCAGCTCTCTCCCG | AGATTTTCCCCTTGAGCGGA |
 | 10            | ftsA                        | Physiological - cell division | AGCTACTTCGACCTTGCCAA   | GCGGACGACTTTGAACACTT   |
-| 11            | ftsZ                        | Physiological - cell division | [FWD] | [REV] |
+| 11            | ftsZ                        | Physiological - cell division | GGTAAATACGGATGCGCAGG   | AGTTCACGGGACTCTTCAGC |
 | 12            | ftsI                        | Physiological - cell division | [FWD] | [REV] |
 | 13            | minC                        | Physiological - cell division | [FWD] | [REV] |
 | 14            | minD                        | Physiological - cell division | [FWD] | [REV] |
