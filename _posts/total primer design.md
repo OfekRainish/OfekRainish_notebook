@@ -1,4 +1,4 @@
-# Protocol for Designing Primers for **Paenibacillus dendritiformis** Genes
+# Protocol for Designing Primers for **Paenibacillus dendritiformis C454** Genes
 
 ## Purpose
 This protocol outlines the steps for designing primers for genes in **Paenibacillus dendritiformis**, focusing on genes within biosynthetic gene clusters (BGCs) and physiological genes involved in various cellular functions.
@@ -65,10 +65,10 @@ Prepare a list of primers for each gene, formatted as follows:
 
 | Serial Number | Gene Name                   | Gene Type           | Forward Primer             | Reverse Primer             |
 |---------------|-----------------------------|---------------------|----------------------------|----------------------------|
-| 1             | Asparagine synthase         | Natural ingredients | TTATTTCTGGGCAGCCTCCA       | GCTGGTCTGCTAATTCGTCC       |
-| 2             | Bacitracin synthetase 3     | Natural ingredients | GAATGTCGGTTGGAGTACGC       | TTCCTCCTCCGTGAGCATTT       |
-| 3             | Isochorismate synthase      | Natural ingredients | TCTCGACCAACATAACCGGG       | ATAGTACGCCCGATCGAAGG       |
-| 4             | L-ectoine synthase          | Natural ingredients | ACAAACATCATGTGGAGGCG       | TCTGGCTCTTTCCTCTCAGC       |
+| 1             | Asparagine synthase         | Natural product | TTATTTCTGGGCAGCCTCCA       | GCTGGTCTGCTAATTCGTCC       |
+| 2             | Bacitracin synthetase 3     | Natural product | GAATGTCGGTTGGAGTACGC       | TTCCTCCTCCGTGAGCATTT       |
+| 3             | Isochorismate synthase      | Natural product | TCTCGACCAACATAACCGGG       | ATAGTACGCCCGATCGAAGG       |
+| 4             | L-ectoine synthase          | Natural product | ACAAACATCATGTGGAGGCG       | TCTGGCTCTTTCCTCTCAGC       |
 | 5             | dnaA                        | Physiological - DNA replication | TGGTTCAAAGCCACTCAAGC | TCCACCTGATTGCCCGTAAT |
 | 6             | dnaG                        | Physiological - DNA replication | GGCATCTTGGTGAACGGTTT | TATGGAGGCAGCGACTTTCT |
 | 7             | dnaN                        | Physiological - DNA replication | TCCAGACCTTTCTCCGTTCC | GTGGAAATGGCAAAGACCGT |
