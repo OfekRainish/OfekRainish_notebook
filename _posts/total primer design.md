@@ -77,13 +77,12 @@ Prepare a list of primers for each gene, formatted as follows:
 | 10            | ftsA                        | Physiological - cell division | AGCTACTTCGACCTTGCCAA   | GCGGACGACTTTGAACACTT   |
 | 11            | ftsZ                        | Physiological - cell division | GGTAAATACGGATGCGCAGG   | AGTTCACGGGACTCTTCAGC |
 | 12            | ftsI                        | Physiological - cell division | CGGAATCCTGCAATGTCGTC | GGCATAACGGGTTGAAGCAT |
-| 13            | minC                        | Physiological - cell division | [FWD] | [REV] |
-| 14            | minD                        | Physiological - cell division | [FWD] | [REV] |
+| 13            | minC                        | Physiological - cell division | GCTTGACGATCAGTGCGAAT | TCTGTCTTTTGCTCATCGGC |
+| 14            | minD                        | Physiological - cell division | CGTCAAGGATAAGCGGTTCG | CGGCAGGGCAGTCGATAATA |
 | 15            | motA                        | Physiological - movement | GATGACTTCCTTCGCAACGG | CCTGGGAAAAGATAAGCGCG |
 | 16            | motB                        | Physiological - movement | GCGGGACAAGATGAACGAAT | GACTTGAGGCTTGCTTTCCC |
-| 17            | mreB                        | Physiological - movement | [FWD] | [REV] |
+| 17            | mreB                        | Physiological - movement | ACGCTGTCCATCTCTTCGAA | GTGAGAACAATGCCCCGATC |
 
-*Note: Replace [FWD] and [REV] with the actual sequences once designed.
 
 ---
 
