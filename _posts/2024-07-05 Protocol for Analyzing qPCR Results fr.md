@@ -63,16 +63,20 @@ You are provided with an Excel table containing Ct values, where:
 
 **Explanation**: The fold change represents how many times the gene expression has increased or decreased in the treated sample relative to the control. The base of 2 is used because qPCR amplification is exponential and typically, each cycle doubles the amount of the target DNA.
 
+![alt text](../images/qpcr%20exel%20analysis.png)
+
 ### Step 4: Graphical Representation of Results
 
 **Objective**: Visualize the fold change in gene expression for each gene.
 
 **Procedure**:
-1. Using the fold change values, create a table suitable for graphing.
+1. Using the fold change values (step 3), create a table suitable for graphing.
 2. Select a bar graph format to display the data.
 3. Adjust the y-axis settings:
    - Set the minimum value to 1.0 to effectively represent fold change on a logarithmic scale, where 1.0 indicates no change in expression.
 4. Label the graph appropriately with gene names on the x-axis and fold change on the y-axis.
+
+![alt text](../images/fold%20change%20graph%20qpcr.png)
 
 ## Conclusion
 
