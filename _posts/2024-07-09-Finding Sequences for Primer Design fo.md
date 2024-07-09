@@ -5,13 +5,10 @@
 - Choose the core gene from each BGC for primer design.
 
 ### genes selected:
-      1.Asparagine Synthase.
-
-      2.Bacitracin Synthetase 3.
-
-      3.Isochorismate Synthase  
-
-      4.L-Ectoine Synthase
+1. Asparagine Synthase
+2. Bacitracin Synthetase 3
+3. Isochorismate Synthase  
+4. L-Ectoine Synthase
 
 
 ---
