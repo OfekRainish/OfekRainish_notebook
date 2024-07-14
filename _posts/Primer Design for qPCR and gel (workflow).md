@@ -62,9 +62,8 @@ The specificity and quality of the PCR amplification were confirmed by the prese
 The negative control of 16S in the second run appears to show a band. This can be explained by human error. In any case, the primers seem to be normal, showing a single band each of the appropriate size of around 100bp.
 
 
-# PCR Experiment Protocol
 
-## Primers
+## Primer validation 2
 
 The primers used in this experiment were designed in the laboratory ahead of time and were intended for several genes with different functions of *Paenibacillus dendritiformis* strain C454.
 
