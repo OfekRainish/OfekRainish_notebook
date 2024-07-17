@@ -32,7 +32,7 @@ I will employ three statistical tools:
 | as.factor(depth):season      | 2   | 328    | 12.861264  | 4.1940e-06  | ***          |
 | site:as.factor(depth):season | 2   | 328    | 17.176740  | 8.0462e-08  | ***          |
 
-### Conclusions
+ Conclusions:
 
 
    -  The site has a highly significant effect on Chordata.
@@ -60,4 +60,5 @@ Another interesting thing is that at the Akziv site, Chordata were only found at
 ### Supplements
 
 [Download Excel File](https://raw.githubusercontent.com/OfekRainish_notebook/exel%20files/Photosurvey_metadata%20class.csv)
+
 
