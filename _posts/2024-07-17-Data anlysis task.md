@@ -57,3 +57,7 @@ I will employ three statistical tools:
    It can be seen from the graph that chordata were not found at all at a depth of 10 meters in any of the sites.
 Another interesting thing is that at the Akziv site, Chordata were only found at a depth of 45 meters regardless of the season.
 
+### Supplements
+
+[Download Excel File](https://raw.githubusercontent.com/OfekRainish_notebook/exel%20files/Photosurvey_metadata%20class.csv)
+
