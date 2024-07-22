@@ -22,12 +22,16 @@ Thiamine is essential for metabolic processes and serves as a cofactor for sever
 ## Primers
 The following primers will be used for the qPCR experiment:
 
-| Gene | Primer Direction | Sequence |
-| --- | --- | --- |
-| GAPDH (Reference) | Forward | ATGGCTATCCCGAAAGTTGG |
-| GAPDH (Reference) | Reverse | GACCGTGCGTGGAGTCATAC |
-| thiG (Tested) | Forward | GGTTCTGGCCAAGGTTTACA |
-| thiG (Tested) | Reverse | CAGATGCGCCATTTCCATA |
+| Primer name     | Primer sequence         | Sequence length | GC content (%) | Molecular weight (Daltons) | nmol/A260 | micrograms/A260 | Basic Tm (°C) | Salt adjusted Tm (°C) | Nearest neighbor Tm (°C) |
+|-----------------|-------------------------|-----------------|----------------|----------------------------|-----------|------------------|---------------|-----------------------|--------------------------|
+| fwd GAPDH (reference)       | ATGGCTATCCCGAAAGTTGG    | 20              | 50.00          | 6157.07                    | 5.10      | 31.41            | 52            | 47                    | 62.70                    |
+| rev GAPDH (reference)       | GACCGTGCGTGGAGTCATAC    | 20              | 60.00          | 6158.05                    | 5.15      | 31.71            | 56            | 51                    | 65.66                    |
+| fwd thiG (tested)     | GGTTCTGGCCAAGGTTTACA    | 20              | 50.00          | 6148.06                    | 5.22      | 32.07            | 52            | 47                    | 63.07                    |
+| rev thiG (tested)       | CAGATGCGCCATTTCCATA     | 19              | 47.37          | 5747.80                    | 5.55      | 31.90            | 49            | 44                    | 60.52                    |
+
+
+
+
 
 
 
