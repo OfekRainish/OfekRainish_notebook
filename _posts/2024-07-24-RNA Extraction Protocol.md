@@ -133,6 +133,9 @@
 - Discard the NucleoSpin® RNA Stool Column.
 - Vortex each microcentrifuge tube for 2 seconds.
 
+### storage
+To ensure RNA stability keep RNA frozen at -20 °C for short term or -70 °C for long term storage.
+
 ## Results
 
 The quality of the extraction and its concentration for both bacteria were tested using a nanodrop device.
