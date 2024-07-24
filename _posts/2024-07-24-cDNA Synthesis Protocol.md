@@ -1,4 +1,5 @@
 # cDNA Synthesis Protocol
+Here we want to switch from RNA extraction to cDNA.
 we used two kits to test the efficiency of each of them.
 ## Kits Used
 1. [UltraScript® Reverse Transcriptase & cDNA Synthesis Kits by PCRBIOSYSTEMS](../pdf%20protocols/PB30.11-UltraScript-cDNA-Synthesis-Kit-Manual.pdf)
