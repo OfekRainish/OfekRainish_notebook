@@ -16,10 +16,11 @@ we used two kits to test the efficiency of each of them.
 1. Prepare a PCR tube with a total volume of 20 µL:
 
 a. **RNA extraction**:
+
         - Each kit requires different ranges: 
             - PCRBIOSYSTEMS: 4.0 pg - 0.4 µL
             - BIO-RAD: 100 fg - 1 µg
-        - For both kits, use 400 ng. To calculate the volume from the RNA extraction, use the formula:
+    For both kits, use 400 ng. To calculate the volume from the RNA extraction, use the formula:
 
 To calculate the volume from the RNA extraction, use the formula:
 
@@ -34,18 +35,19 @@ Given the RNA concentration in our case is ~ 80 ng/µL and the desired amount is
 </p>
 
 
-     
-
     
 b. **cDNA synthesis mix**:
+
         - Both kits provide a 5x concentrated mix.
-        - Use 4 µL to achieve a final volume of 20 µL.
+        - Use 4 µL so it will be diluted at a final volume of 20 µL.
 
 c. **Enzyme reverse transcriptase**:
+
         - Add 1 µL.
         - Contains RNase inhibitors, so add before the RNA extraction.
 
 d. **UPW**:
+
         - Add UPW to reach a final volume of 20 µL.
 
 2. **Control for DNA contamination**:
