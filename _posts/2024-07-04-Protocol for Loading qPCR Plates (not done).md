@@ -22,7 +22,7 @@ Each primer stock corresponds to a specific gene and includes both the forward a
    - Multiply 3 µL by the total number of wells to get the required volume of primer solution.
 
 3. **Add SYBR Green:**
-   - Add 3 µL of SYBR Green for each well.
+   - You will need to add 3 µL of SYBR Green for each well.
    - Multiply 3 µL by the total number of wells to get the required volume of SYBR Green.
 
 4. **Prepare Final Primer Stock:**
@@ -42,7 +42,7 @@ Prepare a cDNA stock for each sample by combining the cDNA solution with SYBR Gr
    - Multiply 3 µL by the total number of wells to get the required volume of cDNA solution.
 
 2. **Add SYBR Green:**
-   - Add 3 µL of SYBR Green for each well.
+   -You will need to add another 3 µL of SYBR Green for each well.
    - Multiply 3 µL by the total number of wells to get the required volume of SYBR Green.
 
 3. **Prepare Final cDNA Stock:**
