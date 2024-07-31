@@ -24,6 +24,8 @@ a. **RNA extraction**:
 
 For both kits, we use 400 ng. 
 
+*This is the stage where we compare the concentrations, so it doesn't matter what concentration we got of the RNA, we will take 400 nanograms.
+
 To calculate the volume from the RNA extraction, use the formula:
 
 <p align="center">
@@ -73,3 +75,9 @@ d. **UPW**:
 ### Storage
 - Store the cDNA test tubes at -20 °C until further experiments.
 
+### concentration
+The final concentration is 20 nanograms per microliter. For qPCR we need a concentration of 1 ng per microliter. Therefore, it must be mixed 20 times:
+1. Transfer the contents of the test tube to a clean Eppendorf.
+2. Add 380 microliters of UPW.
+
+*It is recommended to return some water to the empty cDNA test, pipet a little and return to Eppendorf just to make sure we have collected all the cDNA.
