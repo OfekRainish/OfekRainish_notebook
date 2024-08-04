@@ -51,7 +51,7 @@ To test the primers for specificity and functionality, PCR amplification was per
    - PCR products were analyzed using agarose gel electrophoresis to verify the presence and size of the amplified fragments.
    - Initial testing involved running a 1% agarose gel with 4 µL of SafeRed. This test included a negative control (no DNA) and a molecular weight ladder at different volumes (5 µL and 15 µL) to assess distribution accuracy.
 
-   ![alt text](../images/trail%202%20-%20gel.png)
+   ![alt text](../images/trial%201%20-%20gel.png)
 
    - In the second gel electrophoresis run, DNA from Kit1 was tested for each target gene, along with negative controls and the 16S control. This run used a 2% agarose gel with 7 µL of SafeRed, and a molecular weight ladder at volumes of 20 µL and 25 µL. Additionally, a recA gene with validated primers was included to further validate the PCR setup.
 
