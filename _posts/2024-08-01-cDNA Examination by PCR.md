@@ -11,36 +11,34 @@
 Both cDNA and RNA extracts were at a concentration of 20 µg/µL.
 
 ## Dilution for qPCR
-To achieve a concentration of 1 ng/µL for qPCR:
-- Use the formula  C1*V1 = C2*V2 
+we tried 3 different concentrations: 4,2,0.5 µg/µL.
+- Use the formula  C1*V1 = C2*V2 (where C2= C1/dilution factor)
 
-  in this case we get:  380 µL of UPW with 20 µL of the extracts.
+  In our case, we did a series of dilutions with the amounts we decided on, but any other way that reaches these concentrations is fine:
+  - for c=4 µg/µL: 6 µL cDNA extraction (of 20 µg/µL) + 24 µL UPW.
+  - for c=2 µg/µL: 12 µL cDNA extraction (of 4 µg/µL) + 12 µL UPW.
+  - for c=0.5 µg/µL: 6 µL cDNA extraction (of 2 µg/µL) + 18 µL UPW.
+
+  
 
 ## Genes and Primers
-| Gene Name               | Type             | Forward Primer (F)         | Reverse Primer (R)          |
-|-------------------------|------------------|----------------------------|-----------------------------|
-| Carboxypep DacF         | Protease         | AGCCTTGCTTCAATCCC           | CTTGTTCGTGTTGACAAGC          |
-| Bacitracin synthetase 3 | Natural Products | GAACGCTGATCGAGCATAAGA       | GAAGCAGAACGAGTGGAACA         |
-| Asparagine synthase     | Natural Products | CCGTTCAAGCTCGGTTAAGA        | GAGGCTTGTTGTTGGCTTTC         |
-| Isochorismate synthase  | Natural Products | CGGAGCCGGAGAGATTTATG        | CGACAGGACCACCTTCTGA          |
-| L-ectoine synthase      | Natural Products | ATTCTCGGCACGGAACAGGA        | AAACCAACTCCGTCCTTCTTG        |
+
+| Gene Name           | Type             | Forward Primer (F)        | Reverse Primer (R)          |
+|---------------------|------------------|---------------------------|-----------------------------|
+| Asparagine synthase | Natural Products | CCGTTCAAGCTCGGTTAAGA       | GAGGCTTGTTGTTGGCTTTC         |
+| 16s RNA             | Control          | ACACTGACGACATGGTTCTACAGTGYCAGCMGCCGCGGTAA       | TACGGTAGCAGAGACTTGGTCTCCGYCAATTYMTTTRAGTTT-        |
+
 
 ## PCR Reaction
 1. **Prepare PCR Mix:**
    - Mix the cDNA or RNA extracts with the respective primers and PCR reagents.
 
 2. **PCR Tests:**
-   1. **Bacitracin synthetase 3 against cDNA of Paenibacillus dendritiformis** + negative control with RNA extract without reverse transcriptase.
-   2. **Asparagine synthase against Paenibacillus dendritiformis cDNA** + negative control with RNA extract without reverse transcriptase.
-   3. **L-ectoine synthase against Paenibacillus dendritiformis cDNA** + negative control with RNA extract without reverse transcriptase.
-   4. **Isochorismate synthase against cDNA of Paenibacillus dendritiformis** + negative control with RNA extract without reverse transcriptase.
-   5. **Carboxypep DacF against cDNA of Paenibacillus dendritiformis** + negative control with RNA extract without reverse transcriptase.
-   6. **Bacitracin synthetase 3 against cDNA of Paenibacillus dendritiformis (using a different and old kit for cDNA synthesis)** + negative control with RNA extract without reverse transcriptase.
-   7. **Positive control for the PCR test** using DNA of Paenibacillus dendritiformis (isochorismate synthase).
-   8. **Isochorismate synthase against cDNA of Bacillus subtilis** (verify primer specificity for Bacillus) + negative control with RNA extract without reverse transcriptase.
-   9. **Carboxypep DacF against cDNA of Bacillus subtilis** (verify primer specificity for Bacillus) + negative control with RNA extract without reverse transcriptase.
-   10. **Negative control** (isochorismate synthase) with UPW instead of genetic material.
 
+   We did 12 tests. With each test of cDNA we also did a negative control (NC) in which the transition from RNA to cDNA was without the reverse transcriptase enzymes. Each of the two genes I chose, 16S and Asparagine synthase, we tested on two cDNA extracts of two bacteria: Paenibacillus dendritiformis and Bacillus subtilis, and at three different concentrations 4,2,0.5 µg/µL.
 ## Results
-- (Insert your PCR results here)
+![results](../images/cdna%20validation.png)
 
+As you can see the transition to cDNA was successful and you can see it in the upper part of the gel, of the 16S. In the asparagine synthase gene no bands were seen at all, which indicates that the gene was not expressed during RNA extraction. This makes sense since Asparagine synthase catalyzes the biosynthesis of the amino acid asparagine. In LB medium, cells can efficiently obtain asparagine from the medium.
+
+It can also be seen that the most prominent band in the concentration of 4  µg/µL.
