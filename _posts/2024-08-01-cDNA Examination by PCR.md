@@ -41,4 +41,4 @@ we tried 3 different concentrations: 4,2,0.5 µg/µL.
 
 As you can see the transition to cDNA was successful and you can see it in the upper part of the gel, of the 16S. In the asparagine synthase gene no bands were seen at all, which indicates that the gene was not expressed during RNA extraction. This makes sense since Asparagine synthase catalyzes the biosynthesis of the amino acid asparagine. In LB medium, cells can efficiently obtain asparagine from the medium.
 
-It can also be seen that the most prominent band in the concentration of 4  µg/µL.
+It can also be seen that the most prominent band in the concentration of 4  µg/µL. **However**, it is important to note that we ran 28 cycles in PCR and not 35. A concentration of 4 µg/µL is **very high** for a qPCR process, so it may be better to work with the concentration of 0.5 µg/µL.
