@@ -61,6 +61,6 @@ and XcnG peptidase We performed 6 tests:
 
    The gel is 2% agar and 4µL safeRed, and runs for 50 minutes at 120 volts..
 
-   ![results](../images/gel%20cdna%2016s%20reca%20dcf%20xg.png)
+   ![results](../images/cdna%202.png)
 
    
