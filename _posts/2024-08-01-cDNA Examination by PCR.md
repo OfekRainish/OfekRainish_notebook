@@ -59,7 +59,21 @@ and XcnG peptidase We performed 6 tests:
 
    In each row there are two PCRBIO ladder 3 (pcr biosystems) ladders, once diluted 5 times and once diluted 10 times, in this order.
 
-   The gel is 2% agar and 4µL safeRed, and runs for 50 minutes at 120 volts..
+   The gel is 2% agar and 4µL safeRed, and runs for 50 minutes at 120 volts.
+
+PCR Program
+
+**Initial Denaturation:**
+- 94°C for 1 minute
+
+**35 Cycles:**
+- Denaturation: 94°C for 30 seconds
+- Annealing: 53°C for 30 seconds
+- Extension: 72°C for 30 seconds
+
+**Final Extension:**
+- 72°C for 5 minutes
+
 
    ![results](../images/cdna%202.png)
 
