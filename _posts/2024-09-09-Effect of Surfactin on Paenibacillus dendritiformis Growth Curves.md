@@ -65,6 +65,7 @@ Prepare a 96-well plate with three technical replicates for each treatment:
 
 ## Results
 
+![results](../images/growth%20curves/avrages%20no%20stv.png)
 
 ### Link to Raw Data
-[Insert link to raw data here]
+[raw data](../exel%20files/growth%20curve/raw%20data%20experiment%201.3.htm)
