@@ -57,6 +57,16 @@ and XcnG peptidase We performed 6 tests:
    5. Against RNA Bs where no reverse transcriptase enzyme was inserted. (RNA control Bs)
    6. water control (W.C)
 
+| Gene Name         | Type                     | Forward Primer (F)                          | Reverse Primer (R)                          |
+|-------------------|--------------------------|---------------------------------------------|---------------------------------------------|
+| recA              | Potential normalizing gene| GAG ATT GAA GGC GAG ATG G                   | GTC TTG GAC TTG CTG ATC G                   |
+| 16S               | Control                  | ACACTGACGACATGGTTCTACAGTGGYCAGCMGCCGCGGTAA- | TACGGTAGCAGAGACTTGGTCTCCGYCAATTYMTTTRAGTTT- |
+| carboxypep DacF   | Protease                 | AGC CTT GCT TCA ATA CCC                     | CTT GTT CGT GTT GAC AAG C                   |
+| XcnG peptidase    | Protease                 | GAA ATC ACA TCA GGG TGA TAG G               | GGT GCT CTA TCA TCG TTT GG                  |
+
+
+
+
    In each row there are two PCRBIO ladder 3 (pcr biosystems) ladders, once diluted 5 times and once diluted 10 times, in this order.
 
    The gel is 2% agar and 4µL safeRed, and runs for 50 minutes at 120 volts.
