@@ -54,7 +54,7 @@ To evaluate how different concentrations of surfactin (6.25 µM, 12.5 µM, 25 µ
      - For **12.5 µM**, Dilute the ethanol-surfactin solution 0.1mg/mL 2 times (with 100% ethanol) to reach a solution with a concentration of 0.05 mg/mL - and evaporate it in the well to reach a concentration of 12.5 µM.
      - For **6.25 µM**, do the same with the ethanol-surfactin solution concenrtation of 0.05 mg/mL to get a concentration of 0.025 mg/mL.
 
-![results](../images/growth%20curves/Plate%20planing1.png)
+![results](../images/growth%20curves/plate%20planing1.png)
      
 
 ### 3. Plate Loading
