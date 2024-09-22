@@ -63,25 +63,29 @@ This protocol outlines the steps for designing primers for genes in **Paenibacil
 
 Prepare a list of primers for each gene, formatted as follows:
 
-| Serial Number | Gene Name                   | Gene Type           | Forward Primer             | Reverse Primer             |
-|---------------|-----------------------------|---------------------|----------------------------|----------------------------|
-| 1             | Asparagine synthase         | Natural product | TTATTTCTGGGCAGCCTCCA       | GCTGGTCTGCTAATTCGTCC       |
-| 2             | Bacitracin synthetase 3     | Natural product | GAATGTCGGTTGGAGTACGC       | TTCCTCCTCCGTGAGCATTT       |
-| 3             | Isochorismate synthase      | Natural product | TCTCGACCAACATAACCGGG       | ATAGTACGCCCGATCGAAGG       |
-| 4             | L-ectoine synthase          | Natural product | ACAAACATCATGTGGAGGCG       | TCTGGCTCTTTCCTCTCAGC       |
-| 5             | dnaA                        | Physiological - DNA replication | TGGTTCAAAGCCACTCAAGC | TCCACCTGATTGCCCGTAAT |
-| 6             | dnaG                        | Physiological - DNA replication | GGCATCTTGGTGAACGGTTT | TATGGAGGCAGCGACTTTCT |
-| 7             | dnaN                        | Physiological - DNA replication | TCCAGACCTTTCTCCGTTCC | GTGGAAATGGCAAAGACCGT |
-| 8             | gyrA                        | Physiological - DNA replication | CTATGACGGGGAAGAGACGG | CGCCTGAATGCCATCAATGA |
-| 9             | gyrB                        | Physiological - DNA replication | TTGAAGTCAGCTCTCTCCCG | AGATTTTCCCCTTGAGCGGA |
-| 10            | ftsA                        | Physiological - cell division | AGCTACTTCGACCTTGCCAA   | GCGGACGACTTTGAACACTT   |
-| 11            | ftsZ                        | Physiological - cell division | GGTAAATACGGATGCGCAGG   | AGTTCACGGGACTCTTCAGC |
-| 12            | ftsI                        | Physiological - cell division | CGGAATCCTGCAATGTCGTC | GGCATAACGGGTTGAAGCAT |
-| 13            | minC                        | Physiological - cell division | GCTTGACGATCAGTGCGAAT | TCTGTCTTTTGCTCATCGGC |
-| 14            | minD                        | Physiological - cell division | CGTCAAGGATAAGCGGTTCG | CGGCAGGGCAGTCGATAATA |
-| 15            | motA                        | Physiological - movement | GATGACTTCCTTCGCAACGG | CCTGGGAAAAGATAAGCGCG |
-| 16            | motB                        | Physiological - movement | GCGGGACAAGATGAACGAAT | GACTTGAGGCTTGCTTTCCC |
-| 17            | mreB                        | Physiological - movement | ACGCTGTCCATCTCTTCGAA | GTGAGAACAATGCCCCGATC |
+| Serial Number | Gene Name               | Gene Type                        | Forward Primer          | Reverse Primer         |
+|---------------|--------------------------|----------------------------------|-------------------------|------------------------|
+| 1             | Asparagine synthase       | Natural product                  | TTATTTCTGGGCAGCCTCCA     | GCTGGTCTGCTAATTCGTCC   |
+| 2             | Bacitracin synthetase 3   | Natural product                  | GAATGTCGGTTGGAGTACGC     | TTCCTCCTCCGTGAGCATTT   |
+| 3             | Isochorismate synthase    | Natural product                  | TCTCGACCAACATAACCGGG     | ATAGTACGCCCGATCGAAGG   |
+| 4             | L-ectoine synthase        | Natural product                  | ACAAACATCATGTGGAGGCG     | TCTGGCTCTTTCCTCTCAGC   |
+| 5             | dnaA                     | Physiological - DNA replication   | TGGTTCAAAGCCACTCAAGC     | TCCACCTGATTGCCCGTAAT   |
+| 6             | dnaG                     | Physiological - DNA replication   | GGCATCTTGGTGAACGGTTT     | TATGGAGGCAGCGACTTTCT   |
+| 7             | dnaN                     | Physiological - DNA replication   | TCCAGACCTTTCTCCGTTCC     | GTGGAAATGGCAAAGACCGT   |
+| 8             | gyrA                     | Physiological - DNA replication   | CTATGACGGGGAAGAGACGG     | CGCCTGAATGCCATCAATGA   |
+| 9             | gyrB                     | Physiological - DNA replication   | TTGAAGTCAGCTCTCTCCCG     | AGATTTTCCCCTTGAGCGGA   |
+| 10            | ftsA                     | Physiological - cell division     | AGCTACTTCGACCTTGCCAA     | GCGGACGACTTTGAACACTT   |
+| 11            | ftsZ                     | Physiological - cell division     | GGTAAATACGGATGCGCAGG     | AGTTCACGGGACTCTTCAGC   |
+| 12            | ftsI                     | Physiological - cell division     | CGGAATCCTGCAATGTCGTC     | GGCATAACGGGTTGAAGCAT   |
+| 13            | minC                     | Physiological - cell division     | GCTTGACGATCAGTGCGAAT     | TCTGTCTTTTGCTCATCGGC   |
+| 14            | minD                     | Physiological - cell division     | CGTCAAGGATAAGCGGTTCG     | CGGCAGGGCAGTCGATAATA   |
+| 15            | motA                     | Physiological - movement          | GATGACTTCCTTCGCAACGG     | CCTGGGAAAAGATAAGCGCG   |
+| 16            | motB                     | Physiological - movement          | GCGGGACAAGATGAACGAAT     | GACTTGAGGCTTGCTTTCCC   |
+| 17            | mreB                     | Physiological - movement          | ACGCTGTCCATCTCTTCGAA     | GTGAGAACAATGCCCCGATC   |
+| 18            | recA                     | Potential reference gene          | GGAATCTCCCATCTCGCCTT     | ATCGACGAACTGCTTCTGTC   |
+| 19            | gyrB                     | Potential reference gene          | CAACTTGAGCGGGGATGATG     | GAACAAGGACTCGACGATGC   |
+| 20            | dacF                     | Protease                         | CCCACTTCGAGAACAGCAAC     | TGGCGCAGGTAATCTTCGTA   |
+
 
 
 ---
