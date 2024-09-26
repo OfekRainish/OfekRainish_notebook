@@ -76,3 +76,9 @@ To evaluate how different concentrations of surfactin (6.25 µM, 12.5 µM, 25 µ
 
 - Ensure ethanol completely evaporates before adding bacteria to avoid interference.
 - Perform three technical replicates per condition and include control wells with no surfactin (bacteria only).
+
+## Results
+
+![results](../images/growth%20curves/19.9%20growth%20curve%20evaporation.png)
+
+[raw data](../exel%20files/growth%20curve/data%20evapo%20data%20filtered%2019.9.xlsx)
