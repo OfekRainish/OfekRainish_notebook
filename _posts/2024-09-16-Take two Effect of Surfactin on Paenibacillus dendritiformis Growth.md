@@ -81,4 +81,4 @@ To evaluate how different concentrations of surfactin (6.25 µM, 12.5 µM, 25 µ
 
 ![results](../images/growth%20curves/19.9%20growth%20curve%20evaporation.png)
 
-[raw data](../exel%20files/growth%20curve/data%20evapo%20data%20filtered%2019.9.xlsx)
+[raw data](../exel%20files/growth%20curve/datacsv%20evapo%20data%20filtered%2019.9.csv)
