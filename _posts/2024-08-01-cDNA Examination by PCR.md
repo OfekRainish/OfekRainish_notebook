@@ -87,4 +87,41 @@ PCR Program
 
    ![results](../images/cdna%202.png)
 
-   
+   3. For each of the four genes recA, 16S, Carboxypep DacF
+and gyrB we performed 5 tests:
+
+   1. Versus genomic DNA of P.d (PdG).
+   2. Against cDNA of P.d (Pd+).
+   3. Against RNA Pd in ​​which no reverse transcriptase enzyme was inserted (Pd-).
+   4. against genomic DNA of Bs (BsG).
+   5. water control (W.C).
+
+**Notice we used different primers for RecA and Carboxypep DacF**
+
+| Gene Name          | Gene Type                  | Forward Primer                                               | Reverse Primer                                               |
+|--------------------|----------------------------|--------------------------------------------------------------|--------------------------------------------------------------|
+| 16S                | Control                    | ACACTGACGACATGGTTCTACAGTGGYCAGCMGCCGCGGTAA                    | TACGGTAGCAGAGACTTGGTCTCCGYCAATTYMTTTRAGTTT                    |
+| gyrB               | Potential normalizing gene | CAACTTGAGCGGGGATGATG                                          | GAACAAGGACTCGACGATGC                                          |
+| RecA               | Potential normalizing gene | GGAATCTCCCATCTCGCCTT                                          | ATCGACGAACTGCTTCTGTC                                          |
+| carboxypep DacF    | Protease                   | CCCACTTCGAGAACAGCAAC                                          | TGGCGCAGGTAATCTTCGTA                                          |
+
+
+
+   In each row there are two PCRBIO ladder 3 (pcr biosystems) ladders, once diluted 5 times and once diluted 10 times, in this order.
+
+   The gel is 2% agar and 4µL safeRed, and runs for 50 minutes at 120 volts.
+
+PCR Program
+
+**Initial Denaturation:**
+- 94°C for 1 minute
+
+**35 Cycles:**
+- Denaturation: 94°C for 30 seconds
+- Annealing: 53°C for 30 seconds
+- Extension: 72°C for 30 seconds
+
+**Final Extension:**
+- 72°C for 5 minutes
+
+![](../images/gel/16s%20gyrB%20dacF.png)
