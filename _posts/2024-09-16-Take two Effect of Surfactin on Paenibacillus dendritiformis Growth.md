@@ -82,3 +82,13 @@ To evaluate how different concentrations of surfactin (6.25 µM, 12.5 µM, 25 µ
 ![results](../images/growth%20curves/19.9%20growth%20curve%20evaporation.png)
 
 [raw data](../exel%20files/growth%20curve/datacsv%20evapo%20data%20filtered%2019.9.csv)
+
+## repeated experiment
+We repeated the experiment when we changed the concentrations, instead of a concentration of 6.25 µM we put a concentration of 50 µM surfuctin.
+ To do this we doubled the amount of the serfectin+ethanol solution to 103.36 µL.
+
+ ## Results
+
+![results](../images/growth%20curves/2.10%20growth%20curve%20evaporation.png)
+
+[raw data](../exel%20files/growth%20curve/data%202.10%20sortedcvs.csv)
