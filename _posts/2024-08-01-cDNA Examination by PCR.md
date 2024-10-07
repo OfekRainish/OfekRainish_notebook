@@ -125,3 +125,7 @@ PCR Program
 - 72°C for 5 minutes
 
 ![](../images/gel/16s%20gyrB%20dacF.png)
+
+As observed, there are smears and unexpected bands appearing in locations other than anticipated. After evaluation, it was decided to repeat the PCR reaction at a higher annealing temperature of 63°C instead of 53°C. The second run focused on the recA, gyrB, and DacF genes.
+
+![](../images/gel/recA%20gyrB%20DacF%207.10.png)
