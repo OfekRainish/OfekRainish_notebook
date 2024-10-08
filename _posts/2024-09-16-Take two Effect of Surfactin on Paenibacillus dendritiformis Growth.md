@@ -83,7 +83,7 @@ To evaluate how different concentrations of surfactin (6.25 µM, 12.5 µM, 25 µ
 
 [raw data](../exel%20files/growth%20curve/datacsv%20evapo%20data%20filtered%2019.9.csv)
 
-## repeated experiment
+## take two
 We repeated the experiment when we changed the concentrations, instead of a concentration of 6.25 µM we put a concentration of 50 µM surfuctin.
  To do this we doubled the amount of the serfectin+ethanol solution to 103.36 µL.
 
@@ -92,3 +92,53 @@ We repeated the experiment when we changed the concentrations, instead of a conc
 ![results](../images/growth%20curves/2.10%20growth%20curve%20evaporation.png)
 
 [raw data](../exel%20files/growth%20curve/data%202.10%20sortedcvs.csv)
+
+## take three
+
+We repeated the growth curves experiment with modifications. This time, surfactin was diluted in LB, and 100 µL of the solution (containing LB, surfactin, and ethanol) was transferred into each well. Ethanol was allowed to evaporate for approximately 3 hours before the addition of bacterial cultures.
+
+Additionally, the overnight bacterial culture was diluted 10 times and incubated for 3 hours to ensure that the bacteria were in the exponential growth phase before adding them to the wells.
+
+### Surfactin Dilution and Concentration Calculation
+
+To prepare the required concentrations of surfactin, we followed these steps:
+
+1. **Calculate the volume needed from the initial surfactin stock (1 mg/mL) to create a solution with a concentration of 100 µM in 800 µL**:
+
+   **Formula**:
+   ```markdown
+   Mass (g) = Concentration (mol/L) × Volume (L) × MW (g/mol)
+
+   Mass = (100 × 10⁻⁶ mol/L) × (800 × 10⁻⁶ L) × 1036.3 g/mol
+   Mass ≈ 8.3 × 10⁻⁵ g
+
+   Determine the volume of surfactin stock (1 mg/mL) needed:
+  
+   Volume (µL) = Mass (g) / Concentration (g/µL)
+   Volume ≈ 83 µL
+
+We took **83 µL** of surfactin from the stock solution (1 mg/mL) and made up the volume to **800 µL** with LB. This test tube contained a surfactin concentration of **100 µM**.
+
+### 2-Fold Dilutions
+A series of **2-fold dilutions** was prepared with LB to achieve the following concentrations:
+- **50 µM**
+- **25 µM**
+- **12.5 µM**
+
+### Preparing the Wells
+Each test tube's diluted solution was transferred to the wells in **triplicate**. From each test tube, **100 µL** was transferred into three wells, as shown in the following image:
+
+![](../images/growth%20curves/plate%20planning%202.png)
+
+### Incubation and Bacterial Addition
+After the ethanol evaporation period (3 hours), **100 µL** of bacterial culture (OD ~0.1) was added to each well, excluding the negative control wells.
+
+### Plate Reader Setup
+- The plate was placed in the plate reader for **84 hours**, with a total of **85 measurements**.
+- **Intense shaking** for **5 minutes** was performed before each measurement.
+
+### Results:
+(Insert results and analysis here)
+
+
+
