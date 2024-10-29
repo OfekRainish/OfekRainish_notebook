@@ -59,3 +59,5 @@ In previous experiments ([see here](link)), growth curves of *P. dendritiformis*
 1. Measure OD at 600 nm after 20 hours and compare with previous results ([here](link)) to confirm logarithmic phase.
 2. Extract RNA from all 6 tubes following the [RNA extraction protocol](link).
 
+![results](../images/rna%20extract/pre%20extraction%20planning.png)
+
