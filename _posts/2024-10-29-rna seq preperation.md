@@ -4,7 +4,7 @@
 To extract RNA from *Paenibacillus dendritiformis* grown in the logarithmic phase, both with and without surfactin treatment, for RNA-seq sequencing.
 
 ## Background
-In previous experiments ([see here](link)), growth curves of *P. dendritiformis* with varying concentrations of surfactin were analyzed, determining the optimal conditions as 12.5 µM surfactin and a 20-hour incubation to reach the logarithmic phase. 
+In previous experiments ([see here](../_posts/2024-09-16-Take%20two%20Effect%20of%20Surfactin%20on%20Paenibacillus%20dendritiformis%20Growth.md)), growth curves of *P. dendritiformis* with varying concentrations of surfactin were analyzed, determining the optimal conditions as 12.5 µM surfactin and a 20-hour incubation to reach the logarithmic phase. 
 
 ## Materials
 - *Paenibacillus dendritiformis* culture
@@ -14,7 +14,7 @@ In previous experiments ([see here](link)), growth curves of *P. dendritiformis*
 - Fume hood
 - Plate reader (600 nm OD measurements)
 - Breathing test tubes
-- RNA extraction kit ([protocol link](link))
+- RNA extraction kit ([protocol link](../_posts/2024-07-24-RNA%20Extraction%20Protocol.md))
 
 
 
@@ -56,8 +56,8 @@ In previous experiments ([see here](link)), growth curves of *P. dendritiformis*
 - Incubate tubes at 30°C, 200 RPM, for 20 hours.
 
 ### Day 3: OD Verification and RNA Extraction
-1. Measure OD at 600 nm after 20 hours and compare with previous results ([here](link)) to confirm logarithmic phase.
-2. Extract RNA from all 6 tubes following the [RNA extraction protocol](link).
+1. Measure OD at 600 nm after 20 hours and compare with previous results ([here](../_posts/2024-09-16-Take%20two%20Effect%20of%20Surfactin%20on%20Paenibacillus%20dendritiformis%20Growth.md)) to confirm logarithmic phase.
+2. Extract RNA from all 6 tubes following the [RNA extraction protocol](../_posts/2024-07-24-RNA%20Extraction%20Protocol.md).
 
 ![results](../images/rna%20extract/pre%20extraction%20planning.png)
 
