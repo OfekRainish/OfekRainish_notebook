@@ -103,42 +103,42 @@ Additionally, the overnight bacterial culture was diluted 10 times and incubated
 
 To prepare the required concentrations of surfactin, we followed these steps:
 
-1. **Calculate the volume needed from the initial surfactin stock (1 mg/mL) to create a solution with a concentration of 100 µM in 800 µL**:
+1. **Calculate the volume needed from the initial surfactin stock (1 mg/mL) to create a solution with a concentration of 50 µM in 1200 µL**:
 
    **Formula**:
    ```markdown
    Mass (g) = Concentration (mol/L) × Volume (L) × MW (g/mol)
 
-   Mass = (100 × 10⁻⁶ mol/L) × (800 × 10⁻⁶ L) × 1036.3 g/mol
-   Mass ≈ 8.3 × 10⁻⁵ g
+   Mass = (50 × 10⁻⁶ mol/L) × (1200 × 10⁻⁶ L) × 1036.3 g/mol
+   Mass ≈ 6.2 × 10⁻⁵ g
 
    Determine the volume of surfactin stock (1 mg/mL) needed:
   
    Volume (µL) = Mass (g) / Concentration (g/µL)
-   Volume ≈ 83 µL
+   Volume ≈ 62 µL
 
-We took **83 µL** of surfactin from the stock solution (1 mg/mL) and made up the volume to **800 µL** with LB. This test tube contained a surfactin concentration of **100 µM**.
+We took **62 µL** of surfactin from the stock solution (1 mg/mL) and made up the volume to **1200 µL** with LB. This test tube contained a surfactin concentration of **50 µM**.
 
 ### 2-Fold Dilutions
 A series of **2-fold dilutions** was prepared with LB to achieve the following concentrations:
-- **50 µM**
 - **25 µM**
 - **12.5 µM**
 
 ### Preparing the Wells
-Each test tube's diluted solution was transferred to the wells in **triplicate**. From each test tube, **100 µL** was transferred into three wells, as shown in the following image:
+Each test tube's diluted solution was transferred to the wells in **5 riplicate** axpect the loest concentration which we prepered 10 replicates. From each test tube, **100 µL** was transferred into three wells, as shown in the following image:
 
-![](../images/growth%20curves/plate%20planning%202.png)
+![](../images/growth%20curves/plate%20planning%203.png)
 
 ### Incubation and Bacterial Addition
-After the ethanol evaporation period (3 hours), **100 µL** of bacterial culture (OD ~0.1) was added to each well, excluding the negative control wells.
+After the ethanol evaporation period (3 hours), **100 µL** of bacterial culture (OD ~0.1) was added to each well, excluding the negative control wells (so another 1:2 dilution).
 
 ### Plate Reader Setup
 - The plate was placed in the plate reader for **84 hours**, with a total of **85 measurements**.
 - **Intense shaking** for **5 minutes** was performed before each measurement.
 
 ### Results:
-(Insert results and analysis here)
+![](../images/growth%20curves/28.10.24%205%20replicates%20res.png)
+[raw data](../exel%20files/growth%20curve/28.10.24%205%20replicates%20res%20sorted.csv)
 
 
 
