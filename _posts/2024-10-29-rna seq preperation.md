@@ -84,4 +84,4 @@ At the desired growth phases (exponential and stationary), perform the following
 ## Results
 moitoring tubes graph based on OD:
 ![sampling time table](../images/growth%20extraction/the%20nine%20graph.png)
-[raw data](../exel%20files/growth%20curve/the%20main%20show.xlsx)
+[raw data](../exel%20files/growth%20curve/the%20main%20showcv.xlsx)
