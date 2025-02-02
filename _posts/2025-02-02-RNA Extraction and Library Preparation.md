@@ -10,16 +10,18 @@ Bacterial samples were collected at two different time points for this experimen
 A total of 20 samples were collected. RNA extraction and sequencing will be performed on triplicate samples from each group, selecting the one with the highest RNA quality for sequencing.
 
 ## 2. RNA Extraction
-RNA will be extracted from the bacterial samples using the NucleoSpin® RNA Stool Kit (according to the manufacturer’s protocol). The procedure can be accessed in detail [here](link).
+RNA will be extracted from the bacterial samples using the NucleoSpin® RNA Stool Kit (according to the manufacturer’s protocol). The procedure can be accessed in detail [here](../_posts/2024-07-24-RNA%20Extraction%20Protocol.md).
 
 ## 3. RNA Quality Testing
 To ensure the RNA is of sufficient quality for sequencing, we will assess the RNA samples using two methods in our laboratory:
 1. **NanoDrop Spectrophotometer**: To assess RNA concentration and purity.
 2. **TapeStation 4200**: To determine RNA integrity and size distribution.
 
-The samples selected for sequencing will be highlighted in green based on the results. A summary of the quality testing results can be found [here](link), and an example of the RNA quality results is shown below.
+The samples selected for sequencing will are highlighted in green.
 
-*(Insert image of RNA quality testing results)*
+[image1](../images/rna%20extract/lab%20QC.png)
+
+[raw data](../exel%20files/)
 
 ## 4. Library Preparation
 After selecting the RNA samples for sequencing, we will send the samples to the Azrieli Technion Genome Center for library preparation. RNA sequencing libraries will be constructed simultaneously using the NEBNext UltraExpress RNA Library Prep Kit for Illumina (NEB, Cat. No. E3330) according to the manufacturer's protocol.
