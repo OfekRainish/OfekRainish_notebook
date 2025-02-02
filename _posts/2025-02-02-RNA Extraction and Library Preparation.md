@@ -19,7 +19,7 @@ To ensure the RNA is of sufficient quality for sequencing, we will assess the RN
 
 The samples selected for sequencing will are highlighted in green.
 
-[image1](../images/rna%20extract/lab%20QC.png)
+![image1](../images/rna%20extract/lab%20QC.png)
 
 [raw data](../exel%20files/)
 
