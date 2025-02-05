@@ -48,7 +48,9 @@ To ensure that the library meets the necessary quality standards, the following 
 
 Results of the quality testing will be shown below:
 
-*(Leave space for image here)*
+- [library QC results1](../pdf%20files/qc%20rna%20library/2024-12-25%20-%20TalLuzato_RNA_libs_2,4.pdf)
+
+- [library QC results2](../pdf%20files/qc%20rna%20library/2024-12-26%20-TalLuzato_RNA_libs.pdf)
 
 ### Step 6 – Pooling Libraries
 Once the library quality is verified,a pool of all the libraries in equal molar ratios was created, in order to create a balanced sample pool. This ensures that all samples are represented accurately during sequencing.
