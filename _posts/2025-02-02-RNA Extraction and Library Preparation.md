@@ -29,19 +29,43 @@ The library preparation steps include:
 
 ### Step 1 – rRNA Depletion
 The majority of RNA in the sample is ribosomal RNA (rRNA). To remove rRNA from the starting material (200 ng), we will use the [**Ribo-Zero Plus rRNA Depletion Kit**](../pdf%20protocols/illumina-stranded-total-rna-prep-data-sheet-m-gl-02148.pdf)
-### Step 2 – Reverse Transcription to cDNA
+
+### Step 2 - RNA Fragmentation
+RNA molecules are often too long for efficient sequencing. The sequencing machine reads short fragments (~200 bp), so RNA must be broken into smaller pieces.
+
+In this protocol, fragmentation occurs after mRNA isolation using the NEBNext UltraExpress RNA Fragmentation Mix, which is heat-activated (94°C for 15 minutes). read more in the [full protocol](../pdf%20protocols/manualE3330%20protocol%20-library%20preparation.pdf)
+
+
+
+### Step 3 – Reverse Transcription to cDNA (chek with tecnion what wad dne here)
 To convert the RNA into a format suitable for sequencing, we will use reverse transcriptase and other enzymes to synthesize complementary DNA (cDNA) from the RNA template. 2.5 microliter from each sample. (find the whole protocol [here](../pdf%20protocols/PB30.11-UltraScript-cDNA-Synthesis-Kit-Manual.pdf))
 
-### Step 3 – Adapter Ligation
-Adapters will be added to the cDNA fragments. These adapters serve several functions:
-- **Barcode**: To uniquely identify samples.
-- **Flow cell attachment**: To allow the cDNA fragments to bind to the sequencing flow cell.
-- **Enable PCR and sequencing**: The adapters allow for both amplification (PCR) and sequencing of the cDNA fragments.
+### Step 4 – Adapter Ligation
+Now that we have double-stranded cDNA, we need to prepare it for sequencing by adding adapters. Adapters are short DNA sequences that serve several important functions:
 
-### Step 4 – PCR Amplification
-The cDNA library will undergo PCR amplification to generate sufficient quantities of the library for sequencing.
+* They allow cDNA to attach to the sequencing flow cell.
+* They contain barcodes (indexes) for identifying   different samples.
+* They enable PCR amplification.
 
-### Step 5 – Library Quality Testing
+The process involves:
+
+1. End Repair & dA-Tailing – The dsDNA ends are modified to create sticky ends that help the adapters attach. This is done using the NEBNext UltraExpress End Prep Enzyme Mix.
+2. Adapter Ligation – The NEBNext Adaptor for Illumina is ligated (attached) to the cDNA fragments using the NEBNext UltraExpress Ligation Master Mix.
+3. USER Enzyme Treatment – This removes unwanted parts of the adapter to ensure clean ligation.
+
+At this stage, the cDNA is fully prepared with adapters and ready for amplification.
+
+### Step 5 – PCR Amplification (Library Enrichment)
+Because the amount of cDNA at this point is very low, we need to make many copies of it using PCR (Polymerase Chain Reaction).
+
+The PCR reaction:
+
+1. Uses the NEBNext MSTC High Yield Master Mix, which contains DNA polymerase and primers that recognize the adapter sequences.
+2. Runs 12 cycles of PCR, doubling the number of DNA copies each cycle.
+
+This step ensures that we have enough DNA for sequencing and helps eliminate any unligated adapters.
+
+### Step 6 – Library Quality Testing
 To ensure that the library meets the necessary quality standards, the following tests will be performed:
 - **Library concentration** will be measured using [the Qubit dsDNA HS Assay Kit](../pdf%20protocols/Qubit_dsDNA_HS_Assay_UG.pdf).
 - **Library size distribution** will be analyzed using the [TapeStation 4200 with the High Sensitivity D1000 kit](../pdf%20protocols/ScreenTape_HSD1000_QG.pdf).
