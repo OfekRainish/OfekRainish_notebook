@@ -23,7 +23,7 @@ The samples selected for sequencing will are highlighted in green.
 
 
 ## 4. Library Preparation
-After selecting the RNA samples for sequencing, we send the samples (12) to the [Azrieli Technion Genome Center](https://tgc.net.technion.ac.il/) for library preparation. RNA sequencing libraries will be constructed simultaneously using the [NEBNext UltraExpress RNA Library Prep Kit for Illumina (NEB, Cat. No. E3330)](../pdf%20protocols/PB30.11-UltraScript-cDNA-Synthesis-Kit-Manual.pdf) according to the manufacturer's protocol.
+After selecting the RNA samples for sequencing, we send the samples (12) to the [Azrieli Technion Genome Center](https://tgc.net.technion.ac.il/) for library preparation. RNA sequencing libraries will be constructed simultaneously using the [NEBNext UltraExpress RNA Library Prep Kit for Illumina (NEB, Cat. No. E3330)](../pdf%20protocols/manualE3330%20protocol%20-library%20preparation.pdf) according to the manufacturer's protocol.
 
 The library preparation steps include:
 
