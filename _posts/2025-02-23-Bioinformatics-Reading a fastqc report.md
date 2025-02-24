@@ -5,7 +5,7 @@
 ![](../images/rna_bioinformatics/libraryQC/reading%20fastqc/4.png)
 ![](../images/rna_bioinformatics/libraryQC/reading%20fastqc/5.png)
 ![](../images/rna_bioinformatics/libraryQC/reading%20fastqc/6.png)
-![](../images/rna_bioinformatics/libraryQC/reading%20fastqc/7.png)
+![](../images/rna_bioinformatics/libraryQC/reading%20fastqc/7.png.png)
 ![](../images/rna_bioinformatics/libraryQC/reading%20fastqc/8.png)
 ![](../images/rna_bioinformatics/libraryQC/reading%20fastqc/9.png)
 ![](../images/rna_bioinformatics/libraryQC/reading%20fastqc/10.png)
