@@ -67,3 +67,32 @@ multiqc /path/to/your/fastqc/reports
 ![](../images/rna_bioinformatics/libraryQC/fastqc_sequence_counts_plot.png)
 
 ** all results can be shown on my user in the station: home>RNA_seq>results
+
+# Using a script combining fastqc & multiqc
+Instead of running each tool separately, you can use a code that combines the two operations like this:
+ 
+
+  
+Modify the paths in the script to match your directories before running it.  
+
+## Script  
+
+```bash
+#!/bin/bash
+
+# Specify paths
+input_dir="/path/to/your/fastq_files"  # Change this to your directory containing input files
+fastqc_output_dir="/path/to/your/fastqc_results"  # Change this to where you want FastQC results saved
+multiqc_output_dir="/path/to/your/multiqc_results"  # Change this to where you want MultiQC results saved
+
+# Create output directories if they don't exist
+mkdir -p "$fastqc_output_dir"
+mkdir -p "$multiqc_output_dir"
+
+# Run FastQC on all .fastq_trimming_report.txt files and save results in the specified output directory
+fastqc "$input_dir"/*.fq -o "$fastqc_output_dir"
+
+# Run MultiQC on the FastQC results and save the final report in the specified MultiQC output directory
+multiqc "$fastqc_output_dir" -o "$multiqc_output_dir"
+
+echo "FastQC and MultiQC analysis completed!"
