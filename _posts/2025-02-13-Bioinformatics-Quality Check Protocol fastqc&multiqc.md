@@ -80,7 +80,7 @@ Modify the paths in the script to match your directories before running it.
 ```bash
 #!/bin/bash
 
-# Specify paths
+# Specify paths. use the pwd command to copy complete pathway!
 input_dir="/path/to/your/fastq_files"  # Change this to your directory containing input files
 fastqc_output_dir="/path/to/your/fastqc_results"  # Change this to where you want FastQC results saved
 multiqc_output_dir="/path/to/your/multiqc_results"  # Change this to where you want MultiQC results saved
