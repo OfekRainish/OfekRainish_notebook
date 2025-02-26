@@ -58,9 +58,9 @@ multiqc /path/to/your/fastqc/reports
 #Alternatively, you can specify the path to the FastQC reports. this is just another way to do it.
 ```
 ### Results
-![](../images/rna_bioinformatics/libraryQC/fastqc_adapter_content_plot.png)
+![](../images/rna_bioinformatics/libraryQC/fastqc_adapter_content_plot_raw.png)
 
-![](../images/rna_bioinformatics/libraryQC/fastqc_per_base_sequence_quality_plot.png)
+![](../images/rna_bioinformatics/libraryQC/fastqc_per_base_sequence_quality_plot_raw.png)
 
 ![](../images/rna_bioinformatics/libraryQC/fastqc_per_sequence_quality_scores_plot.png)
 
