@@ -48,14 +48,22 @@ echo "Trimming complete!"
 ## **Results**
 
 ### **1. Summary Table of Basic Statistics**
-![Basic Statistics Table](path/to/image.png)
+![Basic Statistics Table](../images/rna_bioinformatics/libraryQC/multiqc_trimGalore_comparisons.png)
 
 ### **2. GC Content Comparison**
-![GC Content Comparison](path/to/image.png)
+![GC Content Comparison](../images/rna_bioinformatics/libraryQC/gc_content_comparison.png)
+
+After polyG trimming, the double peak is no longer present, suggesting that the additional peak may have been an artifact of Illumina sequencing, where polyG tails are added to low-quality sequence ends. If this is the case, the extra peak is likely a technical issue rather than a biological feature.
+
+If the double peak were caused by contamination, polyG trimming would not have removed it, since the peak would result from differences in GC content rather than polyG sequences
 
 ### **3. Mean Quality Score Differences**
-![Quality Score Comparison](path/to/image.png)
+![Quality Score Comparison](../images/rna_bioinformatics/libraryQC/per_base_quality_comparisom.png)
+
+It can be seen that the basic trimming improved the quality of the sequences. There is no change, and we do not expect to see any change, after further trimming of polyG.
 
 ### **4. Adapter Content Across Processing Stages**
-- In the **final processing stage** (*Trim Galore + PolyG trimming*), no sequences had adapter contamination >0.1%.
+![Quality Score Comparison](../images/rna_bioinformatics/libraryQC/adptor_comparison.png)
+It can be seen that there has been a significant improvement in the percentage of adapters in all examples.
+ *Trim Galore + PolyG trimming*,has no image since no sequences had adapter contamination higher than 0.1%.
 
