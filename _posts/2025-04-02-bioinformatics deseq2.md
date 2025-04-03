@@ -97,6 +97,11 @@ vcd <- vst(dds, blind = FALSE)
 PlotPCA(vcd, intgroup = C("TimePoint","Treatment")) #your factors
 ```
 
+
+![](../images/rna_bioinformatics/deseq2/initial%20pca%20plot%20-%20before%20running%20deseq.png)
+
+
+
 # 9. Run DESeq2
 Run DESeq2 to perform differential expression analysis.
 ```r
