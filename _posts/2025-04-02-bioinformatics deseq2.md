@@ -59,7 +59,7 @@ keep = rowSums(counts1 > 5) >= 2
 counts3 = counts1[keep, ]
 ```
 
-# 6. Create DESeqDataSet
+## 6. Create DESeqDataSet
 Create a DESeqDataSet object that contains the count data, the metadata, and the experimental design. tihs dataset combines everything deseq2 needs, and we ill run deseq2 on this dataset.
 
 ```r
@@ -73,7 +73,7 @@ dds = DESeqDataSetFromMatrix(
   design = ~ TimePoint + Treatment   # Experimental design formula (your factors)
 )
 ```
-# 7. Set Reference Level for Treatment
+## 7. Set Reference Level for Treatment
 DESeq2 compares gene expression between groups, and it needs to know which group is the "baseline" for comparisons. This is called the reference level.
 in my case, the 'control' (no surfactin treatment) will be that baseline.
 
@@ -84,7 +84,7 @@ levels(dds$Treatment)
 # Set 'control' as the reference level
 dds$treatment <- relevel(dds$Treatment, ref = "control")
 ```
- # 8. Initial PCA to Check Data
+ ## 8. Initial PCA to Check Data
 Perform an initial Principal Component Analysis (PCA) to visualize variation in the data and check for batch effects or outliers.
 
 ✅ Good sign: Samples cluster by treatment (e.g., "Social" and "Isolated" separate).                                                             
@@ -102,7 +102,7 @@ PlotPCA(vcd, intgroup = C("TimePoint","Treatment")) #your factors
 
 
 
-# 9. Run DESeq2
+## 9. Run DESeq2
 Run DESeq2 to perform differential expression analysis.
 ```r
 # Run DESeq2 analysis
