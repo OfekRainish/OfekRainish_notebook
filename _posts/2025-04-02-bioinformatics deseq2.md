@@ -133,4 +133,19 @@ even though it the exact same code
 res <- results(dds, name=compare1)
 head(res, 2) # just to see how it looks like
 
+# Explanation
+mcols(res, use.names = T)
+expl <- mcols(res, use.names = T)
 ```
+### B. Save the results
+at this point its recommended to save your results:
+```r
+# Save
+summary(res)
+write.table(res,
+            file = "DE Timepoint.csv",
+            sep = ",",
+            row.names = T,
+            quote = F)
+```
+### C. 
