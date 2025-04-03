@@ -118,3 +118,19 @@ Run DESeq2 to perform differential expression analysis.
 # Run DESeq2 analysis
 dds <- DESeq(dds)
 ```
+## 11. Viewing comparisons made and setting variables for each comparison
+```r
+resultsNames(dds) #shows you the comparisons deseq made
+compare1 <- resultsNames(dds)[2] # Variable assignment of TimePoint comparison
+compare2 <- resultsNames(dds)[3] #Variable assignment of Surfactin treatment comparison
+```
+## Now we will work on each comparison seperatlly 
+even though it the exact same code
+
+## TimePoint (compare1)
+### A. show results
+```r
+res <- results(dds, name=compare1)
+head(res, 2) # just to see how it looks like
+
+```
