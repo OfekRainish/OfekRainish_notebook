@@ -183,3 +183,20 @@ Because housekeeping genes are required for survival, their expression is tightl
 
 In contrast, **lowly expressed genes** (on the left side of the MA plot) may show large fold changes due to **true biological variation** or simply **greater measurement noise**. This results in a triangular shape on the MA plot — with a **stable base on the right** and more **variability on the left**.
 
+### Top gene
+These lines of code will reveal the gene whose expression level changes most significantly (lowest adj p value) between the two conditions (here between two time points, 20 and 44 hours):
+
+```r
+
+```
+
+![timepoint topgene simple](..)
+
+You can also build a plot from the same data that displays it differently (divided by treatments) like this:
+
+```r
+
+```
+
+![timepoint topgene less simple](..)
+
