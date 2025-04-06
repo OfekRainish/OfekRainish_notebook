@@ -248,11 +248,11 @@ ggplot(geneCounts, aes(x=Treatment, y=count, color=Treatment))+geom_point(size =
 ```
 and the results are:
 AM plot compering treatment to control (reference)
-![](..)
+![](../images/rna_bioinformatics/deseq2/maPlot_treatment.png)
 Top gene plot
-![](.)
+![](../images/rna_bioinformatics/deseq2/topgene_simple_tratment.png)
 Nicer Top gene plot
-![](.)
+![](../images/rna_bioinformatics/deseq2/topgene_not_simple_treatment.png)
 
 
 ## VST Transformation
