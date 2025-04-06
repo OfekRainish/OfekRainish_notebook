@@ -148,4 +148,38 @@ write.table(res,
             row.names = T,
             quote = F)
 ```
-### C. 
+### C. AM plot
+An MA plot visualizes the differences in gene expression between two conditions.
+
+X-axis (A) = Average expression of a gene across both samples (in log scale).
+→ Genes with higher expression overall are farther to the **right**.
+
+Y-axis (M) = Log2 fold change (log₂FC) between the two conditions.
+→ Genes above 0 are upregulated, and genes below 0 are downregulated (compared to the reference).
+
+```r
+# Plot
+plotMA(res)
+
+resLFC <- lfcShrink(dds, coef = compare1,
+                    type = "apeglm")
+plotMA(resLFC, ylim=c(-3,3))
+plotMA(resLFC)
+```
+the reference is according to what you set when you created the dateset or according to the deseq default. To know what the reference is, if you are not sure, you need to run the following code, it will give you a list of the two parameters being compared, with the first being the reference.
+
+```r
+# Reference of MA plot
+levels(dds$TimePoint)
+```
+In this case the reference is 20 hourns, and the plot looks like this:
+
+![timepoint ma plot](..)
+
+
+In an MA plot, we often observe that genes with **high average expression levels** (on the right side of the plot) show **small log2 fold changes** between conditions. These genes are typically **housekeeping genes**, which are essential for core cellular functions such as energy production, transcription, and translation.
+
+Because housekeeping genes are required for survival, their expression is tightly regulated and tends to remain **stable across treatments and conditions**. 
+
+In contrast, **lowly expressed genes** (on the left side of the MA plot) may show large fold changes due to **true biological variation** or simply **greater measurement noise**. This results in a triangular shape on the MA plot — with a **stable base on the right** and more **variability on the left**.
+
