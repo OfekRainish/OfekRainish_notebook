@@ -127,7 +127,7 @@ compare2 <- resultsNames(dds)[3] #Variable assignment of Surfactin treatment com
 ## Now we will work on each comparison seperatlly 
 even though it the exact same code
 
-## TimePoint (compare1)
+## TimePoint (compare1) -------------------------------------
 ### A. show results
 ```r
 res <- results(dds, name=compare1)
@@ -208,3 +208,61 @@ ggplot(geneCounts, aes(x=Treatment, y=count, color=TimePoint))+geom_point(size =
 ![timepoint topgene less simple](../images/rna_bioinformatics/deseq2/topgene_timepoint.png)
 
 
+## Treatment (compare2) -------------------------------------
+Let's do the same fot treatment (with and without surfactin)
+this is the whole code:
+
+```r
+# Res for Treatment ----
+res <- results(dds, name=compare2)
+head(res, 2)
+
+# Explanation
+mcols(res, use.names = T)
+expl <- mcols(res, use.names = T)
+
+# Save
+summary(res)
+write.table(res,
+            file = "DE Treatment.csv",
+            sep = ",",
+            row.names = T,
+            quote = F)
+
+# Plot
+plotMA(res)
+
+resLFC <- lfcShrink(dds, coef = compare2,
+                    type = "apeglm")
+plotMA(resLFC, ylim=c(-3,3))
+plotMA(resLFC)
+
+# Top Genes
+top_gene <- which.min(res$padj)
+plotCounts(dds, gene = top_gene, intgroup = "Treatment")
+
+#same plot (top gene), more nice
+
+geneCounts = plotCounts(dds, gene = top_gene, intgroup = c("TimePoint", "Treatment"), returnData = TRUE)
+ggplot(geneCounts, aes(x=Treatment, y=count, color=Treatment))+geom_point(size = 6, position=position_jitter(w=0.1,h=0))+ggtitle(paste('Normolize Counts for', rownames(dds[top_gene])))
+```
+and the results are:
+AM plot compering treatment to control (reference)
+![](..)
+Top gene plot
+![](.)
+Nicer Top gene plot
+![](.)
+
+
+## VST Transformation
+
+Count data tends to have high variability: genes with low counts often have very large variances, while genes with high counts usually have lower variability.
+
+The goal of VST is to make the data more suitable for downstream analyses like PCA or clustering.
+
+VST transforms the count data so that the variance (spread of the data) is no longer dependent on the mean (the average expression level). This means that, after applying VST, genes with both high and low expression will have similar variability, making them easier to compare.
+
+```r
+
+```
