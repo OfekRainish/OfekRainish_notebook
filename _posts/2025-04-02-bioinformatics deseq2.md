@@ -264,5 +264,51 @@ The goal of VST is to make the data more suitable for downstream analyses like P
 VST transforms the count data so that the variance (spread of the data) is no longer dependent on the mean (the average expression level). This means that, after applying VST, genes with both high and low expression will have similar variability, making them easier to compare.
 
 ```r
-
+#transformation (vst)
+vsd <- vst(dds, blind = FALSE)
+#assay() returns the transformed count data
+head(assay(vsd),3) #just to see how it looks like
 ```
+
+### NMDS plot
+Non-metric Multidimensional Scaling (NMDS) is a method used to visualize the similarity or dissimilarity between samples. It takes complex, high-dimensional data and reduces it to a 2D or 3D plot where similar samples appear close together and different ones are farther apart.
+
+NMDS is especially useful when your data is not normally distributed (which is often the case with gene expression) and when you want to visualize group patterns or treatment effects without making strong assumptions about the data.
+
+- k: The number of dimensions the data is reduced to (usually 2 for a flat plot). A higher k may give a better fit but is harder to visualize.
+
+- Stress: A number that tells us how well the NMDS plot represents the true distances between samples. Lower stress means better representation.
+
+    - Stress < 0.2 = good
+
+    - Stress > 0.3 = poor fit
+
+```r
+###### NMDS PLOT ######
+
+#install package
+install.packages("vegan")
+library(vegan)
+
+
+#Use bray curtis distances
+dist1 = "bray"
+nmds1 = metaMDS(t(assay(vsd)),k=2,dist=dist1, try=1000)
+
+#install ggplot
+install.packages("ggplot2", dependencies = TRUE)
+library(ggplot2)
+
+
+#data for NMDS plot
+df_nmds1=as.data.frame(nmds1$points)
+df_nmds1$names=rownames(nmds1)
+df_nmds1$TimePoint=colData$TimePoint
+df_nmds1$Treatment=colData$Treatment
+
+#NMDS plot
+ggplot(df_nmds1, aes(x=MDS1, y=MDS2, color=Treatment, shape = TimePoint))+geom_point(size=6)+ggtitle(paste("VST NMD; distance = ",dist1, "stress=", round(nmds1$stress, digits = 2)))
+```
+
+![](../images/rna_bioinformatics/deseq2/nmdsplot.png)
+
