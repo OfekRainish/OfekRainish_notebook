@@ -174,7 +174,7 @@ levels(dds$TimePoint)
 ```
 In this case the reference is 20 hourns, and the plot looks like this:
 
-![timepoint ma plot](..)
+![timepoint ma plot](../images/rna_bioinformatics/deseq2/timepoint%20_amplot_real_regular.png)
 
 
 In an MA plot, we often observe that genes with **high average expression levels** (on the right side of the plot) show **small log2 fold changes** between conditions. These genes are typically **housekeeping genes**, which are essential for core cellular functions such as energy production, transcription, and translation.
@@ -187,16 +187,24 @@ In contrast, **lowly expressed genes** (on the left side of the MA plot) may sho
 These lines of code will reveal the gene whose expression level changes most significantly (lowest adj p value) between the two conditions (here between two time points, 20 and 44 hours):
 
 ```r
-
+top_gene <- which.min(res$padj)
+plotCounts(dds, gene = top_gene, intgroup = "TimePoint")
 ```
 
-![timepoint topgene simple](..)
+![timepoint topgene simple](../images/rna_bioinformatics/deseq2/topgene_timepoint_simple.png)
 
 You can also build a plot from the same data that displays it differently (divided by treatments) like this:
 
 ```r
+#same plot (top gene), more nice
 
+library(ggplot2)
+install.packages("ggplot2")
+
+geneCounts = plotCounts(dds, gene = top_gene, intgroup = c("TimePoint", "Treatment"), returnData = TRUE)
+ggplot(geneCounts, aes(x=Treatment, y=count, color=TimePoint))+geom_point(size = 6, position=position_jitter(w=0.1,h=0))+ggtitle(paste('Normolize Counts for', rownames(dds[top_gene])))
 ```
 
-![timepoint topgene less simple](..)
+![timepoint topgene less simple](../images/rna_bioinformatics/deseq2/topgene_timepoint.png)
+
 
