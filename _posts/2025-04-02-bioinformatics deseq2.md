@@ -21,6 +21,7 @@ you need to make sure the rows of the factors in the metadata file (TimePint & T
 
 in order for the to match, the GeneID columns must be removed from the counts file (i also think you can not give this column a name from the getgo but i havent checked it)
 
+*not always neccesry
 ```r
 # removefirst column in counts. if your geneID column isnt the first one, adust the code
 
@@ -62,11 +63,11 @@ View(modelMatrixTest)
 ```
 
 ## 6. Filter Genes with Low Counts
-Filter out genes with low counts, retaining only those with a count greater than 5 in at least 2 samples. It will go through each row (which represents a gene, in this case) and if at least two samples (2/12) have a read count higher than 5, the gene will be kept. If there are not at least two such samples - the gene will be filtered out.
+Filter out genes with low counts, retaining only those with a count greater than 5 in at least 10 samples. It will go through each row (which represents a gene, in this case) and if at least two samples (10/12) have a read count higher than 5, the gene will be kept. If there are not at least two such samples - the gene will be filtered out.
 
 ```r
 # Filter genes with low counts 
-keep = rowSums(counts1 > 5) >= 2
+keep = rowSums(counts1 > 5) >= 10
 counts3 = counts1[keep, ]
 ```
 
@@ -81,7 +82,7 @@ library(DESeq2)
 dds = DESeqDataSetFromMatrix(
   countData = counts3,   # Use filtered count data
   colData = colData,     # Metadata
-  design = ~ TimePoint + Treatment   # Experimental design formula (your factors)
+  design = ~ TimePoint*Treatment   # each parameter compered within and interaction
 )
 ```
 ## 8. Set Reference Level for Treatment
@@ -109,7 +110,7 @@ vcd <- vst(dds, blind = FALSE) # VST normalization
 plotPCA(vcd, intgroup = c("TimePoint","Treatment")) # PCA
 ```
 
-![](../images/rna_bioinformatics/deseq2/initial%20pca%20plot%20-%20before%20running%20deseq.png)
+![](.)
 
 
 ## 10. Run DESeq2
@@ -174,7 +175,7 @@ levels(dds$TimePoint)
 ```
 In this case the reference is 20 hourns, and the plot looks like this:
 
-![timepoint ma plot](../images/rna_bioinformatics/deseq2/timepoint%20_amplot_real_regular.png)
+![timepoint ma plot](.)
 
 
 In an MA plot, we often observe that genes with **high average expression levels** (on the right side of the plot) show **small log2 fold changes** between conditions. These genes are typically **housekeeping genes**, which are essential for core cellular functions such as energy production, transcription, and translation.
@@ -191,7 +192,7 @@ top_gene <- which.min(res$padj)
 plotCounts(dds, gene = top_gene, intgroup = "TimePoint")
 ```
 
-![timepoint topgene simple](../images/rna_bioinformatics/deseq2/topgene_timepoint_simple.png)
+![timepoint topgene simple](.)
 
 You can also build a plot from the same data that displays it differently (divided by treatments) like this:
 
@@ -205,7 +206,7 @@ geneCounts = plotCounts(dds, gene = top_gene, intgroup = c("TimePoint", "Treatme
 ggplot(geneCounts, aes(x=Treatment, y=count, color=TimePoint))+geom_point(size = 6, position=position_jitter(w=0.1,h=0))+ggtitle(paste('Normolize Counts for', rownames(dds[top_gene])))
 ```
 
-![timepoint topgene less simple](../images/rna_bioinformatics/deseq2/topgene_timepoint.png)
+![timepoint topgene less simple](.)
 
 
 ## Treatment (compare2) -------------------------------------
@@ -248,11 +249,11 @@ ggplot(geneCounts, aes(x=Treatment, y=count, color=Treatment))+geom_point(size =
 ```
 and the results are:
 AM plot compering treatment to control (reference)
-![](../images/rna_bioinformatics/deseq2/maPlot_treatment.png)
+![](.)
 Top gene plot
-![](../images/rna_bioinformatics/deseq2/topgene_simple_tratment.png)
+![](.)
 Nicer Top gene plot
-![](../images/rna_bioinformatics/deseq2/topgene_not_simple_treatment.png)
+![](..)
 
 
 ## VST Transformation
@@ -263,12 +264,8 @@ The goal of VST is to make the data more suitable for downstream analyses like P
 
 VST transforms the count data so that the variance (spread of the data) is no longer dependent on the mean (the average expression level). This means that, after applying VST, genes with both high and low expression will have similar variability, making them easier to compare.
 
-```r
-#transformation (vst)
-vsd <- vst(dds, blind = FALSE)
-#assay() returns the transformed count data
-head(assay(vsd),3) #just to see how it looks like
-```
+note: we already did this transformation hen we initialy checked the data in a PCA plot (we called it vcd).
+
 
 ### NMDS plot
 Non-metric Multidimensional Scaling (NMDS) is a method used to visualize the similarity or dissimilarity between samples. It takes complex, high-dimensional data and reduces it to a 2D or 3D plot where similar samples appear close together and different ones are farther apart.
@@ -290,25 +287,42 @@ NMDS is especially useful when your data is not normally distributed (which is o
 install.packages("vegan")
 library(vegan)
 
-
-#Use bray curtis distances
-dist1 = "bray"
-nmds1 = metaMDS(t(assay(vsd)),k=2,dist=dist1, try=1000)
-
 #install ggplot
 install.packages("ggplot2", dependencies = TRUE)
 library(ggplot2)
 
+#prepare the transfotmed (vst) data into assay 
+vst_counts <- assay (vcd)
 
-#data for NMDS plot
-df_nmds1=as.data.frame(nmds1$points)
-df_nmds1$names=rownames(nmds1)
-df_nmds1$TimePoint=colData$TimePoint
-df_nmds1$Treatment=colData$Treatment
+#Use bray curtis distances
+dist1 = "bray"
 
-#NMDS plot
-ggplot(df_nmds1, aes(x=MDS1, y=MDS2, color=Treatment, shape = TimePoint))+geom_point(size=6)+ggtitle(paste("VST NMD; distance = ",dist1, "stress=", round(nmds1$stress, digits = 2)))
+#run NMDS
+nmds1 = metaMDS(t(vst_counts),k=2,dist=dist1, try=1000)
+
+#create distance matrix for PERMANOVA
+bray_dist <- vegdist(t(vst_counts), method=dist1)
+
+#preform PERMANOVA with adonis2 
+adonis_res <- adonis2(bray_dist ~ TimePoint * Treatment, data = as.data.frame(colData))
+r2 <- round(adonis_res$R2[1], 3)
+pval <- adonis_res$`Pr(>F)`[1]
+
+# Data for NMDS plot
+df_nmds1 <- as.data.frame(nmds1$points)
+df_nmds1$names <- rownames(nmds1$points)
+df_nmds1$TimePoint <- colData$TimePoint
+df_nmds1$Treatment <- colData$Treatment
+
+# Plot NMDS with stress and PERMANOVA result
+ggplot(df_nmds1, aes(x = MDS1, y = MDS2, color = Treatment, shape = TimePoint)) +
+  geom_point(size = 6) +
+  ggtitle(paste0("VST NMDS; distance = ", dist1,
+                 ", stress = ", round(nmds1$stress, 2),
+                 "\nPERMANOVA R² = ", r2, ", p = ", pval))
+
+
 ```
 
-![](../images/rna_bioinformatics/deseq2/nmdsplot.png)
+![](.)
 
