@@ -110,7 +110,7 @@ vcd <- vst(dds, blind = FALSE) # VST normalization
 plotPCA(vcd, intgroup = c("TimePoint","Treatment")) # PCA
 ```
 
-![](.)
+![](../images/rna_bioinformatics/deseq2/pcaplot.png)
 
 
 ## 10. Run DESeq2
@@ -251,11 +251,11 @@ levels(dds$TimePoint)
 ```
 In this case the reference is 20 hourns, and the plot looks like this:
 
-![timepoint ma plot](.)
+![timepoint ma plot](../images/rna_bioinformatics/deseq2/timeMAplot.png)
 
-and after shrinking like this
+and after shrinking like this:
 
-![timepoint ma plot](.)
+![timepoint ma plot](../images/rna_bioinformatics/deseq2/timeMAplotShrinked.png)
 
 
 
@@ -324,11 +324,10 @@ ggplot(geneCounts, aes(x=Treatment, y=count, color=Treatment))+geom_point(size =
 ```
 and the results are:
 AM plot compering treatment to control (reference)
-![](.)
-Top gene plot
-![](.)
-Nicer Top gene plot
-![](..)
+![](../images/rna_bioinformatics/deseq2/treatmentAMplot.png)
+shrinked MAplot
+![](../images/rna_bioinformatics/deseq2/treatmentMAplotSrincked.png)
+
 
 
 ## VST Transformation
@@ -339,7 +338,7 @@ The goal of VST is to make the data more suitable for downstream analyses like P
 
 VST transforms the count data so that the variance (spread of the data) is no longer dependent on the mean (the average expression level). This means that, after applying VST, genes with both high and low expression will have similar variability, making them easier to compare.
 
-note: we already did this transformation hen we initialy checked the data in a PCA plot (we called it vcd).
+**Note**: we already did this transformation hen we initialy checked the data in a PCA plot (we called it vcd).
 
 
 ### NMDS plot
@@ -399,5 +398,5 @@ ggplot(df_nmds1, aes(x = MDS1, y = MDS2, color = Treatment, shape = TimePoint)) 
 
 ```
 
-![](.)
+![](../images/rna_bioinformatics/deseq2/nmdsplot%20(1).png)
 
