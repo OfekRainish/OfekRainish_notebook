@@ -158,10 +158,86 @@ X-axis (A) = Average expression of a gene across both samples (in log scale).
 Y-axis (M) = Log2 fold change (log₂FC) between the two conditions.
 → Genes above 0 are upregulated, and genes below 0 are downregulated (compared to the reference).
 
+####  What is Log₂ Fold Change?
+
+**Log₂ fold change** is a way to describe how much a gene's expression changes between two conditions, like treatment vs. control.
+
+
+
+1. **Fold change** is the ratio of expression between two conditions: 
+
+    Fold change = Expression in Treatment / Expression in Control
+
+2. We then take the **log base 2** of this ratio to get the **log₂ fold change**.
+ 
+ 3. example:
+
+
+    If a gene is expressed **twice as much** in treatment:
+    → Fold change = 2
+    → log₂(2) = +1
+
+    If a gene is expressed **half as much** in treatment:
+    → Fold change = 0.5
+    → log₂(0.5) = -1
+
+
 ```r
 # Plot
 plotMA(res)
+```
 
+
+When measuring gene expression differences between conditions, we often use **log2 fold change (LFC)** to show how much a gene's expression increases or decreases.
+
+However, **genes with low counts** can show **misleadingly high LFC values**. Shrinkage helps make these results more reliable.
+
+---
+
+#### 🧪 Example: Two Genes with the Same Fold Change
+
+| Condition | Gene A (low count) | Gene B (high count) |
+|-----------|--------------------|----------------------|
+| Control   | 2 counts           | 1,000 counts         |
+| Treatment | 4 counts           | 2,000 counts         |
+
+####  Step 1: Fold Change
+
+- **Gene A**: 4 / 2 = 2-fold
+- **Gene B**: 2000 / 1000 = 2-fold
+
+####  Step 2: Log2 Fold Change
+
+- **Gene A**: `log2(4/2) = log2(2) = +1`
+- **Gene B**: `log2(2000/1000) = log2(2) = +1`
+
+So both seem to have **+1 log2 fold change**.
+
+---
+
+#### ⚠️ What's the Problem?
+
+- **Gene A** has very low counts (2 → 4)
+  - This change could be **random noise**.
+  - The LFC is **unreliable**.
+- **Gene B** has high counts (1000 → 2000)
+  - This change is **statistically stable** and trustworthy.
+
+---
+
+#### 🧽 What Shrinkage Does
+
+Shrinkage (like `lfcShrink()` in DESeq2) **pulls unreliable log fold changes closer to 0** when counts are low:
+
+- **Gene A** might shrink from `+1 → +0.2`
+- **Gene B** stays around `+1`
+
+This makes the MA plot and downstream analysis more robust.
+
+---
+shrink with the following code:
+
+```r
 resLFC <- lfcShrink(dds, coef = compare1,
                     type = "apeglm")
 plotMA(resLFC, ylim=c(-3,3))
@@ -177,12 +253,11 @@ In this case the reference is 20 hourns, and the plot looks like this:
 
 ![timepoint ma plot](.)
 
+and after shrinking like this
 
-In an MA plot, we often observe that genes with **high average expression levels** (on the right side of the plot) show **small log2 fold changes** between conditions. These genes are typically **housekeeping genes**, which are essential for core cellular functions such as energy production, transcription, and translation.
+![timepoint ma plot](.)
 
-Because housekeeping genes are required for survival, their expression is tightly regulated and tends to remain **stable across treatments and conditions**. 
 
-In contrast, **lowly expressed genes** (on the left side of the MA plot) may show large fold changes due to **true biological variation** or simply **greater measurement noise**. This results in a triangular shape on the MA plot — with a **stable base on the right** and more **variability on the left**.
 
 ### Top gene
 These lines of code will reveal the gene whose expression level changes most significantly (lowest adj p value) between the two conditions (here between two time points, 20 and 44 hours):
