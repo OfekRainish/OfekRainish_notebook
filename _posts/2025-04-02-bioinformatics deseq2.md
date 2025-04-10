@@ -328,6 +328,90 @@ AM plot compering treatment to control (reference)
 shrinked MAplot
 ![](../images/rna_bioinformatics/deseq2/treatmentMAplotSrincked.png)
 
+## Interaction (compare2) -------------------------------------
+Here we are comparing the effect of the treatment (surfactin) at 20 hours to its effect at 44 hours. the 20 hours will be the baseline. 
+
+the qustion - *“Is the difference between Control and Treated at 44h different from the difference at 20h?”*
+
+#### Concept
+
+1. At each time point, you compute the log2 fold change (log2FC) between treatment and control.
+
+2. Then, you subtract the log2FCs between time points to get the interaction effect.
+
+#### Example
+
+
+We have two time points: **20 hours** and **44 hours**.  
+We want to see **how the effect of treatment changes** between these time points.
+
+#### 🧬 Expression values
+
+| Time Point | Condition | Expression |
+|------------|-----------|------------|
+| 20h        | Treated   | 120        |
+| 20h        | Control   | 100        |
+| 44h        | Treated   | 180        |
+| 44h        | Control   | 100        |
+
+---
+
+**At 20h:**
+
+- Ratio = 120 / 100 = 1.2  
+- `log2(1.2) ≈ 0.263`
+
+**At 44h:**
+
+- Ratio = 180 / 100 = 1.8  
+- `log2(1.8) ≈ 0.847`
+
+---
+
+Interaction log2FC = log2FC_44h - log2FC_20h = 0.847 - 0.263 = 0.584
+
+that for the Y axis.
+
+For the x axis - the average is calculated across all four conditions.
+
+
+
+
+
+
+
+```r
+# Res for interaction ---------------------------------------------------------
+res <- results(dds, name=compare3)
+head(res, 2)
+
+# Explanation
+mcols(res, use.names = T)
+expl <- mcols(res, use.names = T)
+
+# Save
+summary(res)
+write.table(res,
+            file = "DE Timepoint.csv",
+            sep = ",",
+            row.names = T,
+            quote = F)
+
+# Plot
+plotMA(res)
+
+resLFC <- lfcShrink(dds, coef = compare3,
+                    type = "apeglm")
+plotMA(resLFC, ylim=c(-3,3))
+```
+and the results are:
+
+AM plot compering treatment to control (reference)
+![](../images/rna_bioinformatics/deseq2/treatmentAMplot.png)
+
+shrinked MAplot
+![](../images/rna_bioinformatics/deseq2/MAplot_interaction_shrinked.png)
+
 
 
 ## VST Transformation
