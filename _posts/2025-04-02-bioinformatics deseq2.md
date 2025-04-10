@@ -609,9 +609,11 @@ ggplot(res_df, aes(x = log2FoldChange, y = -log10(padj), color = threshold)) +
 Time point (20hr reference):
 
 ![](../images/rna_bioinformatics/deseq2/volcano_plot_timepoint.png)
+
 Treatment (control reference):
 
 ![](../images/rna_bioinformatics/deseq2/volcanoplot_treatment.png)
+
 Interaction:
 
 ![](../images/rna_bioinformatics/deseq2/volcano_plot_interaction.png)
