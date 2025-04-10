@@ -484,3 +484,133 @@ ggplot(df_nmds1, aes(x = MDS1, y = MDS2, color = Treatment, shape = TimePoint)) 
 
 ![](../images/rna_bioinformatics/deseq2/nmdsplot%20(1).png)
 
+**Note** - one conclusion to draw from the NMDS plot is that we need more repeats. there is no way to tell whether there is a difference in the 44hr between treatment and control. 
+
+* its also woth checking whether there is surfactin left after 44 hours (lc-ms or maldi)
+
+## Volcano Plot
+
+
+
+### Axes of a Volcano Plot
+
+- **X-axis**: Represents the **log2 fold change (LFC)** between two conditions. It measures the magnitude of gene expression change:
+  - Positive values: Upregulated genes in the experimental group (e.g., treatment vs. control).
+  - Negative values: Downregulated genes in the experimental group.
+
+- **Y-axis**: Represents the **-log10(p-value)**, which indicates the statistical significance of the gene expression change. Higher values represent more significant changes:
+  - High values on the y-axis: Genes that are statistically significant.
+  - Low values on the y-axis: Genes with no significant change (p-value is large).
+
+### How is the Volcano Plot Calculated?
+
+1. **Log2 fold change**: This is the difference in gene expression between two conditions, typically calculated as:
+   - `log2(fold change)` = log2(Condition A / Condition B)
+     - If the gene is upregulated in Condition A compared to Condition B, the fold change is positive.
+     - If downregulated, the fold change is negative.
+
+2. **p-value**: This represents the statistical significance of the observed change. Typically, a t-test or a similar statistical test is used to compute the p-value.
+
+3. **-log10(p-value)**: The p-value is transformed to make the plot easier to read and highlight significant changes. Larger p-values (less significant) are represented by smaller values on the y-axis, and smaller p-values (more significant) are represented by larger values.
+
+### Example of a Volcano Plot Calculation
+
+Let's say we have the following data for a gene:
+
+| Gene     | Treatment | Control | p-value   |
+|----------|------------------------|------------------------|-----------|
+| Gene 1   | 200                    | 50                     | 0.001     |
+| Gene 2   | 100                    | 100                    | 0.2       |
+| Gene 3   | 150                    | 75                     | 0.05      |
+
+1. **Gene 1**:
+   - Fold change: `200 / 50 = 4` → log2(4) = 2 (upregulated)
+   - p-value = 0.001 → -log10(0.001) = 3 (highly significant)
+
+2. **Gene 2**:
+   - Fold change: `100 / 100 = 1` → log2(1) = 0 (no change)
+   - p-value = 0.2 → -log10(0.2) = 0.7 (not significant)
+
+3. **Gene 3**:
+   - Fold change: `150 / 75 = 2` → log2(2) = 1 (upregulated)
+   - p-value = 0.05 → -log10(0.05) = 1.3 (significant)
+
+### How to Read the Plot
+
+1. **Genes on the left** (negative log2 fold change): These genes are downregulated in the experimental group (e.g., treatment vs. control).
+2. **Genes on the right** (positive log2 fold change): These genes are upregulated in the experimental group.
+3. **High y-values** (top of the plot): Genes that are statistically significant (low p-values).
+4. **Genes far from the origin (either left or right)** are the ones with the largest changes in expression, and the more statistically significant they are, the higher they will be on the y-axis.
+
+### Code
+```r
+#___________________volcano plot treatment___________________________#
+
+# Load necessary libraries
+library(ggplot2)
+library(DESeq2)
+
+res = results(dds, contrast = c("Treatment", "treatment1", "control"))
+
+# Create a volcano plot
+ggplot(res, aes(x = log2FoldChange, y = -log10(padj))) +
+  geom_point(aes(color = padj < 0.05 & abs(log2FoldChange) > 1), alpha = 0.7) +
+  scale_color_manual(values = c("gray", "red")) +
+  labs(title = "Volcano Plot", x = "Log2 Fold Change", y = "-Log10 Adjusted P-value") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+#___________________volcano plot timepoint___________________________#
+
+# Load necessary libraries
+library(ggplot2)
+library(DESeq2)
+
+# Run DESeq2 (already done) and extract results
+# Assuming 'dds' is your DESeqDataSet
+res = results(dds, contrast = c("TimePoint", "20", "44"))
+
+# Create a volcano plot
+ggplot(res, aes(x = log2FoldChange, y = -log10(padj))) +
+  geom_point(aes(color = padj < 0.05 & abs(log2FoldChange) > 1), alpha = 0.7) +
+  scale_color_manual(values = c("gray", "gold")) +
+  labs(title = "Volcano Plot", x = "Log2 Fold Change", y = "-Log10 Adjusted P-value") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+#_______________ volcano plot interaction ___________________________#
+
+res_interaction <- results(dds, name = resultsNames(dds)[4])
+
+# Load necessary libraries
+library(ggplot2)
+library(DESeq2)
+
+# Add a column to indicate significance
+res_interaction$threshold <- as.factor(
+  ifelse(res_interaction$padj < 0.05 & abs(res_interaction$log2FoldChange) > 1, "Significant", "Not Significant")
+)
+
+# Convert to data frame for ggplot
+res_df <- as.data.frame(res_interaction)
+
+# Volcano plot
+ggplot(res_df, aes(x = log2FoldChange, y = -log10(padj), color = threshold)) +
+  geom_point(alpha = 0.6, size = 1.5) +
+  scale_color_manual(values = c("grey", "purple")) +
+  theme_minimal() +
+  labs(title = "Volcano Plot: TimePoint × Treatment Interaction",
+       x = "Log2 Fold Change",
+       y = "-Log10 Adjusted p-value")
+```
+
+
+### Results
+Time point (20hr reference):
+![](../images/rna_bioinformatics/deseq2/volcano_plot_timepoint.png)
+Treatment (control reference):
+![](../images/rna_bioinformatics/deseq2/volcanoplot_treatment.png)
+Interaction:
+![](../images/rna_bioinformatics/deseq2/volcano_plot_interaction.png)
+
+
