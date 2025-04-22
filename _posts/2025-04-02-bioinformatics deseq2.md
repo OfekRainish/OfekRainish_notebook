@@ -614,3 +614,37 @@ Interaction:
 ![](../images/rna_bioinformatics/deseq2/volcano_interactions.png)
 
 
+## 🔍 Differential Gene Expression Analysis Summary
+
+At this stage, I aimed to extract lists of genes that show **significant differential expression** (adjusted *p*-value < 0.05) between treatment conditions. Specifically, I generated four separate gene lists based on timepoint and direction of regulation:
+
+### ✅ Gene Lists Extracted:
+
+1. **Upregulated genes at 20 hours**  
+   Genes showing significantly higher expression in the treatment samples (+surfactin) compared to the untreated control at **20 hours**.
+
+2. **Downregulated genes at 20 hours**  
+   Genes showing significantly lower expression in the treatment samples (+surfactin) compared to the untreated control at **20 hours**.
+
+3. **Upregulated genes at 44 hours (treatment effect change over time)**  
+   Genes that became **more upregulated** at 44 hours compared to both untreated samples and the treatment effect observed at 20 hours. This list captures how the **effect of surfactin changes over time**.
+
+4. **Downregulated genes at 44 hours (treatment effect change over time)**  
+   Genes that became **more downregulated** at 44 hours compared to both untreated samples and the treatment effect observed at 20 hours. Again, this reflects a **time-dependent modification** of the surfactin effect.
+
+---
+
+#### ⚠️ Important Interpretation Note
+
+The 20-hour lists directly reflect the **effect of surfactin treatment** at that timepoint. In contrast, the 44-hour lists do **not** show the overall effect of treatment alone at 44 hours — they represent the **difference in treatment effect between 44 hours and 20 hours**.
+
+This means that:
+
+> If a gene is affected by surfactin at 20 hours and maintains that altered expression level at 44 hours (without further change), it will **not** appear as significant in the 44-hour lists.
+
+Therefore, the 44-hour comparison highlights genes whose **expression response to surfactin has changed over time** — either intensifying or reversing between the two timepoints.
+
+---
+
+📎[Link to data]()  
+
