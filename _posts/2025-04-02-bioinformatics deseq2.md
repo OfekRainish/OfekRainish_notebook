@@ -646,5 +646,5 @@ Therefore, the 44-hour comparison highlights genes whose **expression response t
 
 ---
 
-📎[Link to data]()  
+📎[Link to data](../exel%20files/deseq2/combined.csv)  
 
