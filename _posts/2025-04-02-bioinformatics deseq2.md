@@ -63,11 +63,11 @@ View(modelMatrixTest)
 ```
 
 ## 6. Filter Genes with Low Counts
-Filter out genes with low counts, retaining only those with a count greater than 5 in at least 10 samples. It will go through each row (which represents a gene, in this case) and if at least two samples (10/12) have a read count higher than 5, the gene will be kept. If there are not at least two such samples - the gene will be filtered out.
+Filter out genes with low counts, retaining only those with a count greater than 5 in at least 3 samples, and that the sum of all counts (across all samples) is over 100. This way we make sure we capture genes wihch are not noise.
 
 ```r
 # Filter genes with low counts 
-keep = rowSums(counts1 > 5) >= 10
+keep = rowSums(counts1 > 5) >= 3 & rowSums(counts1) >100
 counts3 = counts1[keep, ]
 ```
 
@@ -110,7 +110,7 @@ vcd <- vst(dds, blind = FALSE) # VST normalization
 plotPCA(vcd, intgroup = c("TimePoint","Treatment")) # PCA
 ```
 
-![](../images/rna_bioinformatics/deseq2/pcaplot.png)
+![](.)
 
 
 ## 10. Run DESeq2
@@ -251,11 +251,11 @@ levels(dds$TimePoint)
 ```
 In this case the reference is 20 hourns, and the plot looks like this:
 
-![timepoint ma plot](../images/rna_bioinformatics/deseq2/timeMAplot.png)
+![timepoint ma plot](.)
 
 and after shrinking like this:
 
-![timepoint ma plot](../images/rna_bioinformatics/deseq2/timeMAplotShrinked.png)
+![timepoint ma plot](.)
 
 
 
@@ -324,9 +324,9 @@ ggplot(geneCounts, aes(x=Treatment, y=count, color=Treatment))+geom_point(size =
 ```
 and the results are:
 AM plot compering treatment to control (reference)
-![](../images/rna_bioinformatics/deseq2/treatmentAMplot.png)
+![](.)
 shrinked MAplot
-![](../images/rna_bioinformatics/deseq2/treatmentMAplotSrincked.png)
+![](.)
 
 ## Interaction (compare2) -------------------------------------
 Here we are comparing the effect of the treatment (surfactin) at 20 hours to its effect at 44 hours. the 20 hours will be the baseline. 
@@ -406,11 +406,11 @@ plotMA(resLFC, ylim=c(-3,3))
 ```
 and the results are:
 
-AM plot compering treatment to control (reference)
-![](../images/rna_bioinformatics/deseq2/treatmentAMplot.png)
+AM plot compering effect of treatment between two time points
+![](.)
 
 shrinked MAplot
-![](../images/rna_bioinformatics/deseq2/MAplot_interaction_shrinked.png)
+![](.)
 
 
 
@@ -482,7 +482,7 @@ ggplot(df_nmds1, aes(x = MDS1, y = MDS2, color = Treatment, shape = TimePoint)) 
 
 ```
 
-![](../images/rna_bioinformatics/deseq2/nmdsplot%20(1).png)
+![](.)
 
 **Note** - one conclusion to draw from the NMDS plot is that we need more repeats. there is no way to tell whether there is a difference in the 44hr between treatment and control. 
 
@@ -608,14 +608,14 @@ ggplot(res_df, aes(x = log2FoldChange, y = -log10(padj), color = threshold)) +
 ### Results
 Time point (20hr reference):
 
-![](../images/rna_bioinformatics/deseq2/volcano_plot_timepoint.png)
+![](.)
 
 Treatment (control reference):
 
-![](../images/rna_bioinformatics/deseq2/volcanoplot_treatment.png)
+![](.)
 
 Interaction:
 
-![](../images/rna_bioinformatics/deseq2/volcano_plot_interaction.png)
+![](.)
 
 
