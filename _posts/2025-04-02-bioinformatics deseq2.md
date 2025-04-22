@@ -110,7 +110,7 @@ vcd <- vst(dds, blind = FALSE) # VST normalization
 plotPCA(vcd, intgroup = c("TimePoint","Treatment")) # PCA
 ```
 
-![](.)
+![](../images/rna_bioinformatics/deseq2/pca.png)
 
 
 ## 10. Run DESeq2
@@ -251,11 +251,11 @@ levels(dds$TimePoint)
 ```
 In this case the reference is 20 hourns, and the plot looks like this:
 
-![timepoint ma plot](.)
+![timepoint ma plot](../images/rna_bioinformatics/deseq2/ma_plot_timepint.png)
 
 and after shrinking like this:
 
-![timepoint ma plot](.)
+![timepoint ma plot](../images/rna_bioinformatics/deseq2/ma_plot_timepoint_shrinked.png)
 
 
 
@@ -324,9 +324,9 @@ ggplot(geneCounts, aes(x=Treatment, y=count, color=Treatment))+geom_point(size =
 ```
 and the results are:
 AM plot compering treatment to control (reference)
-![](.)
+![](../images/rna_bioinformatics/deseq2/ma_plot_treatment.png)
 shrinked MAplot
-![](.)
+![](../images/rna_bioinformatics/deseq2/ma_plot_treatment_shrinked.png)
 
 ## Interaction (compare2) -------------------------------------
 Here we are comparing the effect of the treatment (surfactin) at 20 hours to its effect at 44 hours. the 20 hours will be the baseline. 
@@ -375,11 +375,6 @@ that for the Y axis.
 For the x axis - the average is calculated across all four conditions.
 
 
-
-
-
-
-
 ```r
 # Res for interaction ---------------------------------------------------------
 res <- results(dds, name=compare3)
@@ -407,10 +402,10 @@ plotMA(resLFC, ylim=c(-3,3))
 and the results are:
 
 AM plot compering effect of treatment between two time points
-![](.)
+![](../images/rna_bioinformatics/deseq2/ma_plot_interaction.png)
 
 shrinked MAplot
-![](.)
+![](../images/rna_bioinformatics/deseq2/ma_plot_interaction_shrinked.png)
 
 
 
@@ -482,7 +477,7 @@ ggplot(df_nmds1, aes(x = MDS1, y = MDS2, color = Treatment, shape = TimePoint)) 
 
 ```
 
-![](.)
+![](../images/rna_bioinformatics/deseq2/NMDS.png)
 
 **Note** - one conclusion to draw from the NMDS plot is that we need more repeats. there is no way to tell whether there is a difference in the 44hr between treatment and control. 
 
@@ -608,14 +603,14 @@ ggplot(res_df, aes(x = log2FoldChange, y = -log10(padj), color = threshold)) +
 ### Results
 Time point (20hr reference):
 
-![](.)
+![](../images/rna_bioinformatics/deseq2/volcano_timepoint.png)
 
 Treatment (control reference):
 
-![](.)
+![](../images/rna_bioinformatics/deseq2/volcano_treatment.png)
 
 Interaction:
 
-![](.)
+![](../images/rna_bioinformatics/deseq2/volcano_interactions.png)
 
 
