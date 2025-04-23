@@ -815,3 +815,6 @@ print(f"Annotated file saved to: {output_file}")
 [link to data](../exel%20files/deseq2/combined_xl_fixed_annotated.xlsx)
 
 ---
+### Adding amino acid sequences
+
+part of what im trying to find is the peptithse who cuts the surfactin. so i am intrested in genes who have a secrition signal to leave the cell. i therefor wanted to add the amino acid sequence to the table. later on i can use it to ran a tool called *signalIP* to locate secrition signales.
