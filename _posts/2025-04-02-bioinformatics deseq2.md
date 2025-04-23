@@ -818,3 +818,66 @@ print(f"Annotated file saved to: {output_file}")
 ### Adding amino acid sequences
 
 part of what im trying to find is the peptithse who cuts the surfactin. so i am intrested in genes who have a secrition signal to leave the cell. i therefor wanted to add the amino acid sequence to the table. later on i can use it to ran a tool called *signalIP* to locate secrition signales.
+
+To add the amino acid sequences i used linux command line.
+you will need a database where the gene id appears as in your table and the relevant aa sequence - in this case, ifound it a gbff file i downloaded from NCBI.
+
+1. in the command line install biopython & needen tools:
+```
+pip install biopython
+conda install pandas
+conda install openpyxl
+```
+2. in your code directory, open a new python code file:
+```
+nano AddAAseqFromGBFF.py
+```
+3. write the code in the nano file:
+```py
+#!/usr/bin/env python3
+
+from Bio import SeqIO
+import pandas as pd
+
+# === USER INPUT ===
+gbff_file = "/home/oreinish/RNA_seq/raw_data/pdc454FASTA/genomic.gbff"
+excel_file = "/home/oreinish/RNA_seq/deseq2/dseq2_output/combined_xl_fixed_annotated.xlsx"
+output_file = "/home/oreinish/RNA_seq/deseq2/dseq2_output/with_aa_seq.xlsx"
+# ===================
+
+# Step 1: Parse GenBank and extract {locus_tag: aa_sequence}
+locus_to_seq = {}
+for record in SeqIO.parse(gbff_file, "genbank"):
+    for feature in record.features:
+        if feature.type == "CDS":
+            locus_tag = feature.qualifiers.get("locus_tag", [None])[0]
+            aa_seq = feature.qualifiers.get("translation", [None])[0]
+            if locus_tag and aa_seq:
+                locus_to_seq[locus_tag] = aa_seq
+
+# Step 2: Load Excel file
+df = pd.read_excel(excel_file)
+
+# Step 3: Add aa_seq column using GeneID_clean
+df["aa seq"] = df["GeneID_clean"].map(locus_to_seq).fillna("Not found")
+
+# Step 4: Save to new Excel file
+df.to_excel(output_file, index=False)
+print(f"Saved with amino acid sequences: {output_file}")
+
+```
+
+4. make the code executable (in the command line):
+
+```
+chmod +x AddAAseqFromGBFF.py
+```
+5. run the script (command line)
+```
+./AddAAseqFromGBFF.py
+```
+The result in a excel table with an added column called "aa seq" which contains the amino acid sequences.
+
+[link to data](../exel%20files/deseq2/with_aa_seq_and%20annotation.xlsx)
+
+---
