@@ -747,4 +747,8 @@ df.to_excel(output_file, index=False)
 print(f"Updated Excel file saved as {output_file}")
 
 ```
-[link to data]()
+[link to data](../exel%20files/deseq2/combined_xl_fixed.xlsx)
+
+---
+###  Add proper annotations
+the GTF annotations in the xl table dont give us much information. we need to search the gene ID in a database like NCBI in order have an idia on what the gene does. the problem is that the GTF file has several lines  
