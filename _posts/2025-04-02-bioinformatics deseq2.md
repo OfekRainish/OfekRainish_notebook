@@ -644,7 +644,107 @@ This means that:
 
 Therefore, the 44-hour comparison highlights genes whose **expression response to surfactin has changed over time** — either intensifying or reversing between the two timepoints.
 
----
+#### code in R
+```r
+# SETUP #
 
-📎[Link to data](../exel%20files/deseq2/combined.csv)  
+# Set output directory
+setwd("/home/oreinish/Desktop/imag_for_github")
 
+# Treatment effect at 20h (baseline)
+res_20h <- results(dds, name = "Treatment_treatment1_vs_control")
+
+# Treatment effect at 44h (from interaction term)
+res_44h <- results(dds, name = "TimePoint44.Treatmenttreatment1")
+
+# FILTER SIGNIFICANT GENES #
+
+# 20h significant genes
+res_20h_filtered <- res_20h[!is.na(res_20h$padj), ]
+sig_20h <- res_20h_filtered[res_20h_filtered$padj < 0.05 & abs(res_20h_filtered$log2FoldChange) > 1, ]
+up_20h <- sig_20h[sig_20h$log2FoldChange > 1, ]
+down_20h <- sig_20h[sig_20h$log2FoldChange < -1, ]
+
+# 44h significant genes
+res_44h_filtered <- res_44h[!is.na(res_44h$padj), ]
+sig_44h <- res_44h_filtered[res_44h_filtered$padj < 0.05 & abs(res_44h_filtered$log2FoldChange) > 1, ]
+up_44h <- sig_44h[sig_44h$log2FoldChange > 1, ]
+down_44h <- sig_44h[sig_44h$log2FoldChange < -1, ]
+
+
+# EXPORT TO CSV #
+
+# Convert to data.frame
+up_df_20h <- as.data.frame(up_20h)
+down_df_20h <- as.data.frame(down_20h)
+up_df_44h <- as.data.frame(up_44h)
+down_df_44h <- as.data.frame(down_44h)
+
+# Save
+write.csv(up_df_20h, "upregulated_20h.csv")
+write.csv(down_df_20h, "downregulated_20h.csv")
+write.csv(up_df_44h, "upregulated_44h.csv")
+write.csv(down_df_44h, "downregulated_44h.csv")
+
+
+# OPTIONAL: Preview
+cat("Number of significant upregulated genes (20h):", nrow(up_df_20h), "\n")
+cat("Number of significant downregulated genes (20h):", nrow(down_df_20h), "\n")
+cat("Number of significant upregulated genes (44h):", nrow(up_df_44h), "\n")
+cat("Number of significant downregulated genes (44h):", nrow(down_df_44h), "\n")
+```
+I than combined them all in one csv file:
+📎[Link to data](../exel%20files/deseq2/combined.csv) 
+
+--- 
+
+### Gene ID clean-up
+
+
+The gene id in the output lists are long and i decided to do an extra step just to make it more clean and workable. i wanted to add an another column in the table, to move from this:
+| GeneID                                                                                                             | baseMean     | log2FoldChange | lfcSE        | stat        | pvalue       | padj        | list  |
+|--------------------------------------------------------------------------------------------------------------------|--------------|----------------|--------------|-------------|--------------|-------------|--------|
+| gene_id "PDENDC454_28240"; transcript_id ""; gbkey "Gene"; gene_biotype "protein_coding"; locus_tag "PDENDC454_28240"; | 594.5642603  | 1.456539923    | 0.276518047  | 5.267431681 | 0.000000138  | 0.00000723  | 20up   |
+
+
+to this:
+| GeneID                                                                                                             | baseMean     | log2FoldChange | lfcSE        | stat        | pvalue       | padj        | list  | GeneID_clean     |
+|--------------------------------------------------------------------------------------------------------------------|--------------|----------------|--------------|-------------|--------------|-------------|--------|------------------|
+| gene_id "PDENDC454_28240"; transcript_id ""; gbkey "Gene"; gene_biotype "protein_coding"; locus_tag "PDENDC454_28240"; | 594.5642603  | 1.456539923    | 0.276518047  | 5.267431681 | 0.000000138  | 0.00000723  | 20up   | PDENDC454_28240  |
+
+
+in order to do that i ran it throuh a **python** code (also esier in xl format not csv):
+
+```python
+import pandas as pd
+import re
+
+# Load the Excel file
+input_file = 'pathway/to/excel/file.xlsx'  # Replace with your actual file path
+output_file = 'pathwat/to/output/file.xlsx'  # Replace with your desired output file path
+
+# Read the Excel file into a DataFrame
+df = pd.read_excel(input_file)
+
+# Function to extract Gene ID from the "GeneID" column
+def extract_gene_id(gene_id_str):
+    # Use regular expression to extract the gene ID
+    match = re.search(r'gene_id\s+"([^"]+)"', gene_id_str)
+    if match:
+        return match.group(1)
+    else:
+        return gene_id_str  # If no match, return the original string
+
+# Apply the function to the 'GeneID' column and create a new column with cleaned Gene IDs
+df['GeneID_clean'] = df['GeneID'].apply(extract_gene_id)
+
+# Optional: Drop the original 'GeneID' column if you no longer need it
+# df = df.drop(columns=['GeneID'])
+
+# Save the updated DataFrame to a new Excel file
+df.to_excel(output_file, index=False)
+
+print(f"Updated Excel file saved as {output_file}")
+
+```
+[link to data]()
