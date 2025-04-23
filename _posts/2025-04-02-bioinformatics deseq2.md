@@ -751,4 +751,67 @@ print(f"Updated Excel file saved as {output_file}")
 
 ---
 ###  Add proper annotations
-the GTF annotations in the xl table dont give us much information. we need to search the gene ID in a database like NCBI in order have an idia on what the gene does. the problem is that the GTF file has several lines  
+the GTF annotations in the xl table dont give us much information. we need to search the gene ID in a database like NCBI in order have an idia on what the gene does. the problem is that the GTF file has several lines for each gene id but with different classifications (gene/stop codon/CDS) like this:
+| SeqID          | Source   | Feature     | Start | End  | Score | Strand | Frame | Attributes                                                                                                                                                                                                 |
+|----------------|----------|-------------|-------|------|--------|--------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| AHKH01000198.1 | Genbank  | gene        | 8782  | 9798 | .      | +      | .      | gene_id "PDENDC454_28575"; transcript_id ""; gbkey "Gene"; gene_biotype "protein_coding"; locus_tag "PDENDC454_28575";                                                                                      |
+| AHKH01000198.1 | Genbank  | CDS         | 8782  | 9795 | .      | +      | 0      | gene_id "PDENDC454_28575"; transcript_id "unassigned_transcript_8"; db_xref "NCBI_GP:EHQ58774.1"; gbkey "CDS"; locus_tag "PDENDC454_28575"; note "COG3173 Predicted aminoglycoside phosphotransferase"; product "hypothetical protein"; protein_id "EHQ58774.1"; transl_table "11"; exon_number "1"; |
+| AHKH01000198.1 | Genbank  | start_codon | 8782  | 8784 | .      | +      | 0      | gene_id "PDENDC454_28575"; transcript_id "unassigned_transcript_8"; db_xref "NCBI_GP:EHQ58774.1"; gbkey "CDS"; locus_tag "PDENDC454_28575"; note "COG3173 Predicted aminoglycoside phosphotransferase"; product "hypothetical protein"; protein_id "EHQ58774.1"; transl_table "11"; exon_number "1"; |
+| AHKH01000198.1 | Genbank  | stop_codon  | 9796  | 9798 | .      | +      | 0      | gene_id "PDENDC454_28575"; transcript_id "unassigned_transcript_8"; db_xref "NCBI_GP:EHQ58774.1"; gbkey "CDS"; locus_tag "PDENDC454_28575"; note "COG3173 Predicted aminoglycoside phosphotransferase"; product "hypothetical protein"; protein_id "EHQ58774.1"; transl_table "11"; exon_number "1"; |
+
+---
+as you can see the attributes are the same, in this case : "hypothetical protein", and its what you find when you search for the gene id in NCBI.
+
+i wanted to add another column to the table with those annotations.
+in order to do this, i ran this **python** code:
+
+```python
+import pandas as pd
+import re
+
+# File paths
+excel_file = 'pathwat/to/excel/file(with a column called 'GeneID_clean').xlsx'  # Replace with your actual Excel file path
+
+gtf_file = 'pathway/to/relevant/gtf/file.gtf'  # Replace with the path to your GFF file
+output_file = 'pathwat/to/output/file.xlsx'  # Output Excel file
+
+# Step 1: Read Excel with gene IDs
+df = pd.read_excel(excel_file)
+
+# Step 2: Parse GTF and collect gene_id -> product mapping (only once per gene_id)
+gene_product_map = {}
+
+with open(gtf_file, 'r') as gtf:
+    for line in gtf:
+        if line.startswith('#'):
+            continue
+
+        columns = line.strip().split('\t')
+        if len(columns) < 9:
+            continue
+
+        attributes = columns[8]
+        
+        # Extract gene_id
+        gene_match = re.search(r'gene_id "([^"]+)"', attributes)
+        product_match = re.search(r'product "([^"]+)"', attributes)
+
+        if gene_match:
+            gene_id = gene_match.group(1)
+            if gene_id not in gene_product_map and product_match:
+                gene_product_map[gene_id] = product_match.group(1)
+
+# Step 3: Map each GeneID_clean to the annotation
+def get_annotation(gene_id):
+    return gene_product_map.get(gene_id, "Annotation not found")
+
+df['Annotation'] = df['GeneID_clean'].apply(get_annotation)
+
+# Step 4: Save to new Excel file
+df.to_excel(output_file, index=False)
+
+print(f"Annotated file saved to: {output_file}")
+```
+[link to data](../exel%20files/deseq2/combined_xl_fixed_annotated.xlsx)
+
+---
