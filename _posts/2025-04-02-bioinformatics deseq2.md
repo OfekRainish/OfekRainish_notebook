@@ -921,6 +921,38 @@ and so on....
 
     * [full updated table](../exel%20files/deseq2/full_table_with_secretion_predictions.xlsx)
 
-    *** another gene,PDENDC454_15002, was identifyed as a potential secreted protein by crossing my [list](../exel%20files/deseq2/full_table_with_secretion_predictions.xlsx) with a list of proteins in the paper [Secretome of Paenibacillus sp. S‑12 provides an insight about its survival and possible pathogenicity](../pdf%20protocols%20and%20papers/secretome%20paper.pdf).
+5. another gene,PDENDC454_15002, was identifyed as a potential secreted protein by crossing my [list](../exel%20files/deseq2/full_table_with_secretion_predictions.xlsx) with a list of proteins in the paper [Secretome of Paenibacillus sp. S‑12 provides an insight about its survival and possible pathogenicity](../pdf%20protocols%20and%20papers/secretome%20paper.pdf). there was 0.946808510638298% similarity. comparison was don in pytonn. input was a excel file with two columns containing amino acid sequences; one is my list (column name 'dataset'), the other the one from the paper (column name 'prob'). the python code is as following:
 
+```py
+import pandas as pd
+from difflib import SequenceMatcher
+
+# Load the Excel file
+file_path = 'pathway/to/two-column/excel/file.xlsx'  # or your local path if running on your computer
+df = pd.read_excel(file_path)
+
+# Extract the two columns
+dataset_seqs = df['dataset'].dropna().tolist()
+prob_seqs = df['prob'].dropna().tolist()
+
+# Function to calculate similarity
+def sequence_similarity(seq1, seq2):
+    return SequenceMatcher(None, seq1, seq2).ratio()
+
+# Find matches
+matches = []
+
+for seq1 in dataset_seqs:
+    for seq2 in prob_seqs:
+        similarity = sequence_similarity(seq1, seq2)
+        if similarity >= 0.90:
+            matches.append((seq1, seq2, similarity))
+
+# Output results
+matches_df = pd.DataFrame(matches, columns=['dataset_seq', 'prob_seq', 'similarity'])
+matches_df.to_excel('matching_sequences_95percent.xlsx', index=False)
+
+print(f"Found {len(matches)} matching pairs with ≥90% similarity.")
+print("Saved results to 'matching_sequences_95percent.xlsx'.")
+```
 ----
