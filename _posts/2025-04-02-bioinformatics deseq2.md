@@ -921,4 +921,6 @@ and so on....
 
     * [full updated table](../exel%20files/deseq2/full_table_with_secretion_predictions.xlsx)
 
+    *** another gene,PDENDC454_15002, was identifyed as a potential secreted protein by crossing my [list](../exel%20files/deseq2/full_table_with_secretion_predictions.xlsx) with a list of proteins in the paper [Secretome of Paenibacillus sp. S‑12 provides an insight about its survival and possible pathogenicity](../pdf%20protocols%20and%20papers/secretome%20paper.pdf).
+
 ----
