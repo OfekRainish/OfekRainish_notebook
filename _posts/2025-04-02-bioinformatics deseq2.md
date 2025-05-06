@@ -1022,10 +1022,10 @@ print(output_path)
 [merged table deseq+gtf](../exel%20files/deseq2/combined_deseq2_gtf_with_length.xlsx)
 
 ### GO terms
-1. Get a tsv file from [Unprot]():
+1. Get a tsv file from [Unprot](https://www.uniprot.org/uniprotkb?query=Paenibacillus+dendritiformis+c454):
     * search peanibacillus dentritiformis c454 & download.
     * make sure you you mark "Gene ontology IDs" under "Gene Ontology"
-2. upload the tsv unprot file to [Galaxy]()
+2. upload the tsv unprot file to [Galaxy](https://usegalaxy.org/datasets/f9cad7b01a472135871d74b658a6767e/preview)
 3. use the tool "cut columns from table" so you are left with two columns only - "Gene Name" & "Gene ontology IDs" (typically c5,c8)
 4. use the tool "convert deliminaters to TAB" and choose "semicolons".
 
@@ -1092,4 +1092,4 @@ output_df.to_excel(output_excel, index=False)
 
 print(f"✅ Done! Output saved to: {output_excel}")
 ```
- Now you have a proper table of all [GO terms]().
+ Now you have a proper table of all [GO terms](../exel%20files/deseq2/goTerms.xlsx).
