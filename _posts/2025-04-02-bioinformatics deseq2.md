@@ -956,3 +956,140 @@ print(f"Found {len(matches)} matching pairs with ≥90% similarity.")
 print("Saved results to 'matching_sequences_95percent.xlsx'.")
 ```
 ----
+### GOseq enrichment plot
+in order to even start you need a table that has the 4 componenets:
+* gene ID (for example PDENDC454_28720)
+* is it significant or not (0/1) in my deseq table the colunm is called "significant".
+* Length of the gene. (goseq does addinionaly normalization for length)
+* the matching GO term of the gene (looks like this: "GO:0000049").
+
+the gene id and the significance i already got from the deseq table.
+
+#### length
+the length you can get from the GTF file. since you used it to create the deseqtable (back when you did quantification), the gene names of the gtf table and the deseq output match. the gtf has information about the start and end nucleotide, and from this you can calculate the length.
+
+**step one**: merge the tables using this python script:
+
+```py
+import pandas as pd
+import re
+
+# ======== 🔧 File Paths ========
+deseq_path = "C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/deseq_results_20hr.xlsx"
+gtf_path = "C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/genomic.gtf"
+output_path = "C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/mapping/combined_deseq2_gtf.xlsx"
+
+# ======== 🔍 Functions ========
+def extract_gene_id(attr):
+    match = re.search(r'gene_id\s+"([^"]+)"', attr)
+    return match.group(1) if match else None
+
+# ======== 📥 Load Data ========
+# Load DESeq2 results
+deseq_df = pd.read_excel(deseq_path)
+
+# Extract clean gene_id if necessary
+if "gene_id" not in deseq_df.columns or deseq_df["gene_id"].astype(str).str.contains("gene_id").any():
+    deseq_df["gene_id"] = deseq_df["gene_id"].apply(lambda x: extract_gene_id(str(x)))
+
+# Load GTF file
+gtf_df = pd.read_csv(
+    gtf_path,
+    sep='\t',
+    comment='#',
+    header=None,
+    names=['seqname', 'source', 'feature', 'start', 'end', 'score', 'strand', 'frame', 'attribute']
+)
+
+# Filter only `gene` entries
+gtf_genes = gtf_df[gtf_df['feature'] == 'gene'].copy()
+
+# Extract gene_id from the attribute column
+gtf_genes['gene_id'] = gtf_genes['attribute'].apply(extract_gene_id)
+
+# Keep relevant columns and remove duplicates
+gtf_genes = gtf_genes[['gene_id', 'seqname', 'start', 'end', 'strand']].drop_duplicates()
+
+# ======== 🔗 Merge and Save ========
+combined_df = pd.merge(deseq_df, gtf_genes, on='gene_id', how='left')
+combined_df.to_excel(output_path, index=False)
+
+print("✅ Combined file saved with only gene features and positions:")
+print(output_path)
+```
+**step 2**: use excel to calcolate the length (end nucleotide - start nucleotide)
+
+[merged table deseq+gtf](../exel%20files/deseq2/combined_deseq2_gtf_with_length.xlsx)
+
+### GO terms
+1. Get a tsv file from [Unprot]():
+    * search peanibacillus dentritiformis c454 & download.
+    * make sure you you mark "Gene ontology IDs" under "Gene Ontology"
+2. upload the tsv unprot file to [Galaxy]()
+3. use the tool "cut columns from table" so you are left with two columns only - "Gene Name" & "Gene ontology IDs" (typically c5,c8)
+4. use the tool "convert deliminaters to TAB" and choose "semicolons".
+
+ Now you have a table where the first column is called "Gene Names" ans several columns which are GO terms (Gene ontology IDs), each gene can have several, and the next thing we want to do is to create a table with 2 columns only. if a gene has more than one go-term, it will appear more than one time in the first column.
+
+5. Export from galaxy and save as an excel file.
+6. Run this python on this table. it is ment to "clean" the gene names so that only this form will stay :**PDENDC454_#####**.
+```py
+import pandas as pd
+import re
+
+# === File paths ===
+input_excel = "pathway/to/galaxy/output/in/excel/file.xlsx"  # 🔁 Replace with your file name
+output_excel = "pathway/output/in/excel/file.xlsx/cleaned_gene_names.xlsx"
+
+# === Load the Excel file ===
+df = pd.read_excel(input_excel)
+
+# === Clean Gene Names column ===
+def extract_gene_id(name):
+    match = re.search(r"PDENDC454_\d+", str(name))
+    return match.group(0) if match else None
+
+df["Gene Names"] = df["Gene Names"].apply(extract_gene_id)
+
+# === Save to new Excel file ===
+df.to_excel(output_excel, index=False)
+
+print(f"✅ Cleaned Excel file saved as: {output_excel}")
+```
+
+7. Then run the cleaned table throuh this python code. its ment to break down each gene-name to several rows. each gene-name/GO-term will get its own raw.
+
+```py
+import pandas as pd
+import re
+
+# === File paths ===
+input_excel = "pathway/to/cleaned/named/table/file.xlsx"  # <- replace with your actual file path
+output_excel = "pathway/output/in/excel/file.xlsx"
+
+# === Load Excel file ===
+df = pd.read_excel(input_excel)
+
+# === Identify GO term columns ===
+go_columns = [col for col in df.columns if col.startswith("Gene Ontology")]
+
+# === Build output table ===
+output_rows = []
+
+for _, row in df.iterrows():
+    gene_id = row["Gene Names"]
+    for go_col in go_columns:
+        go_term = str(row[go_col]).strip()
+        if re.match(r"GO:\d{7}", go_term):  # Keep only valid GO terms
+            output_rows.append({
+                "Gene ID": gene_id,
+                "GO Term": go_term
+            })
+
+# === Save to Excel ===
+output_df = pd.DataFrame(output_rows)
+output_df.to_excel(output_excel, index=False)
+
+print(f"✅ Done! Output saved to: {output_excel}")
+```
+ Now you have a proper table of all [GO terms]().
