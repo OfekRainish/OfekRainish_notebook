@@ -1200,3 +1200,42 @@ ggplot(top_GO, aes(x = reorder(term, -over_represented_pvalue),
 ```
 
  ### GOseq results 
+## What is PWF in GOseq?
+
+PWF stands for **Probability Weighting Function**.  
+It is used in GOseq to correct for **gene length bias** in RNA-seq data.
+
+#### Why do we need it?
+
+When analyzing differentially expressed genes (DEGs), longer genes are **more likely** to be detected as significant. This isn't because they are biologically more important — it's a **technical bias**.  
+GOseq uses the PWF to account for this bias when performing **Gene Ontology (GO) enrichment analysis**.
+
+#### What does the PWF plot show?
+
+The plot shows the relationship between **gene length** and the **proportion of genes that are differentially expressed** in bins.
+
+- **X-axis**: Average gene length in each bin (e.g., 300, 500, 1000...).
+- **Y-axis**: Proportion of genes that are DE in that bin.
+
+Each **point** represents a bin of genes with similar lengths.
+
+---
+
+##### 🔍 Example point: (1000, 0.06)
+
+- This bin contains genes that are around **1000 base pairs** long.
+- Out of all the genes in this bin, **6% (0.06)** were found to be differentially expressed.
+
+This shows that **gene length affects the likelihood** of detecting differential expression, and that's why we must correct for it using the PWF.
+
+---
+
+#### Summary
+
+PWF helps GOseq answer:  
+> "Is a GO term enriched in DEGs **because of biology**, or just because its genes are longer (and easier to detect)?"
+
+GO terms that remain significant **after correcting for length bias** using the PWF are more likely to reflect true biological effects.
+
+![](../images/rna_bioinformatics/goseq/pwf_for_goseq.png)
+![](../images/rna_bioinformatics/goseq/goseq_bar_plot.png)
