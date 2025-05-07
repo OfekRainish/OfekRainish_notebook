@@ -966,7 +966,7 @@ in order to even start you need a table that has the 4 componenets:
 the gene id and the significance i already got from the deseq table.
 
 #### length
-the length you can get from the GTF file. since you used it to create the deseqtable (back when you did quantification), the gene names of the gtf table and the deseq output match. the gtf has information about the start and end nucleotide, and from this you can calculate the length.
+the length you can get from the GTF file. since you used it to create the deseqtable (back when you did quantification), the gene names of the gtf table and the deseq output match. the gtf has information about the start and end nucleotide, and from this you can calculate the length. **here i used the deseq results which compared treatment vs control at 20 hr.**
 
 **step one**: merge the tables using this python script:
 
@@ -1093,3 +1093,110 @@ output_df.to_excel(output_excel, index=False)
 print(f"✅ Done! Output saved to: {output_excel}")
 ```
  Now you have a proper table of all [GO terms](../exel%20files/deseq2/goTerms.xlsx).
+
+
+ once you got the two files - the deseq results with gene length AND the go-term file you can finally run a goseq enrichmeny analysis, usin this code in R:
+```r
+#______GOseq Enrichment Analysis: Full Pipeline (20hr treatment vs control)__________#
+
+# Step 1: Load required packages
+# Only install if not already installed
+install.packages("readxl")        # For reading Excel files
+install.packages("BiocManager")   # For installing Bioconductor packages
+
+# Load libraries
+library(readxl)
+library(BiocManager)
+
+# Install and load goseq from Bioconductor
+BiocManager::install("goseq")
+library(goseq)
+
+# Additional packages for data manipulation
+install.packages("dplyr")
+install.packages("tibble")
+library(dplyr)
+library(tibble)
+
+install.packages("readxl")
+library(readxl)
+
+install.packages("dplyr")
+library(dplyr)
+
+
+# Step 2: Read your DESeq2 + GTF data from Excel
+df_goseq <- read_excel("combined_deseq2_gtf.xlsx")  # this file is for dds(treatment vs control 20hr+length of genes)
+
+# Step 3: Check column names to verify structure
+colnames(df_goseq)
+
+# Step 4: Ensure required columns exist and are named correctly
+# Required columns: gene_id (ID), significant (1 = DE, 0 = not), and length (gene length for bias correction)
+# Rename if needed
+names(df_goseq)[names(df_goseq) == "GeneID"] <- "gene_id"  # Adjust if different
+
+# Step 5: Create the named significance vector
+# This is a binary vector indicating whether each gene is differentially expressed
+gene_vector <- df_goseq$significant
+names(gene_vector) <- df_goseq$gene_id
+
+# Step 6: Create the named gene length vector
+# Used to correct for length bias in GOseq
+gene_lengths <- df_goseq$length
+names(gene_lengths) <- df_goseq$gene_id
+
+# Step 7: Preview your data (sanity check)
+head(gene_vector)
+head(gene_lengths)
+
+# Step 8: Create the Probability Weighting Function (PWF)
+# This models selection bias, especially length bias, using the binary DE vector
+pwf <- nullp(gene_vector, bias.data = gene_lengths, plot.fit = TRUE)
+
+# Step 9: Load your gene-to-GO mapping file
+# This reads an Excel (.xlsx) file with at least two columns: gene_id and go_term
+go_data <- read_excel("/home/oreinish/Desktop/imag_for_github/goseq/goTerms.xlsx")  # Replace with correct sheet name if needed
+
+# Step 10: Clean and format GO data
+# Rename columns for consistency
+colnames(go_data) <- c("gene_id", "go_term")  # Adjust if needed
+
+# Step 11: Convert GO data to format expected by goseq
+# This creates a named list where each GO term maps to a vector of genes
+go_list <- go_data %>%
+  group_by(go_term) %>%
+  summarise(genes = list(unique(gene_id))) %>%
+  deframe()
+
+# Step 12: Run the GOseq enrichment analysis
+# This tests which GO categories are overrepresented in the DE gene list
+GO_results <- goseq(pwf, gene2cat = go_list)
+
+# Step 13: Filter for significantly enriched GO terms
+# Adjust the p-value threshold if needed
+sig_GO <- GO_results[GO_results$over_represented_pvalue < 0.05, ]
+
+# Step 14: View or save the results
+head(sig_GO)  # Show top significant results
+write.table(sig_GO, "GOseq_results_significant.txt", sep = "\t", quote = FALSE, row.names = FALSE)
+
+#______________________END OF ANALYSIS______________________#
+
+#______GOseq visualization (20hr treatment vs control)_______#
+
+# Top GO terms based on enrichment (adjust number to fit your needs)
+top_GO <- sig_GO[1:10, ]  # Display top 10 GO terms, adjust as needed
+
+# Plot the top GO terms
+ggplot(top_GO, aes(x = reorder(term, -over_represented_pvalue),
+                   y = -log10(over_represented_pvalue))) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  coord_flip() +
+  xlab("GO Terms") +
+  ylab("-log10(p-value)") +
+  ggtitle("Top GO Terms Enrichment (Adjusted p-value)") +
+  theme_minimal()
+```
+
+ ### GOseq results 
