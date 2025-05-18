@@ -1205,7 +1205,7 @@ ggplot(top_GO, aes(x = reorder(term, -over_represented_pvalue),
 PWF stands for **Probability Weighting Function**.  
 It is used in GOseq to correct for **gene length bias** in RNA-seq data.
 
-#### Why do we need it?
+#### Why do we need it? - why not in deseq - ask maya!
 
 When analyzing differentially expressed genes (DEGs), longer genes are **more likely** to be detected as significant. This isn't because they are biologically more important — it's a **technical bias**.  
 GOseq uses the PWF to account for this bias when performing **Gene Ontology (GO) enrichment analysis**.
@@ -1239,3 +1239,74 @@ GO terms that remain significant **after correcting for length bias** using the 
 
 ![](../images/rna_bioinformatics/goseq/pwf_for_goseq.png)
 ![](../images/rna_bioinformatics/goseq/goseq_bar_plot.png)
+
+
+### GOseq enrichment plot **without** length normalization
+i have ran another goseq enricment analysis, this time without normalization for gene length. why? becouse i compare between samples and not within the same organism. gene x is the same length across all samples, so if i compare its expression across all samples i dont really care about length. if it long, it will have more reads to it across all of samples.
+
+in order to do so i have used another R pakage called "clasterProfiler", which dosnt requier gene length data.
+
+the data i used is the exact same data for the previous goseq analysis - a table of deseq2 [combined_deseq2_gtf.xlsx](../exel%20files/deseq2/combined_deseq2_gtf_with_length.xlsx) and the [goterm table](../exel%20files/deseq2/goTerms.xlsx).
+
+```r
+# Step 1: Setup
+install.packages("readxl")
+install.packages("dplyr")
+install.packages("tibble")
+install.packages("ggplot2")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install("clusterProfiler")
+BiocManager::install("GO.db")
+
+# Load libraries
+library(readxl)
+library(dplyr)
+library(tibble)
+library(ggplot2)
+library(clusterProfiler)
+library(GO.db)
+
+# Step 2: Load DE gene list
+df <- read_excel("combined_deseq2_gtf.xlsx")
+names(df)[names(df) == "GeneID"] <- "gene_id"
+de_genes <- df$gene_id[df$significant == 1]
+
+# Step 3: Load GO mapping
+go_map <- read_excel("/home/oreinish/Desktop/imag_for_github/goseq/goTerms.xlsx")
+colnames(go_map) <- c("gene_id", "go_term")
+
+# Step 4: Build TERM2NAME from GO.db
+all_go_ids <- unique(go_map$go_term)
+valid_go_ids <- all_go_ids[all_go_ids %in% keys(GO.db)]
+go_terms <- Term(GOTERM[valid_go_ids])
+go_names <- data.frame(go_term = names(go_terms), name = unname(go_terms), stringsAsFactors = FALSE)
+
+# Step 5: Run enrichment with TERM2GENE + TERM2NAME
+ego <- enricher(
+  gene = de_genes,
+  TERM2GENE = go_map[, c("go_term", "gene_id")],
+  TERM2NAME = go_names
+)
+
+# Step 6: Filter significant terms
+sig_GO <- ego@result %>%
+  filter(p.adjust < 0.05)
+
+# Step 7: Save results
+write.table(sig_GO, "clusterProfiler_GO_results.txt", sep = "\t", quote = FALSE, row.names = FALSE)
+
+# Step 8: Plot top 10 GO terms by name
+top_GO <- sig_GO %>%
+  arrange(p.adjust) %>%
+  head(10)
+
+ggplot(top_GO, aes(x = reorder(Description, -log10(p.adjust)),
+                   y = -log10(p.adjust))) +
+  geom_bar(stat = "identity", fill = "palegreen2") +
+  coord_flip() +
+  xlab("GO Terms") +
+  ylab("-log10(Adjusted p-value)") +
+  ggtitle("Top GO Terms Enrichment") +
+  theme_minimal()
+```
