@@ -1248,6 +1248,8 @@ in order to do so i have used another R pakage called "clasterProfiler", which d
 
 the data i used is the exact same data for the previous goseq analysis - a table of deseq2 [combined_deseq2_gtf.xlsx](../exel%20files/deseq2/combined_deseq2_gtf_with_length.xlsx) and the [goterm table](../exel%20files/deseq2/goTerms.xlsx).
 
+*reminder: this too is for time 20hr - treatment vs control, since we used the same data.
+
 ```r
 # Step 1: Setup
 install.packages("readxl")
@@ -1310,3 +1312,6 @@ ggplot(top_GO, aes(x = reorder(Description, -log10(p.adjust)),
   ggtitle("Top GO Terms Enrichment") +
   theme_minimal()
 ```
+
+### Results (goseq no length normalization)
+![](../images/rna_bioinformatics/goseq/goseq_no_length_normalization.png)
