@@ -1315,3 +1315,131 @@ ggplot(top_GO, aes(x = reorder(Description, -log10(p.adjust)),
 
 ### Results (goseq no length normalization)
 ![](../images/rna_bioinformatics/goseq/goseq_no_length_normalization.png)
+
+
+#  Gene Expression Analysis: 20h and 44h Time Points
+
+##  DEGs at Time Point 44 – Volcano Plot (No Interaction)
+
+In this analysis, I evaluated gene expression **at the 44-hour time point**, comparing **treated vs untreated (control)** samples. This is **not an interaction** plot — it provides a **snapshot** of gene expression in response to surfactin **after 44 hours**, without considering the 20-hour data.
+
+> 🧠 **Reminder**:  
+> The interaction plot (purple volcano plot shown earlier) detects genes whose expression changes **differently over time** between treated and untreated groups.  
+> - A gene that is repressed at 20h and **stays repressed at 44h** will **not** appear in the interaction plot.  
+> - But it **will appear** in this non-interaction plot, because we compare treated vs untreated only at 44h.
+
+### 💻 R Code
+
+```r
+# 44 volcano plot: treatment vs control only (no interaction)
+
+# Subset metadata for 44-hour samples
+colData_44h <- colData[colData$TimePoint == "44", ]
+
+# Subset count matrix
+counts_44h <- counts3[, rownames(colData_44h)]
+
+# Drop unused factor levels
+colData_44h$Treatment <- droplevels(factor(colData_44h$Treatment))
+
+# Create DESeq2 dataset
+dds_44h <- DESeqDataSetFromMatrix(countData = counts_44h, colData = colData_44h, design = ~ Treatment)
+
+# Set reference level
+dds_44h$Treatment <- relevel(dds_44h$Treatment, ref = "control")
+
+# Run DESeq
+dds_44h <- DESeq(dds_44h)
+
+# Get results
+res_44h <- results(dds_44h)
+
+# Convert to data frame
+res_df <- as.data.frame(res_44h)
+res_df$gene <- rownames(res_df)
+
+# Add significance column
+res_df$significant <- with(res_df, ifelse(padj < 0.05 & abs(log2FoldChange) > 1,
+                                          ifelse(log2FoldChange > 0, "Up", "Down"), "Not significant"))
+
+# Plot volcano
+library(ggplot2)
+ggplot(res_df, aes(x = log2FoldChange, y = -log10(padj), color = significant)) +
+  geom_point(alpha = 0.8) +
+  scale_color_manual(values = c("Up" = "red", "Down" = "red", "Not significant" = "gray")) +
+  theme_minimal() +
+  labs(title = "Volcano Plot: 44h Treatment vs Control",
+       x = "Log2 Fold Change",
+       y = "-Log10 Adjusted P-value") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+![](../images/rna_bioinformatics/deseq2/44_not_interactive_red.png)
+
+ # Gene Expression Overlap Between Time Points and Conditions
+
+This section compares gene regulation at both time points (20h and 44h) under treatment and control — without interaction modeling. meaning "snap shots" of gene expression (up and down regulated) at time point 20 and 44.
+
+first, i extract the list of DEGs from R:
+```R
+# Convert DESeq2 results to data frame
+res_df <- as.data.frame(res_44h)
+res_df$gene <- rownames(res_df)
+
+# Classify regulation
+res_df$regulation <- "Not significant"
+res_df$regulation[res_df$padj < 0.05 & res_df$log2FoldChange >= 1] <- "Up"
+res_df$regulation[res_df$padj < 0.05 & res_df$log2FoldChange <= -1] <- "Down"
+
+# Reorder columns
+res_df <- res_df[, c("gene", "log2FoldChange", "padj", "regulation")]
+
+# Export
+write.csv(res_df, file = "DEG_44h_treatment_vs_control.csv", row.names = FALSE)
+```
+
+I got a the 44 list , i caombined the 44 list with the 20 list i got from previous analysis ([list](../exel%20files/deseq2/combined_20_44_snapshot.xlsx)), and ran this pytion code:
+
+```py
+import pandas as pd
+from upsetplot import from_memberships, UpSet
+import matplotlib.pyplot as plt
+
+# Load your Excel file
+df = pd.read_excel("C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/44DEGs_not_interaction/venn_diagram/combined.xlsx")
+
+# Group by gene and record all lists it's in
+memberships = df.groupby('GeneID_clean')['list'].apply(set)
+
+# Convert to UpSet format
+upset_data = from_memberships(memberships)
+
+# Plot
+UpSet(upset_data, subset_size='count', show_counts=True).plot()
+plt.suptitle("Overlap Between 20up, 20down, 44Up, 44Down")
+plt.tight_layout()
+plt.show()
+
+```
+
+![](../images/rna_bioinformatics/deseq2/Gene%20Expression%20Overlap%20Between%20Time%20Points%20and%20Conditions.png)
+
+i can also extracrt the lists of the overlaped genes addong on the python code:
+
+```py
+# Filter genes by condition
+up_20 = set(df[df["list"] == "20up"]["GeneID_clean"])
+down_44 = set(df[df["list"] == "44Down"]["GeneID_clean"])
+
+# Find intersection
+up_20_and_down_44 = up_20.intersection(down_44)
+
+# Print result
+print("Gene(s) upregulated at 20hr and downregulated at 44hr:")
+print(up_20_and_down_44)
+```
+* up20_down44:  PDENDC454_18593
+* up20_up44: PDENDC454_15969', 'PDENDC454_12030', 'PDENDC454_11900', 'PDENDC454_03695', 'PDENDC454_15959', 'PDENDC454_15954', 'PDENDC454_03680', 'PDENDC454_06680', 'PDENDC454_15964', 'PDENDC454_09110', 'PDENDC454_17173', 'PDENDC454_09115
+* down20_down44:'PDENDC454_11045', 'PDENDC454_03340', 'PDENDC454_00500', 'PDENDC454_11225', 'PDENDC454_11230', 'PDENDC454_17313', 'PDENDC454_24263', 'PDENDC454_00300', 'PDENDC454_28305', 'PDENDC454_07960', 'PDENDC454_03490', 'PDENDC454_00295', 'PDENDC454_11245', 'PDENDC454_04566', 'PDENDC454_11605', 'PDENDC454_24268', 'PDENDC454_00510', 'PDENDC454_09410', 'PDENDC454_17273', 'PDENDC454_17278', 'PDENDC454_11610', 'PDENDC454_03335', 'PDENDC454_26723', 'PDENDC454_24248', 'PDENDC454_01560', 'PDENDC454_17308'
+* down20_up44: None 
+
