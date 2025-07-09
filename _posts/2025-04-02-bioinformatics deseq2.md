@@ -955,6 +955,66 @@ matches_df.to_excel('matching_sequences_95percent.xlsx', index=False)
 print(f"Found {len(matches)} matching pairs with ≥90% similarity.")
 print("Saved results to 'matching_sequences_95percent.xlsx'.")
 ```
+I colored the proteins with a secretion signal in blue (sane 20hr volcano plot as before but with marked proteins)
+
+![](../images/rna_bioinformatics/deseq2/20hr_secreted_proteins_marked.png)
+
+important - there are other ways for a proteine to leave the cell that dont include a secrition signal. in the future i plan to use tools like SecretomeP and BacSec.
+
+### looking for proteases amongs the secreted DEGs (with secretion signal)
+
+we suspect that the surfactin is breaked down outside the cell. so i wantes to check those blue proteines (DEGs with secretion signal). i ran their AA sequences thorough a tool called [*InterPro*](https://www.ebi.ac.uk/interpro/) which gives the protein family prediction.
+
+i took the [output (tsv)](../exel%20files/deseq2/iprscan5-R20250618-151146-0939-12498014-p1m.tsv), inputed it in python script in order to find proteines which have an ability to break down molecules:
+
+```py
+import pandas as pd
+
+# Define input file path
+input_file = "C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/MEROPS/iprscan5-R20250618-151146-0939-12498014-p1m.tsv"
+
+# Load the TSV file (tab-separated values)
+df = pd.read_csv(input_file, sep='\t', header=None, comment='#')
+
+# InterPro format: assume the annotation is in column 11 or 12
+# Check column headers manually if different
+annotation_columns = [11, 12]  # may contain descriptions
+
+# Define keywords to search for
+keywords = ['protease', 'hydrolase', 'peptidase', 'proteinase', 'lipase', 'amidase']
+
+# Convert annotations to lowercase for easier matching
+matches = df[df[annotation_columns].apply(
+    lambda row: any(any(k in str(cell).lower() for k in keywords) for cell in row), axis=1)]
+
+# Extract unique gene IDs (column 0 is usually the ID)
+gene_ids = sorted(matches[0].unique())
+
+# Save to a file (optional)
+with open("cutting_genes.txt", "w") as f:
+    for gene in gene_ids:
+        f.write(gene + "\n")
+
+# Print to screen
+print("Genes with cutting activity:")
+for gene in gene_ids:
+    print(gene)
+
+```
+the output was a list of 10 proteins :
+* PDENDC454_03969 -> down regulated in 20hr
+* PDENDC454_08250 -> up regulated in 20hr
+* PDENDC454_11515 -> down regulated in 20hr
+* PDENDC454_11605 -> down regulated in 20hr
+* PDENDC454_12640 -> up regulated in 20hr
+* PDENDC454_15202 -> down regulated in 20hr
+* PDENDC454_16983 -> down regulated in 20hr
+* PDENDC454_19433 -> up regulated in 20hr
+* PDENDC454_22744 -> down regulated in 20hr
+* PDENDC454_23676 -> down regulated in 20hr
+
+so these are proteines who are DE, secreted and are able to cut molecules. of these 3 are up regulated after 20 hr of surfactin exposure. 
+
 ----
 ### GOseq enrichment plot
 in order to even start you need a table that has the 4 componenets:
