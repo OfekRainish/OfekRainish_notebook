@@ -1503,3 +1503,323 @@ print(up_20_and_down_44)
 * down20_down44:'PDENDC454_11045', 'PDENDC454_03340', 'PDENDC454_00500', 'PDENDC454_11225', 'PDENDC454_11230', 'PDENDC454_17313', 'PDENDC454_24263', 'PDENDC454_00300', 'PDENDC454_28305', 'PDENDC454_07960', 'PDENDC454_03490', 'PDENDC454_00295', 'PDENDC454_11245', 'PDENDC454_04566', 'PDENDC454_11605', 'PDENDC454_24268', 'PDENDC454_00510', 'PDENDC454_09410', 'PDENDC454_17273', 'PDENDC454_17278', 'PDENDC454_11610', 'PDENDC454_03335', 'PDENDC454_26723', 'PDENDC454_24248', 'PDENDC454_01560', 'PDENDC454_17308'
 * down20_up44: None 
 
+_
+
+## KEGG Enrichment Analysis: Response to Surfactin
+
+In order to investigate which metabolic pathways are affected by exposure to surfactin, we performed a KEGG enrichment analysis using significantly differentially expressed genes identified **20 hours** after surfactin treatment.
+
+KEGG (Kyoto Encyclopedia of Genes and Genomes) assigns genes to known biological pathways using KO (KEGG Orthology) terms. These KO terms represent functional groupings that can be enriched — that is, found more frequently than expected — in a given gene list. In this analysis, we ask: _Are certain pathways overrepresented among the genes that changed significantly in response to surfactin?_ This helps us understand what biological functions might be altered.
+
+---
+
+## 🧪 Procedure
+
+1. **Gene list extraction**  
+   I took the list of all genes detected after 20 hours of surfactin exposure.  
+   [🔗 Link to data](../exel%20files/kegg_20hr/deseq_results_20hr.xlsx)
+
+2. **Gene name cleanup in Python**  
+```python
+import pandas as pd
+import re
+
+# Load the Excel file
+input_file = 'C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/deseq_results_20hr.xlsx'  # Replace with your actual file path
+output_file = 'C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/deseq_results_20hr_cleanID.xlsx'  # Replace with your desired output file path
+
+# Read the Excel file into a DataFrame
+df = pd.read_excel(input_file)
+
+# Function to extract Gene ID from the "GeneID" column
+def extract_gene_id(gene_id_str):
+    # Use regular expression to extract the gene ID
+    match = re.search(r'gene_id\s+"([^"]+)"', gene_id_str)
+    if match:
+        return match.group(1)
+    else:
+        return gene_id_str  # If no match, return the original string
+
+# Apply the function to the 'GeneID' column and create a new column with cleaned Gene IDs
+df['GeneID_clean'] = df['GeneID'].apply(extract_gene_id)
+
+# Optional: Drop the original 'GeneID' column if you no longer need it
+# df = df.drop(columns=['GeneID'])
+
+# Save the updated DataFrame to a new Excel file
+df.to_excel(output_file, index=False)
+
+print(f"Updated Excel file saved as {output_file}")
+
+```
+
+3. **Amino acid sequence extraction (Linux)**  
+   Using the reference genome, I matched genes to protein sequences:
+```
+#!/usr/bin/env python3
+
+from Bio import SeqIO
+import pandas as pd
+
+# === USER INPUT ===
+gbff_file = "/home/oreinish/RNA_seq/raw_data/pdc454FASTA/genomic.gbff"
+excel_file = "/home/oreinish/RNA_seq/deseq2/dseq2_output/combined_xl_fixed_annotated.xlsx"
+output_file = "/home/oreinish/RNA_seq/deseq2/dseq2_output/with_aa_seq.xlsx"
+# ===================
+
+# Step 1: Parse GenBank and extract {locus_tag: aa_sequence}
+locus_to_seq = {}
+for record in SeqIO.parse(gbff_file, "genbank"):
+    for feature in record.features:
+        if feature.type == "CDS":
+            locus_tag = feature.qualifiers.get("locus_tag", [None])[0]
+            aa_seq = feature.qualifiers.get("translation", [None])[0]
+            if locus_tag and aa_seq:
+                locus_to_seq[locus_tag] = aa_seq
+
+# Step 2: Load Excel file
+df = pd.read_excel(excel_file)
+
+# Step 3: Add aa_seq column using GeneID_clean
+df["aa seq"] = df["GeneID_clean"].map(locus_to_seq).fillna("Not found")
+
+# Step 4: Save to new Excel file
+df.to_excel(output_file, index=False)
+print(f"Saved with amino acid sequences: {output_file}")
+```
+
+4. **FASTA creation in Python**
+
+Back to pthon 
+```python
+import pandas as pd
+
+# === INPUT ===
+input_excel = "C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/add_KEGG_ONTO/20hr_surfVScontrol_with_aa.xlsx"         # Replace with your actual file name
+output_fasta = "C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/add_KEGG_ONTO/20hr_surfVScontrol_with_aa.fasta"       # Output FASTA file
+
+# === LOAD EXCEL ===
+df = pd.read_excel(input_excel)
+
+# === REMOVE ROWS WITH MISSING SEQUENCES ===
+df = df.dropna(subset=["GeneID_clean", "aa seq"])
+
+# === WRITE FASTA ===
+with open(output_fasta, "w") as f:
+    for i, row in df.iterrows():
+        header = row["GeneID_clean"]
+        sequence = row["aa seq"].replace(" ", "")  # Remove any spaces
+        f.write(f">{header}\n{sequence}\n")
+
+print(f"✅ FASTA file saved to: {output_fasta}")
+
+```
+[output of the stage](../exel%20files/kegg_20hr/20hr_surfVScontrol_with_aa.fasta)
+
+5. **KO annotation with eggNOG in Galaxy**  
+   - Used [Galaxy](https://usegalaxy.org/) → **eggNOG-mapper**
+   - Parameters: `min e-value = 0.001`, input: protein
+   - Extracted KO **annotations** from the TSV output.
+
+   [Galaxy output](../exel%20files/kegg_20hr/Galaxy8-[eggNOG%20Mapper%20on%20data%206_%20annotations].tabular)
+
+6. **KO term extraction and merging (Python)**  
+   Combined eggNOG KO terms with DESeq2 results(original excel file):
+```py
+import pandas as pd
+
+# === FILES ===
+excel_file = "C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/add_KEGG_ONTO/20hr_surfVScontrol_with_aa.xlsx"              # Your original Excel data
+eggnog_file = "C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/add_KEGG_ONTO/galaxy_eggNOGannotation_output/Galaxy8-[eggNOG Mapper on data 6_ annotations].tabular"              # Your eggNOG result file
+output_merged = "C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/add_KEGG_ONTO/galaxy_eggNOGannotation_output/with_KOterms.xlsx"             # Output Excel with KO terms added
+
+# === LOAD EXCEL AND EGGNOG ===
+df = pd.read_excel(excel_file)
+
+# eggNOG file is usually tab-separated, comment lines start with #
+eggnog_df = pd.read_csv(eggnog_file, sep='\t', comment='#', header=None)
+
+# Optional: Print first few lines to inspect
+print(eggnog_df.head())
+
+# === COLUMN NAMES for eggNOG v2+ ===
+eggnog_df.columns = [
+    "query_name", "seed_ortholog", "evalue", "score", "eggNOG_OGs", 
+    "max_annot_lvl", "COG_category", "Description", "Preferred_name", "GOs", 
+    "EC", "KEGG_ko", "KEGG_Pathway", "KEGG_Module", "KEGG_Reaction", 
+    "KEGG_rclass", "BRITE", "KEGG_TC", "CAZy", "BiGG_Reaction", "PFAMs"
+]
+
+
+# === EXTRACT ONLY RELEVANT COLUMNS ===
+ko_map = eggnog_df[["query_name", "KEGG_ko"]].copy()
+ko_map = ko_map.dropna(subset=["KEGG_ko"])
+ko_map["query_name"] = ko_map["query_name"].astype(str)
+
+# === MERGE WITH ORIGINAL EXCEL TABLE ===
+df["GeneID_clean"] = df["GeneID_clean"].astype(str)
+merged_df = df.merge(ko_map, left_on="GeneID_clean", right_on="query_name", how="left")
+
+# === SAVE OUTPUT ===
+merged_df.to_excel(output_merged, index=False)
+print(f"✅ Merged file with KO terms saved as: {output_merged}")
+``` 
+* Then remove unnessecry columns so your table looks like this:
+   [combined KO table](../exel%20files/kegg_20hr/only_relevant_columns.xlsx)
+
+7. **Ensuring one KO term per gene (Python)**  
+   Filtered so each gene has a single KO term (removing genes with multiple hits):  
+```py
+import pandas as pd
+
+# === Load your merged Excel file ===
+df = pd.read_excel("C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/add_KEGG_ONTO/galaxy_eggNOGannotation_output/only_relevant_columns.xlsx")
+
+# === Drop rows without any KO ===
+df = df.dropna(subset=["KEGG_ko"])
+
+# === Clean KO terms: remove "ko:" prefix and split by comma ===
+df["KEGG_ko_clean"] = df["KEGG_ko"].str.replace("ko:", "", regex=False)
+df["KEGG_ko_list"] = df["KEGG_ko_clean"].str.split(",")
+
+# === Explode the KO list so each KO gets its own row ===
+exploded_df = df.explode("KEGG_ko_list").rename(columns={"KEGG_ko_list": "Single_KO"})
+
+# === Optional: reorder columns ===
+exploded_df = exploded_df[["GeneID_clean", "significant", "Single_KO"]]
+
+# === Save to new Excel ===
+exploded_df.to_excel("C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/add_KEGG_ONTO/galaxy_eggNOGannotation_output/genes_with_single_KO.xlsx", index=False)
+
+print("✅ Exploded KO file saved as: genes_with_single_KO.xlsx")
+``` 
+   [single KO term table](../exel%20files/kegg_20hr/genes_with_single_KO.xlsx) - this is our R input.
+
+8. **KEGG enrichment analysis (R)**  
+   Ran the following script in R:
+```r
+# === Load required libraries ===
+library(readxl)
+library(dplyr)
+library(clusterProfiler)
+library(enrichplot)
+library(ggplot2)
+
+# === Step 1: Load and clean input ===
+data <- read_excel("genes_with_single_KO.xlsx")
+
+# Replace "-" with NA
+data <- data %>%
+  mutate(Single_KO = na_if(Single_KO, "-"))
+
+cat("✅ Input file loaded.\n")
+cat("✅ Column names:\n")
+print(colnames(data))
+
+# === Step 2: Extract foreground genes (significant == 1) ===
+foreground_genes <- data %>%
+  filter(significant == 1) %>%
+  pull(GeneID_clean) %>%
+  unique()
+
+cat("✅ Number of foreground genes:", length(foreground_genes), "\n")
+
+# === Step 3: Create TERM2GENE table ===
+term2gene <- data %>%
+  filter(!is.na(Single_KO)) %>%
+  select(Single_KO, GeneID_clean) %>%
+  distinct()
+
+cat("✅ TERM2GENE rows (after cleaning):", nrow(term2gene), "\n")
+cat("✅ Unique KO terms:", length(unique(term2gene$Single_KO)), "\n")
+
+# === Step 4: Intersect foreground with background ===
+matched_genes <- intersect(foreground_genes, term2gene$GeneID_clean)
+cat("✅ Foreground genes found in TERM2GENE mapping:", length(matched_genes), "\n")
+
+if (length(matched_genes) == 0) {
+  stop("❌ No foreground genes match TERM2GENE — enrichment cannot proceed.")
+}
+
+# === Step 5: Define universe (background) ===
+background_genes <- unique(term2gene$GeneID_clean)
+cat("✅ Background gene count:", length(background_genes), "\n")
+
+# === Step 6: Run enrichment ===
+enrich_result <- enricher(
+  gene = matched_genes,
+  universe = background_genes,
+  TERM2GENE = term2gene,
+  pvalueCutoff = 0.05
+)
+
+# === Step 7: Check result ===
+if (is.null(enrich_result)) {
+  stop("⚠️ 'enricher()' returned NULL — invalid input.")
+} else if (nrow(enrich_result@result) == 0) {
+  stop("⚠️ Enrichment ran, but no significant KO terms found.")
+} else {
+  cat("✅ Enrichment succeeded! Terms found:", nrow(enrich_result@result), "\n")
+  print(head(enrich_result@result))
+  cat("✅ Columns in enrichment result:\n")
+  print(colnames(enrich_result@result))
+}
+
+# === Step 8: Convert GeneRatio to numeric (for safe plotting) ===
+enrich_result@result <- enrich_result@result %>%
+  mutate(GeneRatio_numeric = sapply(GeneRatio, function(x) {
+    parts <- strsplit(x, "/")[[1]]
+    as.numeric(parts[1]) / as.numeric(parts[2])
+  }))
+
+# === Step 9: Plot (custom dotplot with ggplot2) ===
+n_show <- min(nrow(enrich_result@result), 20)
+
+ggplot(enrich_result@result[1:n_show, ], aes(x = GeneRatio_numeric, y = reorder(Description, GeneRatio_numeric))) +
+  geom_point(aes(size = Count, color = p.adjust)) +
+  scale_color_gradient(low = "red", high = "blue", name = "Adjusted p-value") +
+  scale_size(range = c(3, 8)) +
+  labs(title = "KEGG KO Enrichment", x = "Gene Ratio", y = "KO Term") +
+  theme_minimal()
+
+# === Step 10: Save result table ===
+write.csv(enrich_result@result, "KEGG_enrichment_results.csv", row.names = FALSE)
+cat("✅ Enrichment results saved to 'KEGG_enrichment_results.csv'\n")
+```
+
+---
+
+## KEGG Enrichment Result
+
+![KEGG_enrichment_plot.png](../images/rna_bioinformatics/kegg/kegg_enrichment_plot_20hr.png)
+
+| Metric                              | Count |
+|-------------------------------------|-------|
+| All significant genes in 20hr     | 459   |
+| Significant genes with KO term      | 222   |
+| All genes (sig or not) with at least one KO term (background) | 2635  |
+
+---
+
+### ⚠️ Notes and Caveats
+
+1. **Incomplete KO Annotation:**  
+   Only about **half of the genes** detected by RNA-seq at 20 hours have KO terms (2635 out of 5382).  
+   This limits the background set and reduces the number of significant genes used in the enrichment test (222 instead of 459), potentially excluding important genes.
+
+2. **Multiple Testing Correction:**  
+   While **18 pathways** showed raw p-values `< 0.05`, **none passed adjusted p-value (FDR < 0.05)** filtering.  
+   This suggests that, although some patterns exist, **we cannot claim statistical significance** under strict correction.  
+   These results are **exploratory** and should be interpreted cautiously.
+
+
+
+### ✅ Summary
+
+- We performed KEGG enrichment to understand the pathway-level response to surfactin.
+- Of 459 significant genes, only 222 had a KO term and were used in the test.
+- A few pathways showed enrichment with **raw p-values < 0.05**, but none were significant after correction.
+- Limited annotations weakened statistical power.
+- Still, the analysis provides useful **hypotheses for future investigation**.
+---
+
