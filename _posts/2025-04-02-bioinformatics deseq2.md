@@ -1376,8 +1376,36 @@ ggplot(top_GO, aes(x = reorder(Description, -log10(p.adjust)),
 ### Results (goseq no length normalization)
 ![](../images/rna_bioinformatics/goseq/goseq_no_length_normalization.png)
 
+In order to get lists of the genes with the go terms i ran this code  in R:
+```r
+# Step 6b: Get gene lists per enriched GO term
+# Make sure ego is valid and contains results
+if (!is.null(ego@result) && nrow(ego@result) > 0) {
 
-#  Gene Expression Analysis: 20h and 44h Time Points
+  # Extract the gene IDs associated with each GO term
+  gene_lists <- ego@result %>%
+    filter(p.adjust < 0.05) %>%
+    head(7) %>%  # Take top 7 enriched GO terms
+    select(ID, Description, geneID) %>%
+    mutate(genes = strsplit(geneID, "/")) %>%
+    select(ID, Description, genes)
+
+  # Save each gene list to a separate text file
+  for (i in seq_len(nrow(gene_lists))) {
+    go_id <- gene_lists$ID[i]
+    go_name <- gsub("[^a-zA-Z0-9]", "_", gene_lists$Description[i])  # Clean filename
+    gene_vector <- unlist(gene_lists$genes[i])
+    write.table(gene_vector,
+                file = paste0("genes_for_", go_id, "_", go_name, ".txt"),
+                quote = FALSE, row.names = FALSE, col.names = FALSE)
+  }
+
+  print("Gene lists saved to individual text files.")
+} else {
+  print("No enriched GO terms found.")
+}
+
+```
 
 ##  DEGs at Time Point 44 – Volcano Plot (No Interaction)
 
