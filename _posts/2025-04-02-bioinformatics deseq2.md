@@ -957,6 +957,8 @@ print("Saved results to 'matching_sequences_95percent.xlsx'.")
 ```
 I colored the proteins with a secretion signal in blue (sane 20hr volcano plot as before but with marked proteins)
 
+I also ran the DEGs (20hr and 44interaction) through *PSORTb* which predicts proteine location according to amino acid sequences. didnt find any proteins who are predicted to be 'extracellular' & up regulated at 20hr. 
+
 ![](../images/rna_bioinformatics/deseq2/20hr_secreted_proteins_marked.png)
 
 important - there are other ways for a proteine to leave the cell that dont include a secrition signal. in the future i plan to use tools like SecretomeP and BacSec.
