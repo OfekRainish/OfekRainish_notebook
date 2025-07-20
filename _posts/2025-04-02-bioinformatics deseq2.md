@@ -1853,3 +1853,91 @@ cat("✅ Enrichment results saved to 'KEGG_enrichment_results.csv'\n")
 - Still, the analysis provides useful **hypotheses for future investigation**.
 ---
 
+## AntiSMASH Protein Region Comparison with DEGs
+
+This protocol describes how to match protein-coding sequences from antiSMASH-identified biosynthetic gene clusters (BGCs) to a set of differentially expressed genes (DEGs) from a timepoint-specific RNA-seq experiment.
+
+---
+
+### 📂 Input Files
+
+- **17 `.gbk` (GenBank) files** downloaded from antiSMASH, one for each identified region.
+- **One Excel file** (`.xlsx`) with the two columns:
+  - `GeneID_clean`: gene name or identifier
+  - `aa seq`: amino acid sequence of the gene
+  - [This Excel file](../exel%20files/deseq2/full_table_with_secretion_predictions_.xlsx) contains DEGs after 20 hours of growth with 44 predicted interactions.
+
+---
+
+### 🧬 Step 1: Convert antiSMASH GenBank Files to FASTA
+
+Each `.gbk` file contains predicted protein sequences. Use the following Python code to extract all translated protein sequences from the CDS features and convert each GenBank file to a FASTA file:
+
+```python
+from Bio import SeqIO
+import os
+
+# === USER INPUT ===
+input_folder = "C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/antismash/region_antismash_gbk_files"  # Folder with 17 .gbk files
+output_folder = "C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/antismash/region_antismash_fasta_files"
+
+# === CONVERT EACH .gbk TO .fasta ===
+os.makedirs(output_folder, exist_ok=True)
+
+for file_name in os.listdir(input_folder):
+    if file_name.endswith(".gbk") or file_name.endswith(".genbank"):
+        input_path = os.path.join(input_folder, file_name)
+        output_path = os.path.join(output_folder, file_name.replace(".gbk", ".fasta").replace(".genbank", ".fasta"))
+        
+        with open(output_path, "w") as fasta_out:
+            for record in SeqIO.parse(input_path, "genbank"):
+                for feature in record.features:
+                    if feature.type == "CDS" and "translation" in feature.qualifiers:
+                        protein_seq = feature.qualifiers["translation"][0]
+                        locus_tag = feature.qualifiers.get("locus_tag", ["unknown"])[0]
+                        fasta_out.write(f">{locus_tag}\n{protein_seq}\n")
+
+print("✅ Conversion done.")
+```
+### 🔍 Step 2: Compare FASTA Proteins to DEGs Table
+Use this Python script to compare each .fasta file to the DEGs Excel file. It checks whether each protein sequence in the FASTA file appears in the Excel column "aa seq", and creates a new column in the Excel table with a "✓" mark for each matching sequence.
+
+```python
+import pandas as pd
+from Bio import SeqIO
+
+fasta_file = "path/to/one_region.fasta"
+excel_file = "path/to/degs_table.xlsx"
+output_excel = "checked_output.xlsx"
+
+
+# === Load Excel ===
+df = pd.read_excel(excel_file, engine="openpyxl")
+df["aa seq"] = df["aa seq"].str.replace("\n", "").str.strip()
+
+# === Load sequences from FASTA ===
+fasta_sequences = set()
+for record in SeqIO.parse(fasta_file, "fasta"):
+    fasta_sequences.add(str(record.seq).strip())
+
+# === Compare and flag matches ===
+df["Match"] = df["aa seq"].apply(lambda seq: "✓" if seq in fasta_sequences else "")
+
+# === Save result ===
+df.to_excel(output_excel, index=False)
+print(f"✅ Output saved to {output_excel}")
+
+```
+
+Repeat the comparison above for each of the 17 FASTA files. Rename the output column (e.g., 3.1, 7.1, ..., 180.1) accordingly.
+
+### 🧾 Final Outcome
+- After processing all 17 FASTA files, your Excel table will have 17 new columns, each representing a different antiSMASH region.
+
+- In each column, genes that matched an antiSMASH protein will be labeled with "✓".
+
+- Genes marked "✓" are candidates for involvement in natural product biosynthesis.
+
+  [outcome table](../exel%20files/deseq2/full_table_with_secretion_predictions_anti17.xlsx)
+- Among these, genes identified by antiSMASH as "core biosynthetic genes" should be prioritized and added to your genes of interest list.
+___ 
