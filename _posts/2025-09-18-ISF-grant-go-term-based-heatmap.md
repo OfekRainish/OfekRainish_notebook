@@ -194,3 +194,4 @@ pheatmap(heatmap_matrix,
          clustering_method = "complete")
 ```
 
+![timepoint ma plot](../images/isf/heat_map_go_terms.png)
