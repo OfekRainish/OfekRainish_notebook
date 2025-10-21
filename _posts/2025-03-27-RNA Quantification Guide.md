@@ -153,4 +153,4 @@ This workflow provides a robust pipeline for RNA-Seq quantification in bacteria 
 - Ensure FASTA and GTF files are from the same source (e.g., NCBI) to avoid contig mismatches.
 - Adjust paths and thread counts (`-T`) based on your system capabilities.
 
-🛠 Happy RNA-seq analysis! 🚀
+The output is a txt file. We open it in Excel and remove irrelevant columns. Only the conditions and the name of the gene remain.[counts](../exel%20files/quantification/Counts.csv)
