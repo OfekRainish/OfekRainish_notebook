@@ -22,7 +22,68 @@ Following RNA-seq analysis, we obtained hundreds of genes and narrowed the list 
 - Interestingly, we did **not** see classic stress responses (e.g., SOS response). Some stress-related genes actually **decrease** (e.g., **ECF subfamily RNA polymerase sigma24 subunit**).  
 - This suggests the stress is likely **targeted at the cell membrane/envelope**, not DNA damage.
 
----
+
+** In order to ensure that no classic SOS response genes were significantly activated,  
+I compiled a list of canonical SOS genes and matched them to their corresponding names in *P. dendritiformis*:
+
+| Gene ID | Annotation |
+|----------|-------------|
+| PDENDC454_09755 | radA |
+| PDENDC454_11340 | recN |
+| PDENDC454_11345 | recN |
+| PDENDC454_19328 | recA |
+| PDENDC454_04681 | SOS response |
+| PDENDC454_04686 | SOS response |
+| PDENDC454_26503 | ruvB |
+| PDENDC454_26493 | revC |
+| PDENDC454_26498 | revC |
+| PDENDC454_22519 | DinB-related |
+| PDENDC454_22524 | DinB-related |
+| PDENDC454_22539 | DinB-related |
+| PDENDC454_20987 | DinB-related |
+| PDENDC454_20992 | DinB-related |
+| PDENDC454_02050 | DinB-related |
+| PDENDC454_02055 | DinB-related |
+| PDENDC454_05381 | recF pathway |
+| PDENDC454_05386 | recF pathway |
+| PDENDC454_03929 | – |
+| PDENDC454_03934 | – |
+
+Apart from one gene — **PDENDC454_05386**, which was upregulated after 44 hours of surfactin exposure (*padj = 0.03*) —  
+none of these were classified as differentially expressed genes (DEGs).
+
+
+
+#### Python Code Used to Compare the SOS Gene List with RNA-seq Results
+
+```python
+import pandas as pd
+
+# Load the two Excel files
+# Replace the paths with your actual filenames
+df1 = pd.read_excel(
+    "C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/sos_genes/sos_genes.xlsx"
+)
+df2 = pd.read_excel(
+    "C:/Users/USER/OneDrive - University of Haifa/Documents/HAIFA/research/data analyzing/mapping/deseq2/output/treatment - downup regulation/signalp0.6 res/full_table_with_secretion_predictions_anti17.xlsx"
+)
+
+# Extract the relevant columns
+genes1 = df1["Gene_ID"].dropna().astype(str).str.strip()
+genes2 = df2["GeneID_clean"].dropna().astype(str).str.strip()
+
+# Find the intersection
+common_genes = set(genes1).intersection(set(genes2))
+
+# Print results
+if common_genes:
+    print("Values that appear in both tables:")
+    for gene in common_genes:
+        print(gene)
+else:
+    print("No common values found.")
+
+```
 
 ## 2. ABC Transporters & Efflux Systems
 - These genes encode proteins that transport substances into and out of the cell.  
