@@ -955,7 +955,7 @@ matches_df.to_excel('matching_sequences_95percent.xlsx', index=False)
 print(f"Found {len(matches)} matching pairs with ≥90% similarity.")
 print("Saved results to 'matching_sequences_95percent.xlsx'.")
 ```
-I colored the proteins with a secretion signal in blue (sane 20hr volcano plot as before but with marked proteins)
+I colored the proteins with a secretion signal in blue (sane treatment vs control - general- volcano plot as before but with marked proteins)
 
 I also ran the DEGs (20hr and 44interaction) through *PSORTb* which predicts proteine location according to amino acid sequences. didnt find any proteins who are predicted to be 'extracellular' & up regulated at 20hr. 
 
