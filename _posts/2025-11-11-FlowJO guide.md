@@ -93,8 +93,11 @@ Click on one of the **blank** samples in the workspace to open its plot.
    - **Parameter:** Choose what to measure (e.g., `FSC`, `SSC`, `SG`)
 4. Click **OK**.
 5. Add as many columns as you need for your analysis.
+
+   *note:* in most parmeters (SG,SSC,FSC) it is more accurate to use the median tather than the mean. 
 ![](../images/FACS/flowJo/15.png)
 ---
+
 
 ## Step 11 – Export to Excel
 1. Click the **gear icon** in the Table Editor.
