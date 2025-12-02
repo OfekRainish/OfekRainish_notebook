@@ -6,9 +6,8 @@ This guide explains how to obtain **KO terms** for your organism using **blastKO
 
 ## 1. Obtaining KO Terms Using blastKOALA
 
-1. Go to the **blastKOALA** website:  
-   https://www.kegg.jp/blastkoala/
-
+1. Go to the [blastKOALA](https://www.kegg.jp/blastkoala/) website:  
+   
 2. Paste your **amino acid sequences** into the input window.
 
 3. Under *taxonomy group*, select **Prokaryotes**.
@@ -17,7 +16,7 @@ This guide explains how to obtain **KO terms** for your organism using **blastKO
 
 5. Submit the job.
 
-   *(Insert image here)*
+![](../images/koala/koalablast.png)
 
 6. You will receive an email from KEGG.  
    Click **Submit** to confirm.
@@ -50,7 +49,7 @@ KEGG Mapper requires a complete set of KO annotations to properly mark pathways.
    - **Blue** – Downregulated  
    - **Yellow** – Genes that have a KO term but are not differentially expressed
 
-   *(Insert image here)*
+![](../images/koala/excelTable.png)
 
 4. Save the file or keep it open for copying.
 
@@ -60,8 +59,8 @@ KEGG Mapper requires a complete set of KO annotations to properly mark pathways.
 
 1. Search for **"KEGG Mapper"** in Google.
 
-2. Click **KEGG Mapper – Color**:  
-   https://www.kegg.jp/kegg/tool/map_pathway2.html
+2. Click [KEGG Mapper – Color](https://www.genome.jp/kegg/mapper/color.html):  
+
 
 3. Copy **Columns 2 and 3** (KO term + color) from your Excel file.
 
@@ -72,7 +71,7 @@ KEGG Mapper requires a complete set of KO annotations to properly mark pathways.
 
 6. Click **EXEC**.
 
-   *(Insert image here)*
+![](../images/koala/keggMapper.png)
 
 7. KEGG Mapper will generate a list of metabolic pathways.  
    Each pathway diagram will display your selected **color codes** directly on the enzymes.
