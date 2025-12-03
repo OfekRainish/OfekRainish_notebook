@@ -110,3 +110,29 @@ This visual inspection can reveal important biological insights even without enr
 ---
 
 If you'd like, I can also create a **flowchart**, **image placeholders**, or **example Excel templates** to accompany the guide.
+
+## Resalts
+### ABC tansporters
+![](../images/koala/pathways/ABC%20transporters%20-%20Reference%20pathway.png)
+
+### Argenine biosynthis
+![](../images/koala/pathways/Arginine%20biosynthesis%20-%20Reference%20pathway.png)
+
+### Chemotaxix & Flagellar assembly
+![](../images/koala/pathways/Bacterial%20chemotaxis%20-%20Reference%20pathway.png)
+![](../images/koala/pathways/Flagellar%20assembly%20-%20Reference%20pathway.png)
+
+### L histadine --> L glutmate slowdown ?
+![](../images/koala/pathways/Histidine%20metabolism%20-%20Reference%20pathway.png)
+
+### Increse in pyruvat metabolism
+![](../images/koala/pathways/Lipoic%20acid%20metabolism%20-%20Reference%20pathway.png)
+
+### Peptidoglican biosynthasis
+![](../images/koala/pathways/Peptidoglycan%20biosynthesis%20-%20Reference%20pathway.png)
+
+### Quorum sensing ?
+![](../images/koala/pathways/Quorum%20sensing%20-%20Reference%20pathway.png)
+
+### Two component systm
+![](../images/koala/pathways/Two-component%20system%20-%20Reference%20pathway.png)
