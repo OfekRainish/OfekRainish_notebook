@@ -111,28 +111,40 @@ This visual inspection can reveal important biological insights even without enr
 
 If you'd like, I can also create a **flowchart**, **image placeholders**, or **example Excel templates** to accompany the guide.
 
-## Resalts
+## Resalts 
+* reminder - these results are for the 20hr time point
 ### ABC tansporters
 ![](../images/koala/pathways/ABC%20transporters%20-%20Reference%20pathway.png)
 
+A clear decrease in proteins that make up the iron and oligopeptide transporter can be seen, alongside an increase in proteins that make up the ABC transporters of alduronate and glucose/mannose.
+
+possibly, Surfactin pushes *P. dendritiformis* to temporarily shut down nutrient systems it doesn’t need (iron, peptides) and activate transporters that help it import energy-rich sugars and environmental carbohydrates. it is unlikely that the peptidic product of surfactin is transported through Opp sinse its bulky and branched.
+
 ### Argenine biosynthis
 ![](../images/koala/pathways/Arginine%20biosynthesis%20-%20Reference%20pathway.png)
+
+We see an upregulation of genes that constetute the arganine biosynthesis process. seems that argininosuccinate accumulates rather than being converted to arginine/fumarate.
 
 ### Chemotaxix & Flagellar assembly
 ![](../images/koala/pathways/Bacterial%20chemotaxis%20-%20Reference%20pathway.png)
 ![](../images/koala/pathways/Flagellar%20assembly%20-%20Reference%20pathway.png)
 
+motA & motB Encode parts of the flagellar motor stator, FliC Encodes flagellin, the main structural protein of the flagellar filament, and MCP (Methyl-accepting chemotaxis protein) Acts as a sensor that detects chemical gradients in the environment.
+
 ### L histadine --> L glutmate slowdown ?
 ![](../images/koala/pathways/Histidine%20metabolism%20-%20Reference%20pathway.png)
+This pathway is the main route for converting histidine into glutamate.
 
 ### Increse in pyruvat metabolism
 ![](../images/koala/pathways/Lipoic%20acid%20metabolism%20-%20Reference%20pathway.png)
+Pd is increasing the flux from pyruvate to acetyl-CoA, potentially enhancing energy production.
 
 ### Peptidoglican biosynthasis
 ![](../images/koala/pathways/Peptidoglycan%20biosynthesis%20-%20Reference%20pathway.png)
+The downregulation of these DD-carboxypeptidases suggests the bacterium is modulating cell wall remodeling
 
-### Quorum sensing ?
+### Quorum sensing
 ![](../images/koala/pathways/Quorum%20sensing%20-%20Reference%20pathway.png)
+A decrease in expression of genes encoding oligopeptide transport system substrate-binding proteins, which bind a variety of autoinducers, can be seen. It is possible that Pd reduces its sensitivity to reading QS signals and begins to act according to the signals it receives. the downstream effect might lead to a decrease amount of biofilm (can add a biofilm assay?)
 
-### Two component systm
-![](../images/koala/pathways/Two-component%20system%20-%20Reference%20pathway.png)
+
