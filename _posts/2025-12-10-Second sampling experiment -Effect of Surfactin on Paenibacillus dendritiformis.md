@@ -123,7 +123,7 @@ At each time point, tubes were vortexed and handled as follows:
 - Plate layout and readings recorded.
 
 ![](../images/new%20growth%20sampling/planing/plate_example.png)
-- the results of OD measurments can be found [here]()
+- the results of OD measurments can be found [here](../exel%20files/2nd%20growth%20sampling/)
 
 ---
 
