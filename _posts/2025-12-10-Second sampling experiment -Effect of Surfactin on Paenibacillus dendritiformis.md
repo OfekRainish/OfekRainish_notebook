@@ -122,7 +122,7 @@ At each time point, tubes were vortexed and handled as follows:
 - Control tubes also sampled.
 - Plate layout and readings recorded.
 
-![]()
+![](../images/new%20growth%20sampling/planing/plate_example.png)
 - the results of OD measurments can be found [here]()
 
 ---
@@ -153,4 +153,7 @@ At each time point, tubes were vortexed and handled as follows:
 - OD irregularities were noted on tube labels.
 - Cross-referencing allows linking metabolomics, FACS, and RNA results.
 - Note: excspt of the 24 hour sampling - there is **NO** connectio between the location of samples on the 96 plate and the labeling.
-
+---
+## Results
+Growth curve (OD)
+![](../images/new%20growth%20sampling/planing/growth_curve_OD.png)
