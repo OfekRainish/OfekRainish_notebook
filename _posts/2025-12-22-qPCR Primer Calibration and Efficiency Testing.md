@@ -14,7 +14,7 @@ Total RNA was extracted using the **NucleoSpin® RNA Stool kit** (Macherey-Nagel
 
 RNA concentration and purity were assessed using a **NanoDrop spectrophotometer**. The obtained absorbance ratios (A260/280 and A260/230) indicated acceptable RNA quality for downstream applications.
 
-![NanoDrop RNA quality assessment](image_link_here)
+![NanoDrop RNA quality assessment](../images/qPCR/ref_genes/12hr_rna_concentration_nanopore.png)
 
 important: this is only rna concentration. the rna was then converted to cDNA, where it was further diluted. in our case, we wanted to reach a final concentration of 20 ng/µL. so we added 10µL into the cDNA reaction tude (in the concentration of ~40 ng/µL of NO surf C). 
 
@@ -102,7 +102,7 @@ These controls were included to assess contamination and genomic DNA carryover, 
 
 The qPCR plate layout was designed to include all dilutions and controls in triplicate.
 
-![qPCR plate layout](plate_image_link_here)
+![qPCR plate layout](../images/qPCR/ref_genes/One_gene_calibration_setUp.png)
 
 ---
 
