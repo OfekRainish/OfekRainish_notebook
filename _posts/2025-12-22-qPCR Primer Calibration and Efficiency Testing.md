@@ -20,7 +20,7 @@ RNA concentration and purity were assessed using a **NanoDrop spectrophotometer*
 
 Important: this is only rna concentration. the rna was then converted to cDNA, where it was further diluted. In *our case*, we wanted to reach a final concentration of **20 ng/µL**. So we added 10µL into the cDNA reaction tude (in the concentration of ~40 ng/µL of NO surf C). 
 
-[RNA to cDNA protocol](../pdf%20protocols%20and%20papers/bio%20rad%20cnda%20syn%20kit%20protocol.pdf)
+[RNA to cDNA protocol](../pdf%20protocols%20and%20papers/PB30.11-UltraScript-cDNA-Synthesis-Kit-Manual.pdf)
 
 
 Remember, since we are just calibrating, it dosnt matter on wich template we check primer efficency, so we chose to work with this high concentration. 
