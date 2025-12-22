@@ -10,13 +10,18 @@ The perpous of this post is to show how to condact and efficiency (E) calibratio
 ### RNA Extraction and Quality Control
 
 Total RNA was extracted using the **NucleoSpin® RNA Stool kit** (Macherey-Nagel), according to the manufacturer’s instructions  
-([link to kit]()).
+([link to kit](../_posts/2024-07-24-RNA%20Extraction%20Protocol.md)).
 
 RNA concentration and purity were assessed using a **NanoDrop spectrophotometer**. The obtained absorbance ratios (A260/280 and A260/230) indicated acceptable RNA quality for downstream applications.
 
 ![NanoDrop RNA quality assessment](../images/qPCR/ref_genes/12hr_rna_concentration_nanopore.png)
 
-important: this is only rna concentration. the rna was then converted to cDNA, where it was further diluted. in our case, we wanted to reach a final concentration of 20 ng/µL. so we added 10µL into the cDNA reaction tude (in the concentration of ~40 ng/µL of NO surf C). 
+* [Link to excel file](../exel%20files/qPCR/12hr_ref_genes_rna_concentration_nanoPore.xlsx)
+
+Important: this is only rna concentration. the rna was then converted to cDNA, where it was further diluted. In *our case*, we wanted to reach a final concentration of **20 ng/µL**. So we added 10µL into the cDNA reaction tude (in the concentration of ~40 ng/µL of NO surf C). 
+
+[RNA to cDNA protocol](../pdf%20protocols%20and%20papers/bio%20rad%20cnda%20syn%20kit%20protocol.pdf)
+
 
 Remember, since we are just calibrating, it dosnt matter on wich template we check primer efficency, so we chose to work with this high concentration. 
 
