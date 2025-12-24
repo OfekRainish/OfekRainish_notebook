@@ -42,6 +42,8 @@ For each primer pair, a **general reaction mix** was prepared containing:
 - Reverse primer  
 - Nuclease-free water  
 
+Note: the final concentration of the primers in the well should be 0.2µM. this means that the concentration in the tube should be 2µM (since it goes into a 10µL reaction tube). Therefore, if starting from a 100µM primer concentration (original tube), we have to fitst dilute x50 to get to 2µM.
+
 Each qPCR reaction well contained a total volume of **10 µL**, composed of:
 
 | Component          | Volume per well (µL) |
