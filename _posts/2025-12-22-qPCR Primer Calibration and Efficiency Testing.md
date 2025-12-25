@@ -113,6 +113,62 @@ The qPCR plate layout was designed to include all dilutions and controls in trip
 
 ---
 
-### Results
+### qPCR oneStep parameters
 
-*(Results to be described here: amplification curves, standard curves, efficiency, R² values, etc.)*
+![qPCR plate layout](../images/qPCR/oneStep%20parameters/8.png)
+
+![qPCR plate layout](../images/qPCR/oneStep%20parameters/9.png)
+
+![qPCR plate layout](../images/qPCR/oneStep%20parameters/10.png)
+
+![qPCR plate layout](../images/qPCR/oneStep%20parameters/11.png)
+
+![qPCR plate layout](../images/qPCR/oneStep%20parameters/12.png)
+
+### Results
+As noted, in this example we looked at 4 genes that we thought would be good normalizing genes:
+- PDENDC454_05621 (ftsZ)
+- PDENDC454_09860 (rpoB)
+- PDENDC454_09875 (rpsL)
+- PDENDC454_09885 (translation elongation factor G normalizing gene)
+
+First I ran a regular PCR to make sure the primers were binding (in the PDENDC454_05621 gene I mistakenly loaded on the ladder):
+
+![qPCR plate layout](../images/qPCR/ref_genes/reference%20genes.png)
+
+
+Once I saw that they were binding I ran a qPCR as described above.
+The results showed three important things:
+1. I have a genomic DNA contamination.
+2. The primers for PDENDC454_09875 are probably also contaminated
+3. The primers for PDENDC454_05621, although they showed good binding in the PCR, do not bind here.
+
+![qPCR plate layout](../images/qPCR/ref_genes/first_ran_contiminated.png)
+
+![qPCR plate layout](../images/qPCR/ref_genes/first_ran_contiminated2.png)
+
+![qPCR plate layout](../images/qPCR/ref_genes/first_ran_contiminated3.png)
+
+in the images:
+- PDENDC454_05621 = 21
+- PDENDC454_09860 = 60
+- PDENDC454_09875 = 75
+- PDENDC454_09885 = 85
+
+
+So I cleaned my RNA with DNase from the Thermo scientific kit:
+DNase I, RNase-free
+Pub. No. MAN0012000
+Rev. Date 05 April 2016 (Rev. B.00)
+
+According to the following incubation:
+
+![qPCR plate layout](../images/qPCR/ref_genes/first_ran_contiminated4.png)
+
+
+Then I switched back to cDNA and ran another qPCR on NO surf C and with the primers for PDENDC454_09860 (rpoB).
+
+![qPCR plate layout](../images/qPCR/ref_genes/first_ran_contiminated5.png)
+
+You can see that the treatment worked and the genomic DNA is gone (the wells of the rna control are the ones marked with yellow triangles, follwed by three negative control wells).
+* Note that this will likely affect the concentration - in the future, RNA concentration should be checked after the DNase incubation.
