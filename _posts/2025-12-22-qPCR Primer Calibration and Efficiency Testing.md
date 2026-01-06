@@ -172,3 +172,43 @@ Then I switched back to cDNA and ran another qPCR on NO surf C and with the prim
 
 You can see that the treatment worked and the genomic DNA is gone (the wells of the rna control are the ones marked with yellow triangles, follwed by three negative control wells).
 * Note that this will likely affect the concentration - in the future, RNA concentration should be checked after the DNase incubation.
+
+## DNase Treatment of RNA Samples and Validation
+
+Since DNase-based purification appeared effective in removing genomic DNA contamination, the remaining RNA samples were treated accordingly. These included samples A and B grown without surfactin, and samples A, B, and C grown with surfactin. Following DNase treatment, RNA concentrations were measured using a NanoDrop spectrophotometer prior to cDNA synthesis. The measured concentrations were comparable to those obtained in the initial RNA extraction, indicating that the DNase treatment did not substantially affect RNA yield.
+
+![]()
+
+The DNase purification protocol nominally requires 1 µg of RNA per reaction. However, for several samples this amount could not be reached even when using the entire available RNA volume. Therefore, DNase reactions were scaled according to the available RNA volume while maintaining appropriate buffer and enzyme ratios.
+
+### DNase Treatment Setup
+
+- **Sample A (+ surfactin):**  
+  100 µL RNA, 0.5 µL DNase I, 10 µL 10× reaction buffer, no added water.  
+  After the first incubation, 11 µL EDTA was added.
+
+- **Sample B (+ surfactin):**  
+  100 µL RNA, 1 µL DNase I, 10 µL 10× reaction buffer, no added water.  
+  After the first incubation, 11 µL EDTA was added.
+
+- **Sample C (+ surfactin):**  
+  100 µL RNA, 0.8 µL DNase I, 10 µL 10× reaction buffer, no added water.  
+  After the first incubation, 11 µL EDTA was added.
+
+- **Sample A (– surfactin):**  
+  25 µL RNA, 1 µL DNase I, 3 µL 10× reaction buffer, no added water.  
+  After the first incubation, 3 µL EDTA was added.
+
+- **Sample B (– surfactin):**  
+  100 µL RNA, 1 µL DNase I, 3 µL 10× reaction buffer, no added water.  
+  After the first incubation, 3 µL EDTA was added.
+
+### Validation of DNase Treatment
+
+Following DNase treatment, a standard PCR was performed to assess residual genomic DNA contamination. The PCR included:
+- RNA samples as templates (–RT controls),
+- a water-only negative control,
+- a previously tested qPCR-positive cDNA sample (NO SURF C) as a positive control,
+- and an RNA control known not to produce amplification (NO SURF C).
+
+The PCR results showed no unexpected amplification in the RNA or water controls, suggesting effective removal of genomic DNA. Nevertheless, the samples were also subjected to qPCR analysis, which provides higher sensitivity for detecting low-level contamination.
