@@ -175,9 +175,9 @@ You can see that the treatment worked and the genomic DNA is gone (the wells of 
 
 ## DNase Treatment of RNA Samples and Validation
 
-Since DNase-based purification appeared effective in removing genomic DNA contamination, the remaining RNA samples were treated accordingly. These included samples A and B grown without surfactin, and samples A, B, and C grown with surfactin. Following DNase treatment, RNA concentrations were measured using a NanoDrop spectrophotometer prior to cDNA synthesis. The measured concentrations were comparable to those obtained in the initial RNA extraction, indicating that the DNase treatment did not substantially affect RNA yield.
+Since DNase-based purification appeared effective in removing genomic DNA contamination, the remaining RNA samples were treated accordingly. These included samples A and B grown without surfactin, and samples A, B, and C grown with surfactin. Following DNase treatment, RNA concentrations were measured using a NanoDrop spectrophotometer prior to cDNA synthesis. The measured concentrations were slightly lower to those obtained in the initial RNA extraction.
 
-![]()
+![](../images/qPCR/ref_genes/DNase%20cleaning/nanopore%20con%20after%20DNase%20before%20cDNA%2012hr.png)
 
 The DNase purification protocol nominally requires 1 µg of RNA per reaction. However, for several samples this amount could not be reached even when using the entire available RNA volume. Therefore, DNase reactions were scaled according to the available RNA volume while maintaining appropriate buffer and enzyme ratios.
 
@@ -212,3 +212,5 @@ Following DNase treatment, a standard PCR was performed to assess residual genom
 - and an RNA control known not to produce amplification (NO SURF C).
 
 The PCR results showed no unexpected amplification in the RNA or water controls, suggesting effective removal of genomic DNA. Nevertheless, the samples were also subjected to qPCR analysis, which provides higher sensitivity for detecting low-level contamination.
+
+![](../images/qPCR/ref_genes/DNase%20cleaning/PCR_check.png)
