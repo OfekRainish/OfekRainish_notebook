@@ -214,3 +214,49 @@ Following DNase treatment, a standard PCR was performed to assess residual genom
 The PCR results showed no unexpected amplification in the RNA or water controls, suggesting effective removal of genomic DNA. Nevertheless, the samples were also subjected to qPCR analysis, which provides higher sensitivity for detecting low-level contamination.
 
 ![](../images/qPCR/ref_genes/DNase%20cleaning/PCR_check.png)
+
+
+## qPCR Calibration of PDENDC454_09885 & PDENDC454_09860 using different sybr
+
+The qPCR experiment was performed to calibrate two genes, **PDENDC454_09885** and **PDENDC454_09860**, which are candidates for normalizing genes.  
+
+We used **qPCRBIO SYGreen Blue Mix Hi-ROX** (Blue SYBR), and in each well the following components were added:
+
+- 5 µL SYBR mix  
+- 5 µL Primer F (5 µM)  
+- 5 µL Primer R (5 µM)  
+- 2.4 µL RNase-free water  
+- 1 µL template  
+
+
+
+### Dilution Series and Controls
+
+- Five cDNA concentrations of the **No Surfactin B** sample were prepared.  
+- Each dilution was run in **triplicate**, including **No Template Control (NTC)** and **–RT controls** (also in triplicate).  
+
+ **Note:** When using this SYBR mix, the qPCR device program must be set according to the manufacturer’s instructions.  
+[Protocol link](../pdf%20protocols%20and%20papers/PB20.16-qPCRBIO-SyGreen-Blue-Mix-Hi-ROX.pdf)  
+
+![Image1.png](../images/qPCR/ref_genes/blueSYBRmethod.png)
+
+
+
+### Observations
+
+- Some contamination was observed especially in **PDENDC454_09860**, appearing only at **high cycles**.  
+- Melt curve analysis shows these contaminating peaks **do not overlap with the target peaks**, so the calculated efficiency remains valid.  
+
+> **Explanation:** Efficiency calculation is based on the **target-specific exponential amplification**. Late, non-overlapping amplification does not affect the slope or R² of the target curve.
+
+![](../images/qPCR/ref_genes/60%20and%2085%20plate.png)  
+![](../images/qPCR/ref_genes/60%20melt%20curves.png)
+
+---
+
+### Results
+
+| Gene ID           | R²     | Slope    | Efficiency (%) |
+|------------------|--------|----------|----------------|
+| PDENDC454_09885  | 0.996  | -3.296   | 101.072        |
+| PDENDC454_09860  | 0.986  | -3.319   | 100.135        |
