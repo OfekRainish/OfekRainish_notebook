@@ -249,8 +249,11 @@ We used **qPCRBIO SYGreen Blue Mix Hi-ROX** (Blue SYBR), and in each well the fo
 
 > **Explanation:** Efficiency calculation is based on the **target-specific exponential amplification**. Late, non-overlapping amplification does not affect the slope or R² of the target curve.
 
+*** Note: the water control (NC) are marked with an N. The -RT controls are marked as samples but are seperated from the dilution series.
+
 ![](../images/qPCR/ref_genes/60%20and%2085%20plate.png)  
 ![](../images/qPCR/ref_genes/60%20melt%20curves.png)
+
 
 ---
 
