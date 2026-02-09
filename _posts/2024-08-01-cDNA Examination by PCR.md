@@ -35,10 +35,41 @@ we tried 3 different concentrations: 4,2,0.5 µg/µL.
 
 2. **PCR Tests:**
 
-   We did 12 tests. With each test of cDNA we also did a negative control (NC) in which the transition from RNA to cDNA was without the reverse transcriptase enzymes. Each of the two genes I chose, 16S and Asparagine synthase, we tested on two cDNA extracts of two bacteria: Paenibacillus dendritiformis and Bacillus subtilis, and at three different concentrations 4,2,0.5 µg/µL.
+
 ## Results
-![results](../images/cdna%20validation.png)
+1.   in the first image We did 12 tests. With each test of cDNA we also did a negative control (NC) in which the transition from RNA to cDNA was without the reverse transcriptase enzymes. Each of the two genes I chose, 16S and Asparagine synthase, we tested on two cDNA extracts of two bacteria: Paenibacillus dendritiformis and Bacillus subtilis, and at three different concentrations 4,2,0.5 µg/µL.
 
-As you can see the transition to cDNA was successful and you can see it in the upper part of the gel, of the 16S. In the asparagine synthase gene no bands were seen at all, which indicates that the gene was not expressed during RNA extraction. This makes sense since Asparagine synthase catalyzes the biosynthesis of the amino acid asparagine. In LB medium, cells can efficiently obtain asparagine from the medium.
+      ![results](../images/cdna%20validation.png)
 
-It can also be seen that the most prominent band in the concentration of 4  µg/µL. **However**, it is important to note that we ran 28 cycles in PCR and not 35. A concentration of 4 µg/µL is **very high** for a qPCR process, so it may be better to work with the concentration of 0.5 µg/µL.
+      As you can see the transition to cDNA was successful and you can see it in the upper part of the gel, of the 16S. In the asparagine synthase gene no bands were seen at all, which indicates that the gene was not expressed during RNA extraction. This makes sense since Asparagine synthase catalyzes the biosynthesis of the amino acid asparagine. In LB medium, cells can efficiently obtain asparagine from the medium.
+
+      It can also be seen that the most prominent band in the concentration of 4  µg/µL. **However**, it is important to note that we ran 28 cycles in PCR and not 35. A concentration of 4 µg/µL is **very high** for a qPCR process, so it may be better to work with the concentration of 0.5 µg/µL.
+
+
+
+2. In the first image We did 24 tests. For each of the four genes recA, 16S, Carboxypep DacF
+and XcnG peptidase We performed 6 tests:
+
+   1. Versus genomic DNA (DNA)
+   2. Against cDNA of Pd. (cDNA Pd)
+   3. Against RNA Pd in ​​which no reverse transcriptase enzyme was inserted (RNA control Pd)
+   4. against cDNA of Bs. (cDNA Bs)
+   5. Against RNA Bs where no reverse transcriptase enzyme was inserted. (RNA control Bs)
+   6. water control (W.C)
+
+| Gene Name         | Type                     | Forward Primer (F)                          | Reverse Primer (R)                          |
+|-------------------|--------------------------|---------------------------------------------|---------------------------------------------|
+| recA              | Potential normalizing gene| GAG ATT GAA GGC GAG ATG G                   | GTC TTG GAC TTG CTG ATC G                   |
+| 16S               | Control                  | ACACTGACGACATGGTTCTACAGTGGYCAGCMGCCGCGGTAA- | TACGGTAGCAGAGACTTGGTCTCCGYCAATTYMTTTRAGTTT- |
+| carboxypep DacF   | Protease                 | AGC CTT GCT TCA ATA CCC                     | CTT GTT CGT GTT GAC AAG C                   |
+| XcnG peptidase    | Protease                 | GAA ATC ACA TCA GGG TGA TAG G               | GGT GCT CTA TCA TCG TTT GG                  |
+
+
+
+   In each row there are two PCRBIO ladder 3 (pcr biosystems) ladders, once diluted 5 times and once diluted 10 times, in this order.
+
+   The gel is 2% agar and 4µL safeRed, and runs for 50 minutes at 120 volts..
+
+   ![results](../images/gel%20cdna%2016s%20reca%20dcf%20xg.png)
+
+   
