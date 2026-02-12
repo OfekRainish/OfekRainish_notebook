@@ -62,6 +62,10 @@ This protocol outlines the steps for designing primers for genes in **Paenibacil
 ## Step 3: Primer List
 
 Prepare a list of primers for each gene, formatted as follows:
+<<<<<<< HEAD
+=======
+
+>>>>>>> 455a2a65068423c4fa075ae2284bc802f46b75a9
 | Serial Number | Gene Name               | Gene Type                        | Forward Primer          | Reverse Primer         |
 |---------------|--------------------------|----------------------------------|-------------------------|------------------------|
 | 1             | Asparagine synthase       | Natural product                  | TTATTTCTGGGCAGCCTCCA     | GCTGGTCTGCTAATTCGTCC   |
@@ -84,6 +88,10 @@ Prepare a list of primers for each gene, formatted as follows:
 | 18            | recA                     | Potential reference gene          | GGAATCTCCCATCTCGCCTT     | ATCGACGAACTGCTTCTGTC   |
 | 19            | gyrB                     | Potential reference gene          | CAACTTGAGCGGGGATGATG     | GAACAAGGACTCGACGATGC   |
 | 20            | dacF                     | Protease                         | CCCACTTCGAGAACAGCAAC     | TGGCGCAGGTAATCTTCGTA   |
+<<<<<<< HEAD
+=======
+
+>>>>>>> 455a2a65068423c4fa075ae2284bc802f46b75a9
 
 
 ---
