@@ -23,7 +23,7 @@ The goal of this experiment is to identify compounds that:
    - Replicates: **4 colonies**
 
 Plate layout example:  
-![]()
+![](../images/dry%20drop/3%20o.n%20comparison%20experiment/setup.png)
 
 ---
 
