@@ -73,6 +73,7 @@ Matrix solvent consisted of:
 Possible matrix acids used:
 - 2,5-Dihydroxybenzoic acid (DHB)
 - α-Cyano-4-hydroxycinnamic acid (HCCA)
+- You might want to add more acids like formic acid/TFA
 
 General usage:
 - HCCA → typically used for small proteins and peptides
