@@ -145,4 +145,4 @@ This raises the key question:
 ## Next Steps
 - Further reduce the list of candidate genes.  
 - Validate their expression in real time using **qPCR**.  
-- The reduced gene list is attached [here](../exel%20files/deseq2/genes_of%20interest1.xlsx).
+- The reduced gene list is attached [here](../exel%20files/genes/new_final_table.xlsx).
