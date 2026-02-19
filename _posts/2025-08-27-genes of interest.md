@@ -49,7 +49,7 @@ I compiled a list of canonical SOS genes and matched them to their corresponding
 | PDENDC454_03929 | – |
 | PDENDC454_03934 | – |
 
-Apart from one gene — **PDENDC454_05386**, which was upregulated after 44 hours of surfactin exposure (*padj = 0.03*) —  
+Apart from one gene — **PDENDC454_04686**, which was upregulated after 44 hours of surfactin exposure (*padj = 0.03*) —  
 none of these were classified as differentially expressed genes (DEGs).
 
 
