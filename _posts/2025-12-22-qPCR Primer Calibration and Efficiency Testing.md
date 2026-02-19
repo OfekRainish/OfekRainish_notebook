@@ -263,3 +263,24 @@ We used **qPCRBIO SYGreen Blue Mix Hi-ROX** (Blue SYBR), and in each well the fo
 |------------------|--------|----------|----------------|
 | PDENDC454_09885  | 0.996  | -3.296   | 101.072        |
 | PDENDC454_09860  | 0.986  | -3.319   | 100.135        |
+
+
+### Final notes
+Preparing the dilutions:
+
+It is easiest to think of the dilutions as “ng/well” rather than “ng/µL”. According to the manufacturer’s instructions (in the protocol):
+“For optimal performance, use up to 20 ng of cDNA per 20-µL reaction, plus RNase-free water.”
+We do 10 µL wells, but I understand it is recommended to have up to 20ng per well. We put 1 µL in each well. The starting concentration should be 20ng/µL. From there we do 4- or 5-fold dilution series.
+
+Each protocol of each kit is a little different. In the 'renume' kit the components of each well are:
+
+- Syber 125 µL
+- Primer F 25 µL (stock of 0.2 µM)
+- Primer R 25 µL (stock of 0.2 µM)
+- Water 50 µL
+
+in the TAMAR one (blue syber):
+- 5 Cyber
+- 0.8 Primer F (stock of 0.5 µM)
+- 0.8 Primer R (stock of 0.5 µM)
+- 2.4 Water
