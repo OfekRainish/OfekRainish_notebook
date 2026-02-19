@@ -66,14 +66,17 @@ The MALDI matrix serves two main roles:
 
 ### Matrix Solvent Composition
 Matrix solvent consisted of:
-- 70% __________
-- 30% __________
-
+- 70% Acetonitrile 
+- 30% clean water
 ### Matrix Components
 Possible matrix acids used:
 - 2,5-Dihydroxybenzoic acid (DHB)
 - α-Cyano-4-hydroxycinnamic acid (HCCA)
-- You might want to add more acids like formic acid/TFA
+
+These acide are added to a concentration of 100mg to 10mL.
+
+- You might want to add more acids like formic acid/TFA (0.1%, for example 10 microliter in 10mL).
+
 
 General usage:
 - HCCA → typically used for small proteins and peptides
@@ -101,7 +104,7 @@ For calibration spots:
 
 Matrix composition for calibration:
 - 1:1 HCCA : DHB
-- Contains TFA (concentration: ______)
+- Contains TFA-99% (concentration:0.1%)
 
 ---
 
