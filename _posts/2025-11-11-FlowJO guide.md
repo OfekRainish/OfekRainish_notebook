@@ -73,6 +73,7 @@ Click on one of the **blank** samples in the workspace to open its plot.
 1. Select a sample and click on the gates in the workspace.
 2. Adjust axes as described in **Step 4** (usually no need to re-customize scales).
 3. Apply the updated gate to all samples by dragging it to **“All Samples”** again.
+4. Make sure you can see your samples  - go over all the gates and adjust. If you wonn't, the values you get will be off.
 ![](../images/FACS/flowJo/12.png)
 
 
